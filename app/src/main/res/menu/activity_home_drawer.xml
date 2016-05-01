@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item android:title="Home">
+        <menu>
+        <item
+            android:id="@+id/nav_add"
+            android:title="Add a Book" />
+        <item
+            android:id="@+id/nav_get"
+            android:title="Get Points" />
+        <item
+
+            android:id="@+id/nav_contact"
+            android:title="Contact us" />
+
+
+        <item
+            android:id="@+id/nav_settings"
+            android:title="Settings" />
+        <item
+
+            android:id="@+id/nav_myacc"
+            android:title="My Account" />
+        <item
+            android:id="@+id/nav_logout"
+            android:title="Log Out" />
+        </menu>
+    </item>
+
+
+</menu>
