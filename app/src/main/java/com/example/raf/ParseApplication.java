@@ -7,7 +7,9 @@ import android.app.Application;
 
 import com.example.raf.data.Author;
 import com.example.raf.data.Book;
+import com.example.raf.data.DeliveryPoint;
 import com.example.raf.data.Genre;
+import com.example.raf.data.Request;
 import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseFacebookUtils;
@@ -23,6 +25,8 @@ public class ParseApplication extends Application {
         ParseObject.registerSubclass(Author.class);
         ParseObject.registerSubclass(Book.class);
         ParseObject.registerSubclass(Genre.class);
+        ParseObject.registerSubclass(DeliveryPoint.class);
+        ParseObject.registerSubclass(Request.class);
         Parse.initialize(this, getString(R.string.parse_AppID), getString(R.string.parse_ClientKey));
 
         ParseUser.enableAutomaticUser();

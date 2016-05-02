@@ -69,7 +69,14 @@ public class Book extends ParseObject{
     public Genre getGenre(){
         return (Genre)getParseObject("Genre");
     }
-
+    @Override
+    public boolean equals(Object o){
+        if(!(o instanceof Book)){
+            return false;
+        }
+        Book b = (Book)o;
+        return getObjectId().equals(b.getObjectId());
+    }
     public byte[] getCover(){
         try {
             return getParseFile("cover").getData();
