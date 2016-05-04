@@ -15,7 +15,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.raf.data.Author;
 import com.example.raf.data.Book;
+import com.parse.ParseException;
 
 import java.util.ArrayList;
 
@@ -85,7 +87,14 @@ public class GridAdapter extends BaseAdapter {
             TextView textView2 = (TextView) gridView
                     .findViewById(R.id.author);
 
-            //textView2.setText(books.get(position).getAuthor().getName());
+            try {
+                Author author = books.get(position).getAuthor().fetch();
+                textView2.setText(author.getName());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+//            textView2.setText(books.get(position).getAuthor().getName());
 
             TextView textView3 = (TextView) gridView
                     .findViewById(R.id.price);
@@ -135,13 +144,19 @@ public class GridAdapter extends BaseAdapter {
         return gridView;
     }
 
-    public void addBooks (ArrayList<Book> books){
-        if (books != null) {
-            this.books = (ArrayList<Book>) books.clone();
+    public void addBooks (ArrayList<Book> booksList){
+        if (booksList != null) {
+            this.books = (ArrayList<Book>) booksList.clone();
             notifyDataSetChanged();
-//            ArrayList<Book> clone = (ArrayList<Book>) books.clone();
+//            ArrayList<Book> clone = (ArrayList<Book>) booksList.clone();
 //            for (Book b : clone) {
-//                this.books.add(b);
+//                b.fetchInBackground(new GetCallback<ParseObject>() {
+//                    @Override
+//                    public void done(ParseObject object, ParseException e) {
+//                        books.add((Book)object);
+//                        notifyDataSetChanged();
+//                    }
+//                });
 //                notifyDataSetChanged();
 //            }
         }

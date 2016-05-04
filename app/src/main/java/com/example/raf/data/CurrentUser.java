@@ -12,6 +12,7 @@ public class CurrentUser {
     public static ParseUser getCurrentUser(){
         return ParseUser.getCurrentUser();
     }
+
     public static void addBookToWishlist(Book book){
         ArrayList<Book> wishlist = getWishlist();
         if(wishlist!=null){
@@ -25,8 +26,8 @@ public class CurrentUser {
             wishlist.add(book);
 
             getCurrentUser().put("wishlist" , wishlist);
-            getCurrentUser().saveInBackground();
         }
+        getCurrentUser().saveInBackground();
     }
     public static ArrayList<Book> getWishlist(){
         try {
@@ -34,6 +35,14 @@ public class CurrentUser {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return (ArrayList<Book>) getCurrentUser().get("wishlist");
+        ArrayList <Book> list = (ArrayList<Book>) getCurrentUser().get("wishlist");
+        for (Book b:list){
+            try {
+                b = b.fetch();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
     }
 }
