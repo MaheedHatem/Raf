@@ -1,6 +1,13 @@
 package com.example.raf;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.os.Build;
+import android.support.design.widget.Snackbar;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,12 +15,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.raf.data.Book;
+
+import java.util.ArrayList;
+
 /**
  * Created by Ahmed on 23/04/2016.
  */
 public class GridAdapter extends BaseAdapter {
 
     private Context context;
+    private ArrayList<Book> books = new ArrayList<Book>();
 
 
     //Constructor to initialize values
@@ -26,7 +38,7 @@ public class GridAdapter extends BaseAdapter {
     public int getCount() {
 
         // Number of times getView method call depends upon gridValues.length
-        return titles.length;
+        return books.size();
     }
 
     @Override
@@ -44,7 +56,7 @@ public class GridAdapter extends BaseAdapter {
 
     // Number of times getView method call depends upon gridValues.length
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         // LayoutInflator to call external grid_item.xml file
 
@@ -66,24 +78,53 @@ public class GridAdapter extends BaseAdapter {
             TextView textView1 = (TextView) gridView
                     .findViewById(R.id.title);
 
-            textView1.setText(titles[position]);
+            textView1.setText(books.get(position).getName());
 
             // set image based on selected text
 
             TextView textView2 = (TextView) gridView
                     .findViewById(R.id.author);
 
-            textView2.setText(authors[position]);
+            //textView2.setText(books.get(position).getAuthor().getName());
 
             TextView textView3 = (TextView) gridView
                     .findViewById(R.id.price);
-            textView3.setText(""+prices[position]);
+            textView3.setText(""+books.get(position).getPrice());
 
 
             ImageView img = (ImageView) gridView.findViewById(R.id.cover);
-            img.setImageResource(mCovers[position]);
+            img.setImageBitmap(BitmapFactory.decodeByteArray(books.get(position).getCover() , 0 ,
+                                books.get(position).getCover().length));
+
+            gridView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Snackbar.make(v, ((TextView)v.findViewById( R.id.title )).getText(), Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
 
 
+
+                    Intent mainIntent = new Intent(context.getApplicationContext(),BookActivity.class);
+
+                    mainIntent.putExtra(context.getString(R.string.book_intent_id) , books.get(position).getObjectId());
+                    mainIntent.putExtra(context.getString(R.string.book_intent_name) , books.get(position).getName());
+                    mainIntent.putExtra(context.getString(R.string.book_intent_author) , books.get(position).getAuthor().getName());
+                    mainIntent.putExtra(context.getString(R.string.book_intent_cover) , books.get(position).getCover());
+                    mainIntent.putExtra(context.getString(R.string.book_intent_description) , books.get(position).getDescription());
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        Pair<View, String> p1 = Pair.create((View)v.findViewById(R.id.title), "title");
+                        Pair<View, String> p2 = Pair.create((View)v.findViewById(R.id.cover), "cover");
+                        ActivityOptions options = ActivityOptions.
+                                makeSceneTransitionAnimation((Activity) context, p2,p1);
+                        context.startActivity(mainIntent, options.toBundle());
+                    }
+                    else {
+                        context.startActivity(mainIntent);
+                    }
+                }
+            });
 
 
         } else {
@@ -94,8 +135,20 @@ public class GridAdapter extends BaseAdapter {
         return gridView;
     }
 
-    int [] mCovers = {R.drawable.book1,R.drawable.book2,R.drawable.book3,R.drawable.book1,R.drawable.book2,R.drawable.book3};
-    private String[] titles = {"Book Thief","Ten Thousand Skies above you","Still Alice","Book Thief","Ten Thousand Skies above you","Still Alice"};
-    private String[] authors = {"Markus Zusak","Claudia Gray","Lisa Genova","Claudia Gray","Lisa Genova","Markus Zusak"};
-    private int[] prices = {100,200,300,400,500,600};
+    public void addBooks (ArrayList<Book> books){
+        if (books != null) {
+            this.books = (ArrayList<Book>) books.clone();
+            notifyDataSetChanged();
+//            ArrayList<Book> clone = (ArrayList<Book>) books.clone();
+//            for (Book b : clone) {
+//                this.books.add(b);
+//                notifyDataSetChanged();
+//            }
+        }
+    }
+
+//    int [] mCovers = {R.drawable.book1,R.drawable.book2,R.drawable.book3,R.drawable.book1,R.drawable.book2,R.drawable.book3};
+//    private String[] titles = {"Book Thief","Ten Thousand Skies above you","Still Alice","Book Thief","Ten Thousand Skies above you","Still Alice"};
+//    private String[] authors = {"Markus Zusak","Claudia Gray","Lisa Genova","Claudia Gray","Lisa Genova","Markus Zusak"};
+//    private int[] prices = {100,200,300,400,500,600};
 }

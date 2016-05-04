@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.raf.data.Book;
+
 public class BookActivity extends AppCompatActivity {
 
     @Override
@@ -21,7 +23,7 @@ public class BookActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        String bookID = getIntent().getStringExtra(getString(R.string.book_intent_id));
+        final String bookID = getIntent().getStringExtra(getString(R.string.book_intent_id));
         String bookName = getIntent().getStringExtra(getString(R.string.book_intent_name));
         String bookAuthor = getIntent().getStringExtra(getString(R.string.book_intent_author));
         String bookDescription = getIntent().getStringExtra(getString(R.string.book_intent_description));
@@ -41,6 +43,7 @@ public class BookActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Book.addToWishList(bookID , getApplication());
                 Snackbar.make(view, "Added to Whishlist", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }

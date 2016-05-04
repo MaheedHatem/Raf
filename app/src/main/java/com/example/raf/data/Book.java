@@ -21,6 +21,8 @@ import java.util.List;
 public class Book extends ParseObject{
     public Book() {
     }
+
+
     public int getNumberOfCopies() {
         return getInt("numberOfCopies");
     }
@@ -69,6 +71,7 @@ public class Book extends ParseObject{
     public Genre getGenre(){
         return (Genre)getParseObject("Genre");
     }
+    public int getPrice() {return getInt("price");}
     @Override
     public boolean equals(Object o){
         if(!(o instanceof Book)){
@@ -168,6 +171,19 @@ public class Book extends ParseObject{
                             }
                         }
                     });
+                }
+            }
+        });
+    }
+
+    public static void addToWishList(String id , Context context){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(context.getString(R.string.parse_book));
+        query.getInBackground(id, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (e== null) {
+                    Book b = (Book) object;
+                    CurrentUser.addBookToWishlist(b);
                 }
             }
         });

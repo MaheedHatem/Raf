@@ -143,8 +143,6 @@ public class GridHomeAdapter extends BaseAdapter {
     }
 
 
-    {
-    }
 
     /*public boolean addItem(String title,String author, int cover , int type){
 

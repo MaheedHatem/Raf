@@ -4,24 +4,21 @@ package com.example.raf;
  * Created by Ahmed on 23/04/2016.
  */
 
-import android.app.ActivityOptions;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
+
+import com.example.raf.data.CurrentUser;
 
 
 public class WhishlistFragment extends Fragment {
 
     TextView toolbarTitle = null;
+    GridAdapter gridAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,42 +53,48 @@ public class WhishlistFragment extends Fragment {
 
         // Set custom adapter (GridAdapter) to gridview
 
-        gridView.setAdapter(  new GridAdapter(v.getContext()) );
+        gridAdapter = new GridAdapter(v.getContext());
+        gridAdapter.addBooks(CurrentUser.getWishlist());
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        gridView.setAdapter(gridAdapter);
 
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-
-
-
-                Snackbar.make(v, ((TextView)v.findViewById( R.id.title )).getText(), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
-
-
-                Intent mainIntent = new Intent(getActivity(),BookActivity.class);
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    toolbarTitle.setTransitionName("title");
-                    Pair<View, String> p1 = Pair.create((View)v.findViewById(R.id.title), "title");
-                    Pair<View, String> p2 = Pair.create((View)v.findViewById(R.id.cover), "cover");
-                    ActivityOptions options = ActivityOptions.
-                            makeSceneTransitionAnimation(getActivity(), p2,p1);
-                    startActivity(mainIntent, options.toBundle());
-                }
-                else {
-                    getActivity().startActivity(mainIntent);
-                }
-
-            }
-        });
+//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            public void onItemClick(AdapterView<?> parent, View v,
+//                                    int position, long id) {
+//
+//
+//
+//                Snackbar.make(v, ((TextView)v.findViewById( R.id.title )).getText(), Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//
+//
+//
+//                Intent mainIntent = new Intent(getActivity(),BookActivity.class);
+//
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                    toolbarTitle.setTransitionName("title");
+//                    Pair<View, String> p1 = Pair.create((View)v.findViewById(R.id.title), "title");
+//                    Pair<View, String> p2 = Pair.create((View)v.findViewById(R.id.cover), "cover");
+//                    ActivityOptions options = ActivityOptions.
+//                            makeSceneTransitionAnimation(getActivity(), p2,p1);
+//                    startActivity(mainIntent, options.toBundle());
+//                }
+//                else {
+//                    getActivity().startActivity(mainIntent);
+//                }
+//
+//            }
+//        });
 
 
 
         return v;
     }
 
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        gridAdapter.addBooks(CurrentUser.getWishlist());
+    }
 }
