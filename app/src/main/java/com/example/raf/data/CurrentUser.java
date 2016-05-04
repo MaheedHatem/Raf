@@ -25,6 +25,7 @@ public class CurrentUser {
             wishlist.add(book);
 
             getCurrentUser().put("wishlist" , wishlist);
+            getCurrentUser().saveInBackground();
         }
     }
     public static ArrayList<Book> getWishlist(){

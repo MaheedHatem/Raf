@@ -178,6 +178,8 @@ public class Book extends ParseObject{
 
     public static void addToWishList(String id , Context context){
         ParseQuery<ParseObject> query = ParseQuery.getQuery(context.getString(R.string.parse_book));
+        query.include(context.getString(R.string.parse_book_author));
+        query.include(context.getString(R.string.parse_book_genre));
         query.getInBackground(id, new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
