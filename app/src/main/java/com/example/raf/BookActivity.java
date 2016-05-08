@@ -1,5 +1,7 @@
 package com.example.raf;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +19,8 @@ import com.example.raf.data.Book;
 import com.example.raf.data.CurrentUser;
 
 public class BookActivity extends AppCompatActivity {
+
+    private Context mContext = getApplication();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,23 @@ public class BookActivity extends AppCompatActivity {
         imageCover.setImageBitmap(BitmapFactory.decodeByteArray(bookCover,0,bookCover.length));
         description.setText(bookDescription);
 
+        Button getCopy = (Button)findViewById(R.id.getcopy);
+        getCopy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent getBookIntent = new Intent(getApplication() , GetBookActivity.class);
+                mContext.startActivity(getBookIntent);
+            }
+        });
 
+        Button addCopy = (Button)findViewById(R.id.addCopy);
+        addCopy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addBookIntent = new Intent(getApplication() , AddBookActivity.class);
+                mContext.startActivity(addBookIntent);
+            }
+        });
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
