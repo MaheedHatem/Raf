@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,6 +31,14 @@ public class BookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            View lo = (View) findViewById(R.id.bellow_actionbar);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) lo.getLayoutParams();
+            params.topMargin=getResources().getDimensionPixelOffset(R.dimen.top_margin);
+            lo.setLayoutParams(params);
+        }
+
 
         final String bookID = getIntent().getStringExtra(getString(R.string.book_intent_id));
         String bookName = getIntent().getStringExtra(getString(R.string.book_intent_name));
