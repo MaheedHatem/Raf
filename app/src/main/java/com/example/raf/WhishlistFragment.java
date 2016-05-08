@@ -96,6 +96,7 @@ public class WhishlistFragment extends Fragment {
     public void onResume() {
         super.onResume();
         gridAdapter.addBooks(CurrentUser.getWishlist());
+
     }
 
 }

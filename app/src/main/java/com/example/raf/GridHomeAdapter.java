@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.support.design.widget.Snackbar;
@@ -44,6 +45,7 @@ public class GridHomeAdapter extends BaseAdapter {
     final int NEW_RELEASES = 1;
     final int MOST_POPULAR = 2;
     final int [] types = {FEATURED,NEW_RELEASES,MOST_POPULAR};
+
 
 
     //Constructor to initialize values
@@ -103,8 +105,10 @@ public class GridHomeAdapter extends BaseAdapter {
                     txtauthor.setText(mBook0.get(position).getAuthor().getName());
                     //imgcover.setImageResource(mCover0.get(position));
                     //edited by khaled
-                    imgcover.setImageBitmap(BitmapFactory.decodeByteArray(mBook0.get(position).getCover()
-                            ,0,mBook0.get(position).getCover().length));
+                    Bitmap b = BitmapFactory.decodeByteArray(mBook0.get(position).getCover()
+                            ,0,mBook0.get(position).getCover().length);
+                    imgcover.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
+
 
             gridView.setOnClickListener(new View.OnClickListener() {
                 @Override

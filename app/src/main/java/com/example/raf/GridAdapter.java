@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.support.design.widget.Snackbar;
@@ -103,8 +104,10 @@ public class GridAdapter extends BaseAdapter {
 
 
             ImageView img = (ImageView) gridView.findViewById(R.id.cover);
-            img.setImageBitmap(BitmapFactory.decodeByteArray(books.get(position).getCover() , 0 ,
-                                books.get(position).getCover().length));
+
+            Bitmap b = BitmapFactory.decodeByteArray(books.get(position).getCover() , 0 ,
+                    books.get(position).getCover().length);
+            img.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
 
             gridView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -141,8 +144,9 @@ public class GridAdapter extends BaseAdapter {
 
             gridView = (View) convertView;
             ImageView img = (ImageView) gridView.findViewById(R.id.cover);
-            img.setImageBitmap(BitmapFactory.decodeByteArray(books.get(position).getCover() , 0 ,
-                    books.get(position).getCover().length));
+            Bitmap b = BitmapFactory.decodeByteArray(books.get(position).getCover() , 0 ,
+                    books.get(position).getCover().length);
+            img.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
             TextView textView1 = (TextView) gridView
                     .findViewById(R.id.title);
             textView1.setText(books.get(position).getName());

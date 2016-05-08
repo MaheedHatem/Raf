@@ -2,6 +2,7 @@ package com.example.raf;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -40,7 +41,8 @@ public class BookActivity extends AppCompatActivity {
         TextView description = (TextView) book_content.findViewById(R.id.book_description);
 
         setTitle(bookName);
-        imageCover.setImageBitmap(BitmapFactory.decodeByteArray(bookCover,0,bookCover.length));
+        Bitmap b = BitmapFactory.decodeByteArray(bookCover,0,bookCover.length);
+        imageCover.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
         description.setText(bookDescription);
 
         Button getCopy = (Button)findViewById(R.id.getcopy);
