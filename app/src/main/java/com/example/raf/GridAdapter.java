@@ -62,6 +62,7 @@ public class GridAdapter extends BaseAdapter {
 
         // LayoutInflator to call external grid_item.xml file
 
+
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -147,7 +148,7 @@ public class GridAdapter extends BaseAdapter {
     public void addBooks (ArrayList<Book> booksList){
         if (booksList != null) {
             this.books = (ArrayList<Book>) booksList.clone();
-            notifyDataSetChanged();
+            this.notifyDataSetChanged();
 //            ArrayList<Book> clone = (ArrayList<Book>) booksList.clone();
 //            for (Book b : clone) {
 //                b.fetchInBackground(new GetCallback<ParseObject>() {

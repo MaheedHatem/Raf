@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.raf.data.Book;
+import com.example.raf.data.CurrentUser;
 
 public class BookActivity extends AppCompatActivity {
 
@@ -39,13 +40,24 @@ public class BookActivity extends AppCompatActivity {
 
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        if (CurrentUser.isWishListed(bookID)) {
+            //t3ala hena ya jimmy
+        }else {
+        }
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Book.addToWishList(bookID , getApplication());
-                Snackbar.make(view, "Added to Whishlist", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                if(CurrentUser.isWishListed(bookID)) {
+                    Book.removeFromWishList(bookID , getApplication());
+                    Snackbar.make(v, "Removed from Whishlist", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }else{
+                    Book.addToWishList(bookID, getApplication());
+                    Snackbar.make(v, "Added to Whishlist", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
             }
         });
     }

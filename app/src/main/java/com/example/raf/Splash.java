@@ -3,16 +3,14 @@ package com.example.raf;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
-import com.parse.ParseAnonymousUtils;
+
+import com.example.raf.data.CurrentUser;
 import com.parse.ParseUser;
 
 
@@ -69,6 +67,9 @@ public class Splash extends AppCompatActivity {
                 /* Create an Intent that will start the Menu-Activity. */
                 if(ParseUser.getCurrentUser().getUsername() != null)
                 {
+                    //added by khaled
+                    CurrentUser.getWishlistFirstTime();
+                    //////////////////
                     Intent mainIntent = new Intent(Splash.this,HomeActivity.class);
                     Splash.this.startActivity(mainIntent);
                     overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);

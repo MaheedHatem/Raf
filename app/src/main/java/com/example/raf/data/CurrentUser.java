@@ -12,37 +12,60 @@ public class CurrentUser {
     public static ParseUser getCurrentUser(){
         return ParseUser.getCurrentUser();
     }
+    private static ArrayList<Book> wishList = null;
 
     public static void addBookToWishlist(Book book){
-        ArrayList<Book> wishlist = getWishlist();
-        if(wishlist!=null){
-            if(!wishlist.contains(book)){
-                wishlist.add(book);
-                getCurrentUser().put("wishlist" , wishlist);
+        //ArrayList<Book> wishlist = getWishlist();
+        if(wishList!=null){
+            if(!wishList.contains(book)){
+                wishList.add(book);
+                getCurrentUser().put("wishlist" , wishList);
             }
         }
         else{
-            wishlist = new ArrayList<Book>();
-            wishlist.add(book);
+            wishList = new ArrayList<Book>();
+            wishList.add(book);
 
-            getCurrentUser().put("wishlist" , wishlist);
+            getCurrentUser().put("wishlist" , wishList);
         }
         getCurrentUser().saveInBackground();
     }
-    public static ArrayList<Book> getWishlist(){
+
+    public static void removeBookFromWishList(Book book){
+        //ArrayList<Book> wishlist = getWishlist();
+        if (wishList.contains(book)){
+            wishList.remove(book);
+            getCurrentUser().put("wishlist" , wishList);
+            getCurrentUser().saveInBackground();
+        }
+    }
+    public static ArrayList<Book> getWishlistFirstTime(){
         try {
             getCurrentUser().fetch();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        ArrayList <Book> list = (ArrayList<Book>) getCurrentUser().get("wishlist");
-        for (Book b:list){
+        //ArrayList <Book> list = (ArrayList<Book>) getCurrentUser().get("wishlist");
+        wishList = (ArrayList<Book>) getCurrentUser().get("wishlist");
+        for (Book b:wishList){
             try {
                 b = b.fetch();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
         }
-        return list;
+        return wishList;
+    }
+
+    public static ArrayList<Book> getWishlist(){
+        return wishList;
+    }
+
+    public static boolean isWishListed(String bookID){
+        for (Book b:wishList){
+            if (b.getObjectId().equals(bookID))
+                return true;
+        }
+        return false;
     }
 }

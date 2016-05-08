@@ -190,4 +190,25 @@ public class Book extends ParseObject{
             }
         });
     }
+
+    public static void removeFromWishList (String id , Context context){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(context.getString(R.string.parse_book));
+        query.include(context.getString(R.string.parse_book_author));
+        query.include(context.getString(R.string.parse_book_genre));
+        try {
+            Book b = (Book) query.get(id);
+            CurrentUser.removeBookFromWishList(b);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+//        query.getInBackground(id, new GetCallback<ParseObject>() {
+//            @Override
+//            public void done(ParseObject object, ParseException e) {
+//                if (e== null) {
+//                    Book b = (Book) object;
+//                    CurrentUser.removeBookFromWishList(b);
+//                }
+//            }
+//        });
+    }
 }
