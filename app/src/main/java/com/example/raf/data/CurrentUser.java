@@ -40,11 +40,11 @@ public class CurrentUser {
         }
     }
     public static ArrayList<Book> getWishlistFirstTime(){
-        try {
-            getCurrentUser().fetch();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            getCurrentUser().fetch();
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
         //ArrayList <Book> list = (ArrayList<Book>) getCurrentUser().get("wishlist");
         wishList = (ArrayList<Book>) getCurrentUser().get("wishlist");
         for (Book b:wishList){

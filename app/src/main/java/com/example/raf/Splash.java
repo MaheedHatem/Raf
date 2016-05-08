@@ -10,7 +10,6 @@ import android.util.DisplayMetrics;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 
-import com.example.raf.data.CurrentUser;
 import com.parse.ParseUser;
 
 
@@ -22,6 +21,8 @@ public class Splash extends AppCompatActivity {
     int animCount=0;
     private final int SPLASH_DISPLAY_LENGTH = 3000;
 
+    private getWishListThread thread = new getWishListThread();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +32,7 @@ public class Splash extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
 
-
+        thread.start();
 
 
         imgbooks = (ImageView) findViewById(R.id.splash_books);
@@ -68,8 +69,13 @@ public class Splash extends AppCompatActivity {
                 if(ParseUser.getCurrentUser().getUsername() != null)
                 {
                     //added by khaled
-                    CurrentUser.getWishlistFirstTime();
+                    //CurrentUser.getWishlistFirstTime();
                     //////////////////
+                    try {
+                        thread.join();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     Intent mainIntent = new Intent(Splash.this,HomeActivity.class);
                     Splash.this.startActivity(mainIntent);
                     overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
