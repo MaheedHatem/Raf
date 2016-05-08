@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:id="@+id/bellow_actionbar"
     android:fitsSystemWindows="true"
-    android:layout_marginTop="-50dp"
     tools:context="com.example.raf.BookActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="320dp"
+        android:fitsSystemWindows="true"
         android:theme="@style/splash.AppBarOverlay">
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -109,13 +109,10 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_marginTop="50dp"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/splash.PopupOverlay"
-
-
-                />
+                android:layout_marginTop="25dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/splash.PopupOverlay" />
 
 
 
