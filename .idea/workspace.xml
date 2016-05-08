@@ -11,14 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3b8e0dd5-6bc8-4d04-a8a3-b80a185d0b1d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/raf/BookActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/raf/BookActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/raf/GridAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/raf/GridAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/raf/GridHomeAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/raf/GridHomeAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/raf/HomeActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/raf/HomeActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/raf/HomeFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/raf/HomeFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/raf/WhishlistFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/raf/WhishlistFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/grid_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/grid_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/grid_item2.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/grid_item2.xml" />
     </list>
     <ignored path="Raf.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -74,7 +66,7 @@
       <file leaf-file-name="GridHomeAdapter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/raf/GridHomeAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27106228">
+            <state vertical-scroll-proportion="1.2051282">
               <caret line="130" column="78" selection-start-line="130" selection-start-column="78" selection-end-line="130" selection-end-column="78" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -2360,7 +2352,13 @@
       <option name="project" value="LOCAL" />
       <updated>1462739156422</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fixed whishlist, getcopy, addbook">
+      <created>1462742567534</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1462742567534</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3087,7 +3085,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/raf/GridHomeAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27106228">
+        <state vertical-scroll-proportion="1.2051282">
           <caret line="130" column="78" selection-start-line="130" selection-start-column="78" selection-end-line="130" selection-end-column="78" />
           <folding>
             <element signature="imports" expanded="true" />
