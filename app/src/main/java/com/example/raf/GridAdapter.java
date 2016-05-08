@@ -140,6 +140,24 @@ public class GridAdapter extends BaseAdapter {
         } else {
 
             gridView = (View) convertView;
+            ImageView img = (ImageView) gridView.findViewById(R.id.cover);
+            img.setImageBitmap(BitmapFactory.decodeByteArray(books.get(position).getCover() , 0 ,
+                    books.get(position).getCover().length));
+            TextView textView1 = (TextView) gridView
+                    .findViewById(R.id.title);
+            textView1.setText(books.get(position).getName());
+            TextView textView2 = (TextView) gridView
+                    .findViewById(R.id.author);
+
+            try {
+                Author author = books.get(position).getAuthor().fetch();
+                textView2.setText(author.getName());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            TextView textView3 = (TextView) gridView
+                    .findViewById(R.id.price);
+            textView3.setText(""+books.get(position).getPrice());
         }
 
         return gridView;
@@ -162,6 +180,7 @@ public class GridAdapter extends BaseAdapter {
 //            }
         }
     }
+
 
 //    int [] mCovers = {R.drawable.book1,R.drawable.book2,R.drawable.book3,R.drawable.book1,R.drawable.book2,R.drawable.book3};
 //    private String[] titles = {"Book Thief","Ten Thousand Skies above you","Still Alice","Book Thief","Ten Thousand Skies above you","Still Alice"};

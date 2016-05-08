@@ -47,8 +47,8 @@ public class BookActivity extends AppCompatActivity {
         getCopy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent getBookIntent = new Intent(getApplication() , GetBookActivity.class);
-                mContext.startActivity(getBookIntent);
+                Intent getBookIntent = new Intent(BookActivity.this , GetBookActivity.class);
+                BookActivity.this.startActivity(getBookIntent);
             }
         });
 
@@ -56,8 +56,8 @@ public class BookActivity extends AppCompatActivity {
         addCopy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent addBookIntent = new Intent(getApplication() , AddBookActivity.class);
-                mContext.startActivity(addBookIntent);
+                Intent addBookIntent = new Intent(getApplicationContext(), AddBookActivity.class);
+                BookActivity.this.startActivity(addBookIntent);
             }
         });
 
