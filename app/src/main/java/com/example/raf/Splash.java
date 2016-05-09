@@ -31,8 +31,8 @@ public class Splash extends AppCompatActivity {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-
-        thread.start();
+        if (ParseUser.getCurrentUser().getUsername() != null)
+            thread.start();
 
 
         imgbooks = (ImageView) findViewById(R.id.splash_books);
