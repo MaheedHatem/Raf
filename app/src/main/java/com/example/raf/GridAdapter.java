@@ -169,8 +169,14 @@ public class GridAdapter extends BaseAdapter {
 
     public void addBooks (ArrayList<Book> booksList){
         if (booksList != null) {
-            this.books = (ArrayList<Book>) booksList.clone();
-            this.notifyDataSetChanged();
+            ArrayList<Book> clone = (ArrayList<Book>) booksList.clone();
+            for (Book b: clone){
+                if (!this.books.contains(b)){
+                    this.books.add(b);
+                    this.notifyDataSetChanged();
+                }
+            }
+//            this.notifyDataSetChanged();
 //            ArrayList<Book> clone = (ArrayList<Book>) booksList.clone();
 //            for (Book b : clone) {
 //                b.fetchInBackground(new GetCallback<ParseObject>() {
