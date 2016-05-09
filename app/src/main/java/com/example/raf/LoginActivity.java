@@ -40,11 +40,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
+
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
@@ -96,14 +97,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
+                .requestIdToken(getString(R.string.server_client_id))
                 .build();
+
+// Build a GoogleApiClient with access to GoogleSignIn.API and the options above.
         mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-        mGoogleApiClient.connect();
 
 
         setContentView(R.layout.activity_login);
@@ -170,29 +173,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
 
-        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
-        if (opr.isDone()) {
-            // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
-            // and the GoogleSignInResult will be available instantly.
-            Log.d(TAG, "Got cached sign-in");
-            GoogleSignInResult result = opr.get();
-            handleSignInResult(result);
-        } else {
-            // If the user has not previously signed in on this device or the sign-in has expired,
-            // this asynchronous branch will attempt to sign in the user silently.  Cross-device
-            // single sign-on will occur in this branch.
-            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
-                @Override
-                public void onResult(GoogleSignInResult googleSignInResult) {
-                    handleSignInResult(googleSignInResult);
-                }
-            });
-        }
-    }
     private void GsignIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -500,8 +481,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if(handleSignInResult(result))
-            {
+            if (handleSignInResult(result)) {
                 Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
                 LoginActivity.this.startActivity(mainIntent);
                 overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
@@ -515,6 +495,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             LoginActivity.this.finish();
         }
     }
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
 
+    }
 }
 

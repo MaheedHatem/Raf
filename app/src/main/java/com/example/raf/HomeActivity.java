@@ -223,6 +223,7 @@ public class HomeActivity extends AppCompatActivity
             this.startActivity(mainIntent);
             overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
             this.finish();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
