@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Raf</string>
     <string name="title_activity_login">Sign in</string>
-
     <string name="facebook_app_id">511466149039514</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
