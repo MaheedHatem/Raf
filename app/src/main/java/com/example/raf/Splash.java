@@ -21,7 +21,17 @@ public class Splash extends AppCompatActivity {
     int animCount=0;
     private final int SPLASH_DISPLAY_LENGTH = 3000;
 
-    private getWishListThread thread = new getWishListThread();
+    private getTopHomeThread featuredThread = new getTopHomeThread(0 , this);
+    private getTopHomeThread newThread = new getTopHomeThread(1 , this);
+    private getTopHomeThread popularThread = new getTopHomeThread(2 , this);
+
+    private getTopCategoryThread classicThread = new getTopCategoryThread(0 , this);
+    private getTopCategoryThread historyThread = new getTopCategoryThread(1 , this);
+    private getTopCategoryThread bioThread = new getTopCategoryThread(2 , this);
+    private getTopCategoryThread seriesThread = new getTopCategoryThread(3 , this);
+    private getTopCategoryThread religionThread = new getTopCategoryThread(4 , this);
+
+    private getWishListThread wishListThread = new getWishListThread();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +41,16 @@ public class Splash extends AppCompatActivity {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
+        featuredThread.start();
+        newThread.start();
+        popularThread.start();
+        classicThread.start();
+        historyThread.start();
+        bioThread.start();
+        seriesThread.start();
+        religionThread.start();
         if (ParseUser.getCurrentUser().getUsername() != null)
-            thread.start();
+            wishListThread.start();
 
 
         imgbooks = (ImageView) findViewById(R.id.splash_books);
@@ -66,13 +84,22 @@ public class Splash extends AppCompatActivity {
             @Override
             public void run() {
                 /* Create an Intent that will start the Menu-Activity. */
+                try {
+                    featuredThread.join();
+                    newThread.join();
+                    popularThread.join();
+                    classicThread.join();
+                    historyThread.join();
+                    bioThread.join();
+                    seriesThread.join();
+                    religionThread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 if(ParseUser.getCurrentUser().getUsername() != null)
                 {
-                    //added by khaled
-                    //CurrentUser.getWishlistFirstTime();
-                    //////////////////
                     try {
-                        thread.join();
+                        wishListThread.join();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

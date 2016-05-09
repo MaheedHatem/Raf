@@ -5,13 +5,13 @@ import android.content.Context;
 import com.example.raf.CategoriesAdapter;
 import com.example.raf.MyAdapter;
 import com.example.raf.R;
-import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseClassName;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +19,16 @@ import java.util.List;
  */
 @ParseClassName("Book")
 public class Book extends ParseObject{
+
+    private static ArrayList<Book> featured = new ArrayList<Book>();
+    private static ArrayList<Book> popular = new ArrayList<Book>();
+    private static ArrayList<Book> newReleases = new ArrayList<Book>();
+    private static ArrayList<Book> classic = new ArrayList<Book>();
+    private static ArrayList<Book> history = new ArrayList<Book>();
+    private static ArrayList<Book> bio = new ArrayList<Book>();
+    private static ArrayList<Book> series = new ArrayList<Book>();
+    private static ArrayList<Book> religion = new ArrayList<Book>();
+
     public Book() {
     }
 
@@ -102,9 +112,10 @@ public class Book extends ParseObject{
         return getBoolean("popular");
     }
 
-    public static void getTopHome(final MyAdapter mAdapter , Context context , final int type){
+    public static void getTopHomeFirstTime(int type , Context context){
         ParseQuery<ParseObject> query1 = ParseQuery.getQuery(context.getString(R.string.parse_book));
         query1.include(context.getString(R.string.parse_book_author));
+        query1.include(context.getString(R.string.parse_book_genre));
         query1.setLimit(3);
         switch (type) {
             case 0:
@@ -117,63 +128,135 @@ public class Book extends ParseObject{
                 query1.whereEqualTo(context.getString(R.string.parse_book_popular), true);
                 break;
         }
-        query1.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (e== null){
-                    for (int i=0; i<objects.size();i++) {
-                        Book b = (Book)objects.get(i);
-                        //b.initialize();
-                        mAdapter.addBook( b, type);
-                    }
-                }
+        try {
+            List <ParseObject> list =  query1.find();
+            switch (type) {
+                case 0:
+                    for (ParseObject o : list)
+                        featured.add((Book)o);
+                    break;
+                case 1:
+                    for (ParseObject o : list)
+                        newReleases.add((Book)o);
+                    break;
+                case 2:
+                    for (ParseObject o : list)
+                        popular.add((Book)o);
+                    break;
             }
-        });
-    }
 
-    public static void getTopCategory (final CategoriesAdapter myAdapter , final Context context , final int category){
-        ParseQuery<ParseObject> queryClassicID = ParseQuery.getQuery(context.getString(R.string.parse_genre));
-        switch (category){
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void getTopHome(final MyAdapter mAdapter , Context context , final int type){
+        switch (type) {
             case 0:
-                queryClassicID.whereEqualTo(context.getString(R.string.parse_genre_name), "Classic");
+                for (Book b : featured) {
+                    mAdapter.addBook(b, type);
+                }
                 break;
             case 1:
-                queryClassicID.whereEqualTo(context.getString(R.string.parse_genre_name), "History");
+                for (Book b : newReleases) {
+                    mAdapter.addBook(b, type);
+                }
                 break;
             case 2:
-                queryClassicID.whereEqualTo(context.getString(R.string.parse_genre_name), "Biography");
+                for (Book b : popular) {
+                    mAdapter.addBook(b, type);
+                }
+                break;
+        }
+    }
+
+    public static void getTopCategoryFirstTime(int category , Context context){
+        ParseQuery<ParseObject> queryCategoryID = ParseQuery.getQuery(context.getString(R.string.parse_genre));
+        switch (category){
+            case 0:
+                queryCategoryID.whereEqualTo(context.getString(R.string.parse_genre_name), "Classic");
+                break;
+            case 1:
+                queryCategoryID.whereEqualTo(context.getString(R.string.parse_genre_name), "History");
+                break;
+            case 2:
+                queryCategoryID.whereEqualTo(context.getString(R.string.parse_genre_name), "Biography");
                 break;
             case 3:
-                queryClassicID.whereEqualTo(context.getString(R.string.parse_genre_name), "Series");
+                queryCategoryID.whereEqualTo(context.getString(R.string.parse_genre_name), "Series");
                 break;
             case 4:
-                queryClassicID.whereEqualTo(context.getString(R.string.parse_genre_name), "Religion");
+                queryCategoryID.whereEqualTo(context.getString(R.string.parse_genre_name), "Religion");
                 break;
         }
 
-        queryClassicID.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(final ParseObject object, ParseException e) {
-                if (e == null){
-                    Genre genre = (Genre)object;
-                    ParseQuery<ParseObject> queryClassics = ParseQuery.getQuery(context.getString(R.string.parse_book));
-                    queryClassics.setLimit(3);
-                    queryClassics.include(context.getString(R.string.parse_book_author));
-                    queryClassics.include(context.getString(R.string.parse_book_genre));
-                    queryClassics.whereEqualTo(context.getString(R.string.parse_book_genre),genre);
-                    queryClassics.findInBackground(new FindCallback<ParseObject>() {
-                        @Override
-                        public void done(List<ParseObject> objects, ParseException e) {
-                            if (e== null) {
-                                for (int i = 0; i < objects.size(); i++) {
-                                    myAdapter.addBook((Book) objects.get(i), category);
-                                }
-                            }
-                        }
-                    });
-                }
+        try {
+            Genre genre = (Genre)queryCategoryID.getFirst();
+            ParseQuery<ParseObject> queryBooks = ParseQuery.getQuery(context.getString(R.string.parse_book));
+            queryBooks.setLimit(3);
+            queryBooks.include(context.getString(R.string.parse_book_author));
+            queryBooks.include(context.getString(R.string.parse_book_genre));
+            queryBooks.whereEqualTo(context.getString(R.string.parse_book_genre),genre);
+            List <ParseObject> list = queryBooks.find();
+            switch (category) {
+                case 0:
+                    for (ParseObject o : list) {
+                        classic.add((Book)o);
+                    }
+                    break;
+                case 1:
+                    for (ParseObject o : list) {
+                        history.add((Book)o);
+                    }
+                    break;
+                case 2:
+                    for (ParseObject o : list) {
+                        bio.add((Book)o);
+                    }
+                    break;
+                case 3:
+                    for (ParseObject o : list) {
+                        series.add((Book)o);
+                    }
+                    break;
+                case 4:
+                    for (ParseObject o : list) {
+                        religion.add((Book)o);
+                    }
+                    break;
             }
-        });
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void getTopCategory (final CategoriesAdapter myAdapter , final Context context , final int category){
+        switch (category){
+            case 0:
+                for (Book b:classic) {
+                    myAdapter.addBook(b, category);
+                }
+                break;
+            case 1:
+                for (Book b:history) {
+                    myAdapter.addBook(b, category);
+                }
+                break;
+            case 2:
+                for (Book b:bio) {
+                    myAdapter.addBook(b, category);
+                }
+                break;
+            case 3:
+                for (Book b:series) {
+                    myAdapter.addBook(b, category);
+                }
+                break;
+            case 4:
+                for (Book b:religion) {
+                    myAdapter.addBook(b, category);
+                }
+                break;
+        }
     }
 
     public static void addToWishList(String id , Context context){
