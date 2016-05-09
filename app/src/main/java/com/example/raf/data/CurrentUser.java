@@ -47,11 +47,13 @@ public class CurrentUser {
 //        }
         //ArrayList <Book> list = (ArrayList<Book>) getCurrentUser().get("wishlist");
         wishList = (ArrayList<Book>) getCurrentUser().get("wishlist");
-        for (Book b:wishList){
-            try {
-                b = b.fetch();
-            } catch (ParseException e) {
-                e.printStackTrace();
+        if(wishList != null) {
+            for (Book b : wishList) {
+                try {
+                    b = b.fetch();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return wishList;
