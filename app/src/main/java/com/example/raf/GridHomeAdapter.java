@@ -52,7 +52,6 @@ public class GridHomeAdapter extends BaseAdapter {
     public GridHomeAdapter(Context context) {
 
         this.context = context;
-        //mContext = context;
     }
 
     @Override
@@ -161,12 +160,12 @@ public class GridHomeAdapter extends BaseAdapter {
     }*/
 
     //edited by khaled
-    public boolean addItem(Book book, int type){
-        mBook0.add(book);
+    public void addItem(Book book, int type){
+        if (!mBook0.contains(book)) {
+            mBook0.add(book);
 
-        notifyDataSetChanged();
-        return true;
-
+            notifyDataSetChanged();
+        }
     }
 
     public ArrayList<Book> getList(){
