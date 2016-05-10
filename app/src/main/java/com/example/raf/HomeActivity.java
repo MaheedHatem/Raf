@@ -43,42 +43,42 @@ public class HomeActivity extends AppCompatActivity
 
 
 
-        ViewPager.OnPageChangeListener myOnPageChangeListener =
-            new ViewPager.OnPageChangeListener(){
-
-                @Override
-                public void onPageScrollStateChanged(int state) {
-                    //Called when the scroll state changes.
-                }
-
-                @Override
-                public void onPageScrolled(int position,
-                                           float positionOffset, int positionOffsetPixels) {
-                    //This method will be invoked when the current page is scrolled,
-                    //either as part of a programmatically initiated smooth scroll
-                    //or a user initiated touch scroll.
-                }
-
-                @Override
-                public void onPageSelected(int position) {
-                    //This method will be invoked when a new page becomes selected.
-                    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-                    setSupportActionBar(toolbar);
-
-
-
-                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                    ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                           HomeActivity.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-                    drawer.setDrawerListener(toggle);
-                    toggle.syncState();
-
-                    NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-                    navigationView.setNavigationItemSelectedListener(HomeActivity.this);
-                }
-            };
-
-        viewPager.setOnPageChangeListener(myOnPageChangeListener);
+//        ViewPager.OnPageChangeListener myOnPageChangeListener =
+//            new ViewPager.OnPageChangeListener(){
+//
+//                @Override
+//                public void onPageScrollStateChanged(int state) {
+//                    //Called when the scroll state changes.
+//                }
+//
+//                @Override
+//                public void onPageScrolled(int position,
+//                                           float positionOffset, int positionOffsetPixels) {
+//                    //This method will be invoked when the current page is scrolled,
+//                    //either as part of a programmatically initiated smooth scroll
+//                    //or a user initiated touch scroll.
+//                }
+//
+//                @Override
+//                public void onPageSelected(int position) {
+//                    //This method will be invoked when a new page becomes selected.
+//                    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//                    setSupportActionBar(toolbar);
+//
+//
+//
+//                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//                    ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                           HomeActivity.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//                    drawer.setDrawerListener(toggle);
+//                    toggle.syncState();
+//
+//                    NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+//                    navigationView.setNavigationItemSelectedListener(HomeActivity.this);
+//                }
+//            };
+//
+//        viewPager.setOnPageChangeListener(myOnPageChangeListener);
 
         final TabLayout.Tab home = tabLayout.newTab();
         final TabLayout.Tab inbox = tabLayout.newTab();
