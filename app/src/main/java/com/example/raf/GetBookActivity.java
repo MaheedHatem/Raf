@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -35,7 +37,7 @@ public class GetBookActivity extends AppCompatActivity {
         currentDay = c.get(Calendar.DAY_OF_MONTH);
 
         String bookName = getIntent().getStringExtra(getString(R.string.book_intent_name));
-        int bookPrice = getIntent().getIntExtra(getString(R.string.book_intent_price) , 0);
+        final int bookPrice = getIntent().getIntExtra(getString(R.string.book_intent_price) , 0);
 
         ScrollView content = (ScrollView) findViewById(R.id.getBook_content);
 
@@ -44,10 +46,12 @@ public class GetBookActivity extends AppCompatActivity {
         final Button endDateButton = (Button)content.findViewById(R.id.end_date_button);
         final RadioButton purchaseBookRadioButton = (RadioButton)content.findViewById(R.id.purchaseBook);
         final RadioButton borrowBookRadioButton = (RadioButton)content.findViewById(R.id.borrowBook);
+        final TextView pointsTextView= (TextView)content.findViewById(R.id.points_text);
         startDateText = (TextView)content.findViewById(R.id.start_date_text);
         endDateText = (TextView)content.findViewById(R.id.end_date_text);
 
         bookNameTextView.setText(bookName);
+        pointsTextView.setText(Integer.toString(bookPrice));
 
         startDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +76,9 @@ public class GetBookActivity extends AppCompatActivity {
                 endDateButton.setEnabled(false);
                 startDateText.setText("");
                 endDateText.setText("");
+                pointsTextView.setText(Integer.toString(bookPrice));
+                startDateFlag = false;
+                endDateFlag = false;
             }
         });
 
@@ -80,26 +87,51 @@ public class GetBookActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startDateButton.setEnabled(true);
                 endDateButton.setEnabled(true);
+                pointsTextView.setText("");
             }
         });
+
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int i;
+                if ((i = calculatePoints(bookPrice , purchaseBookRadioButton))!=-1){
+                    pointsTextView.setText(Integer.toString(i));
+                } else
+                    pointsTextView.setText("");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+
+        startDateText.addTextChangedListener(textWatcher);
+        endDateText.addTextChangedListener(textWatcher);
     }
 
     public static void showStartDate(int year , int month , int day){
-        startDateText.setText(new StringBuilder().append(day).append("/").append(month +1)
-                .append("/").append(year));
         startYear = year;
         startMonth = month;
         startDay = day;
         startDateFlag = checkStartDate();
+        startDateText.setText(new StringBuilder().append(day).append("/").append(month +1)
+                .append("/").append(year));
     }
 
     public static void showEndDate(int year , int month , int day){
-        endDateText.setText(new StringBuilder().append(day).append("/").append(month +1)
-                .append("/").append(year));
         endYear = year;
         endMonth = month;
         endDay = day;
         endDateFlag = checkEndDate();
+        endDateText.setText(new StringBuilder().append(day).append("/").append(month +1)
+                .append("/").append(year));
     }
 
     private static boolean checkStartDate(){
@@ -144,9 +176,12 @@ public class GetBookActivity extends AppCompatActivity {
         return false;
     }
 
-    private int calculatePoints (){
+    private int calculatePoints (int bookPrice , RadioButton radioButton){
+        if (radioButton.isChecked())
+            return bookPrice;
         if (endDateFlag && startDateFlag){
-            int weeks;
+            //TODO complete this function
+            return (int)bookPrice/2;
         }
         return -1;
     }
