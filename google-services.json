@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "450132053315",
+    "project_id": "dulcet-name-130614"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450132053315:android:98b3bec6a53c17ba",
+        "android_client_info": {
+          "package_name": "com.example.raf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450132053315-1bvhp7d4ot9cc1ml681m9gsa6v420tle.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.raf",
+            "certificate_hash": "831899C75C113132C8CE2669FF77501F6A290560"
+          }
+        },
+        {
+          "client_id": "450132053315-l0gpp6e84oe93bu2evfcuo5v7mbr5ke2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwRyC8FjQMvpC4n08M6oFlGop8Iz5MDZE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
