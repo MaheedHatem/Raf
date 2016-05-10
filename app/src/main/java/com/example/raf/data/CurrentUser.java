@@ -64,10 +64,13 @@ public class CurrentUser {
     }
 
     public static boolean isWishListed(String bookID){
-        for (Book b:wishList){
-            if (b.getObjectId().equals(bookID))
-                return true;
+        if(wishList != null) {
+            for (Book b : wishList) {
+                if (b.getObjectId().equals(bookID))
+                    return true;
+            }
         }
-        return false;
+            return false;
+
     }
 }
