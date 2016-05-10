@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.raf.GetBookActivity"
+    tools:showIn="@layout/activity_get_book">-->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -12,6 +26,11 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.raf.GetBookActivity"
     tools:showIn="@layout/activity_get_book">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,12 +44,47 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Book Name"/>
 
-        <EditText
+        <TextView
             android:layout_marginLeft="36dp"
             android:layout_marginRight="36dp"
-            android:hint="Enter the Book Name"
+            android:layout_marginTop="36dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/bookName"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Options"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="purchase book"
+                android:checked="true"
+                android:id="@+id/purchaseBook"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="borrow book"
+                android:checked="false"
+                android:id="@+id/borrowBook"/>
+        </RadioGroup>
 
     </LinearLayout>
     <LinearLayout
@@ -45,19 +99,74 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Duration"/>
 
-        <EditText
-            android:layout_marginLeft="36dp"
-            android:layout_marginRight="36dp"
-            android:hint="Enter Starting date"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="start date"
+                android:id="@+id/start_date_button"
+                android:enabled="false"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/start_date_text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="41dp"
+                android:layout_marginEnd="41dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
-        <EditText
-            android:layout_marginLeft="36dp"
-            android:layout_marginRight="36dp"
-            android:hint="Enter end date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <Button
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="end date"
+                android:id="@+id/end_date_button"
+                android:enabled="false"
+                android:layout_below="@id/start_date_button"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_alignRight="@+id/start_date_button"
+                android:layout_alignEnd="@+id/start_date_button" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/end_date_text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="41dp"
+                android:layout_marginEnd="41dp"
+                android:layout_below="@id/start_date_text"
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+        </RelativeLayout>
+
+        <!--<EditText-->
+            <!--android:layout_marginLeft="36dp"-->
+            <!--android:layout_marginRight="36dp"-->
+            <!--android:hint="Enter Starting date"-->
+            <!--android:inputType="date"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/start_date"-->
+            <!--android:enabled="false"/>-->
+
+        <!--<EditText-->
+            <!--android:layout_marginLeft="36dp"-->
+            <!--android:layout_marginRight="36dp"-->
+            <!--android:hint="Enter end date"-->
+            <!--android:inputType="date"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/end_date"-->
+            <!--android:enabled="false"/>-->
 
     </LinearLayout>
     <RelativeLayout
@@ -79,7 +188,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_alignParentRight="true"
             android:layout_marginRight="16dp"
-            android:text="99 Point"/>
+            android:id="@+id/points_text"/>
 
 
     </RelativeLayout>
@@ -106,5 +215,6 @@
 
 
     </RelativeLayout>
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
+<!--</LinearLayout>-->

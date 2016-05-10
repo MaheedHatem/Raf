@@ -122,6 +122,7 @@ public class GridHomeAdapter extends BaseAdapter {
                     mainIntent.putExtra(context.getString(R.string.book_intent_author) , mBook0.get(position).getAuthor().getName());
                     mainIntent.putExtra(context.getString(R.string.book_intent_cover) , mBook0.get(position).getCover());
                     mainIntent.putExtra(context.getString(R.string.book_intent_description) , mBook0.get(position).getDescription());
+                    mainIntent.putExtra(context.getString(R.string.book_intent_price) , mBook0.get(position).getPrice());
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         Pair<View, String> p2 = Pair.create((View)v.findViewById(R.id.cover), "cover");

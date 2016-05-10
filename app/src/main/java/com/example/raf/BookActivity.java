@@ -41,10 +41,11 @@ public class BookActivity extends AppCompatActivity {
 
 
         final String bookID = getIntent().getStringExtra(getString(R.string.book_intent_id));
-        String bookName = getIntent().getStringExtra(getString(R.string.book_intent_name));
+        final String bookName = getIntent().getStringExtra(getString(R.string.book_intent_name));
         String bookAuthor = getIntent().getStringExtra(getString(R.string.book_intent_author));
         String bookDescription = getIntent().getStringExtra(getString(R.string.book_intent_description));
         byte[] bookCover = getIntent().getByteArrayExtra(getString(R.string.book_intent_cover));
+        final int bookPrice = getIntent().getIntExtra(getString(R.string.book_intent_price),0);
 
         NestedScrollView book_content = (NestedScrollView) findViewById(R.id.content_id);
         ImageView imageCover = (ImageView)findViewById(R.id.cover);
@@ -55,11 +56,13 @@ public class BookActivity extends AppCompatActivity {
         imageCover.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
         description.setText(bookDescription);
 
-        Button getCopy = (Button)findViewById(R.id.getcopy);
-        getCopy.setOnClickListener(new View.OnClickListener() {
+        Button getCopyButton = (Button)findViewById(R.id.getcopy);
+        getCopyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent getBookIntent = new Intent(BookActivity.this , GetBookActivity.class);
+                getBookIntent.putExtra(getString(R.string.book_intent_name) , bookName);
+                getBookIntent.putExtra(getString(R.string.book_intent_price) , bookPrice);
                 BookActivity.this.startActivity(getBookIntent);
             }
         });

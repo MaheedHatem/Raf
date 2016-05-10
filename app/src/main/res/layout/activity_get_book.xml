@@ -21,7 +21,8 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_get_book" />
+    <include layout="@layout/content_get_book"
+        android:id="@+id/getBook_content"/>
 
 
 </android.support.design.widget.CoordinatorLayout>
