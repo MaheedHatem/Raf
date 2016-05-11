@@ -54,7 +54,7 @@ public class WhishlistFragment extends Fragment {
         // Set custom adapter (GridAdapter) to gridview
 
         gridAdapter = new GridAdapter(v.getContext());
-        gridAdapter.addBooks(CurrentUser.getWishlist());
+//        gridAdapter.addBooks(CurrentUser.getWishlist());
 
         gridView.setAdapter(gridAdapter);
 
@@ -96,7 +96,5 @@ public class WhishlistFragment extends Fragment {
     public void onResume() {
         super.onResume();
         gridAdapter.addBooks(CurrentUser.getWishlist());
-
     }
-
 }

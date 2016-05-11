@@ -51,6 +51,8 @@ public class CurrentUser {
             for (Book b : wishList) {
                 try {
                     b = b.fetch();
+                    b.getAuthor().fetchIfNeeded();
+                    b.getGenre().fetchIfNeeded();
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }

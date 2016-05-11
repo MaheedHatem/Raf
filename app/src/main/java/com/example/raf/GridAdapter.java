@@ -16,9 +16,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.raf.data.Author;
 import com.example.raf.data.Book;
-import com.parse.ParseException;
 
 import java.util.ArrayList;
 
@@ -89,12 +87,14 @@ public class GridAdapter extends BaseAdapter {
             TextView textView2 = (TextView) gridView
                     .findViewById(R.id.author);
 
-            try {
-                Author author = books.get(position).getAuthor().fetch();
-                textView2.setText(author.getName());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            textView2.setText(books.get(position).getAuthor().getName());
+
+//            try {
+//                Author author = books.get(position).getAuthor().fetch();
+//                textView2.setText(author.getName());
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
 
 //            textView2.setText(books.get(position).getAuthor().getName());
 
@@ -152,16 +152,18 @@ public class GridAdapter extends BaseAdapter {
             textView1.setText(books.get(position).getName());
             TextView textView2 = (TextView) gridView
                     .findViewById(R.id.author);
+            textView2.setText(books.get(position).getAuthor().getName());
 
-            try {
-                Author author = books.get(position).getAuthor().fetch();
-                textView2.setText(author.getName());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Author author = books.get(position).getAuthor().fetch();
+//                textView2.setText(author.getName());
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
             TextView textView3 = (TextView) gridView
                     .findViewById(R.id.price);
             textView3.setText(""+books.get(position).getPrice());
+
         }
 
         return gridView;
@@ -169,26 +171,11 @@ public class GridAdapter extends BaseAdapter {
 
     public void addBooks (ArrayList<Book> booksList){
         if (booksList != null) {
-            ArrayList<Book> clone = (ArrayList<Book>) booksList.clone();
-            for (Book b: clone){
-                if (!this.books.contains(b)){
-                    this.books.add(b);
-                    this.notifyDataSetChanged();
-                }
-            }
-//            this.notifyDataSetChanged();
 //            ArrayList<Book> clone = (ArrayList<Book>) booksList.clone();
-//            for (Book b : clone) {
-//                b.fetchInBackground(new GetCallback<ParseObject>() {
-//                    @Override
-//                    public void done(ParseObject object, ParseException e) {
-//                        books.add((Book)object);
-//                        notifyDataSetChanged();
-//                    }
-//                });
-//                notifyDataSetChanged();
-//            }
+            this.books.clear();
+            this.books = (ArrayList<Book>) booksList.clone();
         }
+        this.notifyDataSetChanged();
     }
 
 
