@@ -1,7 +1,9 @@
 package com.example.raf;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -11,6 +13,8 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.example.raf.data.Request;
 
 import java.util.Calendar;
 
@@ -37,6 +41,7 @@ public class GetBookActivity extends AppCompatActivity {
         currentDay = c.get(Calendar.DAY_OF_MONTH);
 
         String bookName = getIntent().getStringExtra(getString(R.string.book_intent_name));
+        final String bookID = getIntent().getStringExtra(getString(R.string.book_intent_id));
         final int bookPrice = getIntent().getIntExtra(getString(R.string.book_intent_price) , 0);
 
         ScrollView content = (ScrollView) findViewById(R.id.getBook_content);
@@ -47,6 +52,8 @@ public class GetBookActivity extends AppCompatActivity {
         final RadioButton purchaseBookRadioButton = (RadioButton)content.findViewById(R.id.purchaseBook);
         final RadioButton borrowBookRadioButton = (RadioButton)content.findViewById(R.id.borrowBook);
         final TextView pointsTextView= (TextView)content.findViewById(R.id.points_text);
+        Button getBookButton = (Button)content.findViewById(R.id.getBook_button);
+        Button getPointButton = (Button) content.findViewById(R.id.getPoint_button);
         startDateText = (TextView)content.findViewById(R.id.start_date_text);
         endDateText = (TextView)content.findViewById(R.id.end_date_text);
 
@@ -88,6 +95,25 @@ public class GetBookActivity extends AppCompatActivity {
                 startDateButton.setEnabled(true);
                 endDateButton.setEnabled(true);
                 pointsTextView.setText("");
+            }
+        });
+
+        getBookButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Request.addBorrowRequest(startYear , startMonth , startDay,
+                                        endYear , endMonth , endDay , bookID , getApplicationContext());
+
+                Snackbar.make(v, "processing your request", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        getPointButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent getPointIntent = new Intent(getApplicationContext(), GetPointsActivity.class);
+                GetBookActivity.this.startActivity(getPointIntent);
             }
         });
 

@@ -41,7 +41,7 @@ public class AccountActivity extends AppCompatActivity {
 
 
 
-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycle_account);
+//        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycle_account);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -49,11 +49,11 @@ public class AccountActivity extends AppCompatActivity {
 
         // use a linear layout manager
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+//        mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
         ActivityAdapter mAdapter = new ActivityAdapter();
-        mRecyclerView.setAdapter(mAdapter);
+//        mRecyclerView.setAdapter(mAdapter);
 
         mAdapter.addActivity("Hello it's me", new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),"InPreogress");
 

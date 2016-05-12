@@ -63,6 +63,7 @@ public class BookActivity extends AppCompatActivity {
                 Intent getBookIntent = new Intent(BookActivity.this , GetBookActivity.class);
                 getBookIntent.putExtra(getString(R.string.book_intent_name) , bookName);
                 getBookIntent.putExtra(getString(R.string.book_intent_price) , bookPrice);
+                getBookIntent.putExtra(getString(R.string.book_intent_id) , bookID);
                 BookActivity.this.startActivity(getBookIntent);
             }
         });

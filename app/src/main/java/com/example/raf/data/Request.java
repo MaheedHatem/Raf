@@ -1,10 +1,17 @@
 package com.example.raf.data;
 
 
+import android.content.Context;
+
+import com.example.raf.R;
+import com.parse.GetCallback;
 import com.parse.ParseClassName;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -64,6 +71,24 @@ public class Request extends ParseObject {
     }
     public void setEndDate( Date deliveryDate){
         put("endDate" , deliveryDate);
+    }
+
+    public static void addBorrowRequest(int startYear , int startMonth , int startDay , int endYear
+            , int endMonth , int endDay , String bookId , Context context){
+        Calendar c = Calendar.getInstance();
+        c.set(startYear , startMonth+1 , startDay);
+        Date startDate = c.getTime();
+        c.set(endYear , endMonth+1 , endDay);
+        Date endDate = c.getTime();
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(context.getString(R.string.parse_book));
+        query.include(context.getString(R.string.parse_book_author));
+        query.include(context.getString(R.string.parse_book_genre));
+        query.getInBackground(bookId, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                //TODO add request and subtract from points
+            }
+        });
     }
 
 }

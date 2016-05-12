@@ -204,14 +204,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:background="@color/colorAccent"
-            android:text="Get Points"/>
+            android:text="Get Points"
+            android:id="@+id/getPoint_button"/>
 
         <Button
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@color/colorAccent"
-            android:text="Get Book"/>
+            android:text="Get Book"
+            android:id="@+id/getBook_button"/>
 
 
     </RelativeLayout>
