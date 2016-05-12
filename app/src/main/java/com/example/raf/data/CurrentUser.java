@@ -1,6 +1,7 @@
 package com.example.raf.data;
 
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * Created by Maheed on 5/2/2016.
  */
 public class CurrentUser {
-    public static ParseUser getCurrentUser(){
+    private static ParseUser getCurrentUser(){
         return ParseUser.getCurrentUser();
     }
     private static ArrayList<Book> wishList = null;
@@ -74,5 +75,31 @@ public class CurrentUser {
         }
             return false;
 
+    }
+
+    public static String getUsername() {
+        return getCurrentUser().getUsername();
+    }
+
+    public static String getEmail() {
+        return getCurrentUser().getEmail();
+    }
+
+    public static int getPoints() {
+        return getCurrentUser().getInt("coins");
+    }
+
+    public static byte[] getImage() {
+        try {
+            return getCurrentUser().getParseFile("photo").getData();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void setImage(ParseFile image) {
+        getCurrentUser().put("photo",image);
+        getCurrentUser().saveInBackground();
     }
 }
