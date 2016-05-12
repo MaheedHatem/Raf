@@ -15,30 +15,42 @@ public class CurrentUser {
     }
     private static ArrayList<Book> wishList = null;
 
-    public static void addBookToWishlist(Book book){
+    public static void addBookToWishlist(final Book book){
         //ArrayList<Book> wishlist = getWishlist();
-        if(wishList!=null){
-            if(!wishList.contains(book)){
-                wishList.add(book);
-                getCurrentUser().put("wishlist" , wishList);
-            }
-        }
-        else{
-            wishList = new ArrayList<Book>();
-            wishList.add(book);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if(wishList!=null){
+                    if(!wishList.contains(book)){
+                        wishList.add(book);
+                        getCurrentUser().put("wishlist" , wishList);
+                    }
+                }
+                else{
+                    wishList = new ArrayList<Book>();
+                    wishList.add(book);
 
-            getCurrentUser().put("wishlist" , wishList);
-        }
-        getCurrentUser().saveInBackground();
+                    getCurrentUser().put("wishlist" , wishList);
+                }
+                getCurrentUser().saveInBackground();
+            }
+        }).start();
+
     }
 
-    public static void removeBookFromWishList(Book book){
+    public static void removeBookFromWishList(final Book book){
         //ArrayList<Book> wishlist = getWishlist();
-        if (wishList.contains(book)){
-            wishList.remove(book);
-            getCurrentUser().put("wishlist" , wishList);
-            getCurrentUser().saveInBackground();
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (wishList.contains(book)){
+                    wishList.remove(book);
+                    getCurrentUser().put("wishlist" , wishList);
+                    getCurrentUser().saveInBackground();
+                }
+            }
+        }).start();
+
     }
     public static ArrayList<Book> getWishlistFirstTime(){
 //        try {
