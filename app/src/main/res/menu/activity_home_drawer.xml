@@ -11,6 +11,11 @@
         <item
             android:id="@+id/nav_get"
             android:title="Get Points" />
+
+            <item
+
+                android:id="@+id/nav_myacc"
+                android:title="My Account" />
         <item
 
             android:id="@+id/nav_contact"
@@ -20,10 +25,7 @@
         <item
             android:id="@+id/nav_settings"
             android:title="Settings" />
-        <item
 
-            android:id="@+id/nav_myacc"
-            android:title="My Account" />
         <item
             android:id="@+id/nav_logout"
             android:title="Log Out" />

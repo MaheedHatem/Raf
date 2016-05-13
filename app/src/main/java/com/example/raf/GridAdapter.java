@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
-import android.support.design.widget.Snackbar;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -113,8 +112,7 @@ public class GridAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
 
-                    Snackbar.make(v, ((TextView)v.findViewById( R.id.title )).getText(), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+
 
 
 

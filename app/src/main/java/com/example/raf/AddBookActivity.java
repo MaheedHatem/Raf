@@ -28,6 +28,7 @@ public class AddBookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_book);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Add Book");
         Calendar c = Calendar.getInstance();
         currentYear = c.get(Calendar.YEAR);
         currentMonth = c.get(Calendar.MONTH);
@@ -88,6 +89,8 @@ public class AddBookActivity extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 
     public static void showDeliveryDate(int year, int month, int day) {

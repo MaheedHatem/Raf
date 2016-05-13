@@ -127,4 +127,11 @@ public class AccountActivity extends AppCompatActivity {
         }
     }
 
+    public void onClick(View v) {
+        // Perform action on click
+        Intent mainIntent = new Intent(AccountActivity.this,GetPointsActivity.class);
+        AccountActivity.this.startActivity(mainIntent);
+        overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
+    }
+
 }
