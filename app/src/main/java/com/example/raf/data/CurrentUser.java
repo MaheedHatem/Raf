@@ -101,6 +101,15 @@ public class CurrentUser {
         return getCurrentUser().getInt("coins");
     }
 
+    private static void setPoints(int points){
+        getCurrentUser().put ("coins" , points);
+    }
+
+    public static void addPoints(int points){
+        setPoints(getPoints()+points);
+        getCurrentUser().saveInBackground();
+    }
+
     public static byte[] getImage() {
         try {
             return getCurrentUser().getParseFile("photo").getData();
