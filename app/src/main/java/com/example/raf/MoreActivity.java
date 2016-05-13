@@ -128,6 +128,7 @@ public class MoreActivity extends AppCompatActivity {
                         break;
                 }
                 list = queryHome.find();
+
             } catch (ParseException e){
                 e.printStackTrace();
             }

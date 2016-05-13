@@ -178,6 +178,8 @@ public class GridAdapter extends BaseAdapter {
         this.notifyDataSetChanged();
     }
 
+
+
     public void addBook(Book b){
         books.add(b);
         notifyDataSetChanged();
