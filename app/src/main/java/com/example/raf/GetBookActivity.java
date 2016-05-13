@@ -79,9 +79,10 @@ public class GetBookActivity extends AppCompatActivity {
         purchaseBookRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startDateButton.setEnabled(false);
+                //startDateButton.setEnabled(false);
+                startDateButton.setText("Delivery date");
                 endDateButton.setEnabled(false);
-                startDateText.setText("");
+//                startDateText.setText("");
                 endDateText.setText("");
                 pointsTextView.setText(Integer.toString(bookPrice));
                 startDateFlag = false;
@@ -92,7 +93,8 @@ public class GetBookActivity extends AppCompatActivity {
         borrowBookRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startDateButton.setEnabled(true);
+//                startDateButton.setEnabled(true);
+                startDateButton.setText("Start date");
                 endDateButton.setEnabled(true);
                 pointsTextView.setText("");
             }
@@ -101,8 +103,13 @@ public class GetBookActivity extends AppCompatActivity {
         getBookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Request.addBorrowRequest(startYear , startMonth , startDay,
-                                        endYear , endMonth , endDay , bookID , getApplicationContext());
+                if (borrowBookRadioButton.isChecked())
+                    Request.addBorrowRequest(startYear , startMonth , startDay,
+                            endYear , endMonth , endDay , bookID , getApplicationContext());
+                else
+                    Request.addGetRequest(startYear , startMonth , startDay , bookID ,
+                                            getApplicationContext());
+
 
                 Snackbar.make(v, "processing your request", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();

@@ -31,6 +31,8 @@ public class Splash extends AppCompatActivity {
     private getTopCategoryThread seriesThread = new getTopCategoryThread(3 , this);
     private getTopCategoryThread religionThread = new getTopCategoryThread(4 , this);
 
+    private getDeliveryPointsThread deliveryPointsThread = new getDeliveryPointsThread(this);
+
     private getWishListThread wishListThread = new getWishListThread();
 
     @Override
@@ -49,6 +51,7 @@ public class Splash extends AppCompatActivity {
         bioThread.start();
         seriesThread.start();
         religionThread.start();
+        deliveryPointsThread.start();
         if (ParseUser.getCurrentUser().getUsername() != null)
             wishListThread.start();
 
@@ -93,6 +96,7 @@ public class Splash extends AppCompatActivity {
                     bioThread.join();
                     seriesThread.join();
                     religionThread.join();
+                    deliveryPointsThread.join();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

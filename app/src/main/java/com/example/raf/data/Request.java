@@ -2,6 +2,7 @@ package com.example.raf.data;
 
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.example.raf.R;
 import com.parse.GetCallback;
@@ -10,6 +11,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -74,12 +76,12 @@ public class Request extends ParseObject {
     }
 
     public static void addBorrowRequest(int startYear , int startMonth , int startDay , int endYear
-            , int endMonth , int endDay , String bookId , Context context){
+            , int endMonth , int endDay , String bookId , final Context context){
         Calendar c = Calendar.getInstance();
-        c.set(startYear , startMonth+1 , startDay);
-        Date startDate = c.getTime();
-        c.set(endYear , endMonth+1 , endDay);
-        Date endDate = c.getTime();
+        c.set(startYear , startMonth , startDay);
+        final Date startDate = c.getTime();
+        c.set(endYear , endMonth , endDay);
+        final Date endDate = c.getTime();
         ParseQuery<ParseObject> query = ParseQuery.getQuery(context.getString(R.string.parse_book));
         query.include(context.getString(R.string.parse_book_author));
         query.include(context.getString(R.string.parse_book_genre));
@@ -87,8 +89,51 @@ public class Request extends ParseObject {
             @Override
             public void done(ParseObject object, ParseException e) {
                 //TODO add request and subtract from points
+                Request request = new Request();
+                request.setBook((Book)object);
+                request.setDeliveryDate(startDate);
+                request.setStartDate(startDate);
+                request.setEndDate(endDate);
+                request.setUser(CurrentUser.getCurrentUser());
+                request.setType(Request.BORROW_REQUEST);
+                request.setDeliveryPoint(DeliveryPoint.getDeliveryPoint());
+                request.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        Toast.makeText(context, "your request has been placed", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
+    }
+
+    public static void addGetRequest(int startYear , int startMonth , int startDay ,
+                                     String bookId , final Context context){
+        Calendar c = Calendar.getInstance();
+        c.set(startYear , startMonth , startDay);
+        final Date startDate = c.getTime();
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(context.getString(R.string.parse_book));
+        query.include(context.getString(R.string.parse_book_author));
+        query.include(context.getString(R.string.parse_book_genre));
+        query.getInBackground(bookId, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                //TODO add request and subtract from points
+                Request request = new Request();
+                request.setBook((Book)object);
+                request.setDeliveryDate(startDate);
+                request.setUser(CurrentUser.getCurrentUser());
+                request.setType(Request.ADD_REQUEST);
+                request.setDeliveryPoint(DeliveryPoint.getDeliveryPoint());
+                request.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        Toast.makeText(context, "your request has been placed", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+
     }
 
 }

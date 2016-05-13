@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Created by Maheed on 5/2/2016.
  */
 public class CurrentUser {
-    private static ParseUser getCurrentUser(){
+    public static ParseUser getCurrentUser(){
         return ParseUser.getCurrentUser();
     }
     private static ArrayList<Book> wishList = null;

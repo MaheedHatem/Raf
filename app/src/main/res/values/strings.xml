@@ -140,6 +140,11 @@
     <string name="parse_genre">Genre</string>
     <string name="parse_genre_name">name</string>
 
+    <!--parse DeliveryPoint object-->
+    <string name="parse_deliveryPoint">DeliveryPoint</string>
+    <string name="parse_deliveryPoint_address">address</string>
+    <string name="parse_deliveryPoint_name">name</string>
+
     <!--Book activity intent-->
     <string name="book_intent_id">bookID</string>
     <string name="book_intent_name">bookName</string>
