@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     android:id="@+id/bellow_actionbar"
     android:background="@drawable/back1"
-    tools:context="com.example.raf.GetPointsActivity">
+    tools:context="com.MCIT.raf.GetPointsActivity">
 
 
 
