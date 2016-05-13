@@ -41,8 +41,7 @@ public class AccountActivity extends AppCompatActivity {
         points.setText(Integer.toString(CurrentUser.getPoints()));
         image = (ImageView)findViewById(R.id.cover);
         if(CurrentUser.getImage()!=null){
-            Bitmap b = BitmapFactory.decodeByteArray(CurrentUser.getImage(),0,CurrentUser.getImage().length);
-            image.setImageBitmap(b);
+
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -107,7 +106,7 @@ public class AccountActivity extends AppCompatActivity {
                     @Override
                     public void done(ParseException e) {
                         if(e!=null){
-                            Toast.makeText(AccountActivity.this,
+                            Toast.makeText(getApplicationContext(),
                                     "Error saving photo ",
                                     Toast.LENGTH_LONG).show();
                         }

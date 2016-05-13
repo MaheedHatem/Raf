@@ -30,35 +30,32 @@
             android:layout_marginLeft="36dp"
             android:layout_marginRight="36dp"
             android:hint="Enter the Book Name"
+            android:id="@+id/bookName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_marginTop="24dp"
         android:layout_height="wrap_content">
 
-        <TextView
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Delivery"/>
+            android:text="Delivery Date"
+            android:id="@+id/delivery_date_button"/>
 
-        <EditText
+        <TextView
             android:layout_marginLeft="36dp"
             android:layout_marginRight="36dp"
-            android:hint="Enter Delivery date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/delivery_date"/>
 
-        <EditText
-            android:layout_marginLeft="36dp"
-            android:layout_marginRight="36dp"
-            android:hint="Enter Delivery Location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
     </LinearLayout>
     <RelativeLayout
@@ -71,7 +68,6 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="16dp"
             android:text="Estimate Points"/>
 
         <TextView
@@ -80,13 +76,12 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_alignParentRight="true"
             android:layout_marginRight="16dp"
-            android:text="17 Point"/>
+            android:text="17 Points"/>
 
 
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginTop="24dp"
         android:gravity="center"
@@ -97,7 +92,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:background="@color/colorAccent"
-            android:text="add Copy"/>
+            android:text="add Copy"
+            android:id="@+id/addBook"/>
 
 
 

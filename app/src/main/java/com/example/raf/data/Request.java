@@ -23,6 +23,7 @@ import java.util.Date;
 public class Request extends ParseObject {
     public static final int BORROW_REQUEST = 0;
     public static final int ADD_REQUEST = 1;
+    public static final int BUY_REQUEST = 2;
     public Request(){
     }
     public ParseUser getUser(){
@@ -125,7 +126,7 @@ public class Request extends ParseObject {
                 request.setBook((Book)object);
                 request.setDeliveryDate(startDate);
                 request.setUser(CurrentUser.getCurrentUser());
-                request.setType(Request.ADD_REQUEST);
+                request.setType(Request.BUY_REQUEST);
                 request.setDeliveryPoint(DeliveryPoint.getDeliveryPoint());
                 request.saveInBackground(new SaveCallback() {
                     @Override
@@ -138,4 +139,30 @@ public class Request extends ParseObject {
 
     }
 
+    public static void addAddCopyRequest(int deliveryYear, int deliveryMonth, int deliveryDay, String bookID,final Context context) {
+        Calendar c = Calendar.getInstance();
+        c.set(deliveryYear , deliveryMonth , deliveryDay);
+        final Date deliveryDate = c.getTime();
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(context.getString(R.string.parse_book));
+        query.include(context.getString(R.string.parse_book_author));
+        query.include(context.getString(R.string.parse_book_genre));
+        query.getInBackground(bookID, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                //TODO add request and subtract from points
+                Request request = new Request();
+                request.setBook((Book)object);
+                request.setDeliveryDate(deliveryDate);
+                request.setUser(CurrentUser.getCurrentUser());
+                request.setType(Request.ADD_REQUEST);
+                request.setDeliveryPoint(DeliveryPoint.getDeliveryPoint());
+                request.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        Toast.makeText(context, "your request has been placed", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+    }
 }
