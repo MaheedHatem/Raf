@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 
@@ -107,6 +108,32 @@ public class Splash extends AppCompatActivity {
         // to do make sure that he has connection before starting
 
 
+        as.addListener(new android.animation.Animator.AnimatorListener() {
+
+            @Override
+            public void onAnimationStart(android.animation.Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(android.animation.Animator animator) {
+                startAnim();
+
+            }
+
+            @Override
+            public void onAnimationCancel(android.animation.Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(android.animation.Animator animator) {
+
+            }
+
+
+        });
+
 
         new Handler().postDelayed(new Runnable(){
             @Override
@@ -175,5 +202,13 @@ public class Splash extends AppCompatActivity {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
+
+    void startAnim(){
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
+    }
+
+    void stopAnim(){
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
+    }
 
 }

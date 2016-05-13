@@ -32,6 +32,8 @@ public class MoreActivity extends AppCompatActivity {
         String type = getIntent().getStringExtra(getString(R.string.more_intent));
         getSupportActionBar().setTitle(type);
 
+        startAnim();
+
 // loop through all toolbar children right after setting support
 // action bar because the text view has no id assigned
 
@@ -143,5 +145,19 @@ public class MoreActivity extends AppCompatActivity {
             }
             return null;
         }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            stopAnim();
+        }
+    }
+
+    void startAnim(){
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
+    }
+
+    void stopAnim(){
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
     }
 }
