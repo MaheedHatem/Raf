@@ -76,12 +76,13 @@ public class Request extends ParseObject {
     }
 
     public static void addBorrowRequest(int startYear , int startMonth , int startDay , int endYear
-            , int endMonth , int endDay , String bookId , final Context context){
+            , int endMonth , int endDay , String bookId ,int bookPrice, final Context context){
         Calendar c = Calendar.getInstance();
         c.set(startYear , startMonth , startDay);
         final Date startDate = c.getTime();
         c.set(endYear , endMonth , endDay);
         final Date endDate = c.getTime();
+        CurrentUser.removePoints(bookPrice/2);
         ParseQuery<ParseObject> query = ParseQuery.getQuery(context.getString(R.string.parse_book));
         query.include(context.getString(R.string.parse_book_author));
         query.include(context.getString(R.string.parse_book_genre));
@@ -108,13 +109,14 @@ public class Request extends ParseObject {
     }
 
     public static void addGetRequest(int startYear , int startMonth , int startDay ,
-                                     String bookId , final Context context){
+                                     String bookId ,int bookPrice, final Context context){
         Calendar c = Calendar.getInstance();
         c.set(startYear , startMonth , startDay);
         final Date startDate = c.getTime();
         ParseQuery<ParseObject> query = ParseQuery.getQuery(context.getString(R.string.parse_book));
         query.include(context.getString(R.string.parse_book_author));
         query.include(context.getString(R.string.parse_book_genre));
+        CurrentUser.removePoints(bookPrice);
         query.getInBackground(bookId, new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {

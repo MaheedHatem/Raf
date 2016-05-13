@@ -89,7 +89,6 @@ public class BookActivity extends AppCompatActivity {
                 if(CurrentUser.isWishListed(bookID)) {
                     Book.removeFromWishList(bookID , getApplication());
                     Snackbar.make(v, "Removed from Whishlist", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();Snackbar.make(v, "Removed from Whishlist", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }else{
                     Book.addToWishList(bookID, getApplication());

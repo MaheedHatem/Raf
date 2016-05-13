@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.raf.data.CurrentUser;
 import com.example.raf.data.Request;
@@ -81,7 +82,7 @@ public class GetBookActivity extends AppCompatActivity {
         purchaseBookRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startDateButton.setEnabled(false);
+//                startDateButton.setEnabled(false);
                 startDateButton.setText("Delivery date");
                 endDateButton.setEnabled(false);
 //                startDateText.setText("");
@@ -105,16 +106,40 @@ public class GetBookActivity extends AppCompatActivity {
         getBookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (borrowBookRadioButton.isChecked())
-                    Request.addBorrowRequest(startYear , startMonth , startDay,
-                            endYear , endMonth , endDay , bookID , getApplicationContext());
-                else
-                    Request.addGetRequest(startYear , startMonth , startDay , bookID ,
-                                            getApplicationContext());
+                if (borrowBookRadioButton.isChecked()) {
+                    if (startDateFlag && endDateFlag) {
+                        if (CurrentUser.getPoints() > bookPrice) {
+                            Request.addBorrowRequest(startYear, startMonth, startDay, endYear,
+                                    endMonth, endDay, bookID, bookPrice , getApplicationContext());
+                            Snackbar.make(v, "processing your request", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                            yourPointsTextView.setText(Integer.toString(CurrentUser.getPoints()));
+                        }
+                        else
+                            Toast.makeText(getApplicationContext(), "you don't have enough coins",
+                                                            Toast.LENGTH_LONG).show();
+                    } else
+                        Toast.makeText(getApplicationContext(), "please select valid start and end date",
+                                                            Toast.LENGTH_LONG).show();
 
-
-                Snackbar.make(v, "processing your request", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                }
+                else {
+                    if (startDateFlag) {
+                        if (CurrentUser.getPoints() > bookPrice) {
+                            Request.addGetRequest(startYear, startMonth, startDay, bookID,
+                                                    bookPrice , getApplicationContext());
+                            Snackbar.make(v, "processing your request", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                            yourPointsTextView.setText(Integer.toString(CurrentUser.getPoints()));
+                        }
+                        else
+                            Toast.makeText(getApplicationContext(), "you don't have enough coins",
+                                                            Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "please select valid delivery date",
+                                                            Toast.LENGTH_LONG).show();
+                    }
+                }
             }
         });
 

@@ -110,6 +110,11 @@ public class CurrentUser {
         getCurrentUser().saveInBackground();
     }
 
+    public static void removePoints(int points){
+        setPoints(getPoints()-points);
+        getCurrentUser().saveInBackground();
+    }
+
     public static byte[] getImage() {
         try {
             return getCurrentUser().getParseFile("photo").getData();
