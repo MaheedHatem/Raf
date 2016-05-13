@@ -3,8 +3,8 @@ package com.example.raf;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -32,20 +32,12 @@ import android.widget.TextView;
 
 import com.example.raf.data.CurrentUser;
 import com.facebook.CallbackManager;
-import com.facebook.FacebookSdk;
 import com.facebook.login.widget.LoginButton;
-
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
-
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
@@ -55,6 +47,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
@@ -66,6 +59,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int RC_SIGN_IN = 9001;
+    private static final int SIGN_UP = 555;
     private static final String TAG = "SignInActivity";
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
@@ -88,6 +82,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
 
+    public static Context mContext;
     private LoginButton FbButton;
     CallbackManager callbackManager;
 
@@ -102,12 +97,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 .requestIdToken(getString(R.string.server_client_id))
                 .build();
 
-// Build a GoogleApiClient with access to GoogleSignIn.API and the options above.
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
+//// Build a GoogleApiClient with access to GoogleSignIn.API and the options above.
+//        mGoogleApiClient = new GoogleApiClient.Builder(this)
+//                .enableAutoManage(this, this)
+//                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+//                .build();
+//
 
         setContentView(R.layout.activity_login);
         // Set up the login form.
@@ -145,7 +140,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 Intent mainIntent = new Intent(LoginActivity.this,signup.class);
                 LoginActivity.this.startActivity(mainIntent);
                 overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
-                LoginActivity.this.finish();
             }
         });
 
@@ -158,26 +152,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
 
-        SignInButton mGButton = (SignInButton) findViewById(R.id.Google_sign_in_button);
-        mGButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GsignIn();
-            }
-        });
-
+//        SignInButton mGButton = (SignInButton) findViewById(R.id.Google_sign_in_button);
+//        mGButton.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                GsignIn();
+//            }
+//        });
+//
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-
+        mContext = LoginActivity.this;
 
     }
 
-
-    private void GsignIn() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
+//
+//    private void GsignIn() {
+//        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+//        startActivityForResult(signInIntent, RC_SIGN_IN);
+//    }
 
 
     private void populateAutoComplete() {
@@ -351,6 +345,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 // Show primary email addresses first. Note that there won't be
                 // a primary email address if the user hasn't specified one.
                 ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
+
     }
 
     @Override
@@ -479,14 +474,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+
+
         if (requestCode == RC_SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if (handleSignInResult(result)) {
-                Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
-                LoginActivity.this.startActivity(mainIntent);
-                overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
-                LoginActivity.this.finish();
-            }
+//            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+//            if (handleSignInResult(result)) {
+//                Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
+//                LoginActivity.this.startActivity(mainIntent);
+//                overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
+//                LoginActivity.this.finish();
+//            }
         } else {
             ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
             Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);

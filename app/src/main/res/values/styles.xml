@@ -32,6 +32,16 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="loginTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@android:color/white</item>
+        <item name="android:textColorHint">@android:color/white</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+
+
 
     <style name="splash.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
