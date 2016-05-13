@@ -36,6 +36,7 @@ public class GetBookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_get_book);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Get Copy");
 
         Calendar c = Calendar.getInstance();
         currentYear = c.get(Calendar.YEAR);

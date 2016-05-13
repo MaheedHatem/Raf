@@ -8,6 +8,38 @@
     tools:context="com.example.raf.BookActivity"
     tools:showIn="@layout/activity_book">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Author "
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginLeft="@dimen/text_margin"
+        android:layout_marginTop="@dimen/text_margin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lisa Genova"
+            android:id="@+id/book_author"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description "
+            android:layout_marginTop="8dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginLeft="@dimen/text_margin" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,5 +47,7 @@
         android:text="@string/large_text"
         android:paddingBottom="50dp"
         android:id="@+id/book_description"/>
+
+    </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

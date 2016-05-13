@@ -15,6 +15,8 @@ public class GetPointsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_points);
 
+
+
         Button button5 = (Button)findViewById(R.id.button3);
         Button button10 = (Button)findViewById(R.id.button6);
         Button button20 = (Button)findViewById(R.id.button5);

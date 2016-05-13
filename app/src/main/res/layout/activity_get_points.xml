@@ -6,19 +6,16 @@
     android:gravity="center_horizontal"
     android:layout_gravity="center_vertical"
     android:fitsSystemWindows="true"
+    android:id="@+id/bellow_actionbar"
+    android:background="@drawable/back1"
     tools:context="com.example.raf.GetPointsActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/back1"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#AA727272"
-        />
+
+
+
+
+
 
 
 
@@ -39,7 +36,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="10  Points"
         android:id="@+id/textView3"
-
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
         android:layout_alignBaseline="@+id/button3"
         android:layout_alignBottom="@+id/button3"
         android:layout_alignParentLeft="true"
@@ -50,6 +48,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="100 Points"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
         android:id="@+id/textView5"
         android:layout_marginTop="16dp"
         android:layout_below="@+id/button5"
@@ -62,6 +62,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="50  Points"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
         android:id="@+id/textView7"
         android:layout_marginTop="16dp"
         android:layout_below="@+id/button6"
@@ -74,7 +76,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="25  Points"
+        android:textStyle="bold"
         android:id="@+id/textView9"
+        android:textColor="@android:color/white"
         android:layout_below="@+id/button3"
         android:paddingTop="16dp"
         android:layout_marginTop="16dp"
