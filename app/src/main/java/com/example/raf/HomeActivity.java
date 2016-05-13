@@ -137,6 +137,7 @@ public class HomeActivity extends AppCompatActivity
         super.onStart();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Main Menu");
 
 
 
@@ -233,6 +234,7 @@ public class HomeActivity extends AppCompatActivity
     }
 
     public void onClick(View v) {
+
         Intent mainIntent = new Intent(HomeActivity.this,MoreActivity.class);
         mainIntent.putExtra(getString(R.string.more_intent),v.getTag().toString());
         HomeActivity.this.startActivity(mainIntent);
