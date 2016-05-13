@@ -34,7 +34,7 @@
     
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_marginTop="24dp"
         android:layout_height="wrap_content">
 
@@ -47,10 +47,10 @@
         <TextView
             android:layout_marginLeft="36dp"
             android:layout_marginRight="36dp"
-            android:layout_marginTop="36dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="ay 7afa"
             android:id="@+id/bookName"/>
 
     </LinearLayout>
@@ -131,9 +131,10 @@
                 android:id="@+id/end_date_button"
                 android:enabled="false"
                 android:layout_below="@id/start_date_button"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_alignRight="@+id/start_date_button"
-                android:layout_alignEnd="@+id/start_date_button" />
+                android:layout_alignEnd="@+id/start_date_button"
+                android:layout_alignLeft="@+id/start_date_button"
+                android:layout_alignStart="@+id/start_date_button" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -191,6 +192,26 @@
             android:id="@+id/points_text"/>
 
 
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="16dp"
+            android:text="Your Points"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:id="@+id/your_points_text" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"

@@ -14,13 +14,14 @@ import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.example.raf.data.CurrentUser;
 import com.example.raf.data.Request;
 
 import java.util.Calendar;
 
 public class GetBookActivity extends AppCompatActivity {
 
-    static TextView startDateText , endDateText;
+    static TextView startDateText , endDateText , yourPointsTextView;
     static int  startYear , startMonth , startDay ,
                 endYear , endMonth , endDay,
                 currentYear , currentMonth , currentDay;
@@ -52,6 +53,7 @@ public class GetBookActivity extends AppCompatActivity {
         final RadioButton purchaseBookRadioButton = (RadioButton)content.findViewById(R.id.purchaseBook);
         final RadioButton borrowBookRadioButton = (RadioButton)content.findViewById(R.id.borrowBook);
         final TextView pointsTextView= (TextView)content.findViewById(R.id.points_text);
+        yourPointsTextView = (TextView)content.findViewById(R.id.your_points_text);
         Button getBookButton = (Button)content.findViewById(R.id.getBook_button);
         Button getPointButton = (Button) content.findViewById(R.id.getPoint_button);
         startDateText = (TextView)content.findViewById(R.id.start_date_text);
@@ -147,6 +149,12 @@ public class GetBookActivity extends AppCompatActivity {
 
         startDateText.addTextChangedListener(textWatcher);
         endDateText.addTextChangedListener(textWatcher);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        yourPointsTextView.setText(Integer.toString(CurrentUser.getPoints()));
     }
 
     public static void showStartDate(int year , int month , int day){
