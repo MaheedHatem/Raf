@@ -52,7 +52,7 @@
         <activity
             android:name=".AccountActivity"
             android:label="@string/title_activity_account"
-            android:theme="@style/login" />
+            android:theme="@style/splash" />
         <activity android:name=".GetPointsActivity" />
         <activity
             android:name=".GetBookActivity"

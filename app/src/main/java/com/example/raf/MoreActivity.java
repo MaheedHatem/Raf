@@ -4,10 +4,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import com.example.raf.data.Book;
@@ -20,6 +19,7 @@ import java.util.List;
 
 public class MoreActivity extends AppCompatActivity {
     TextView toolbarTitle = null;
+    GridAdapter gridAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +28,9 @@ public class MoreActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        String type = getIntent().getStringExtra(getString(R.string.more_intent));
 
+        String type = getIntent().getStringExtra(getString(R.string.more_intent));
+        getSupportActionBar().setTitle(type);
 
 // loop through all toolbar children right after setting support
 // action bar because the text view has no id assigned
@@ -53,12 +54,18 @@ public class MoreActivity extends AppCompatActivity {
 
         // Set custom adapter (GridAdapter) to gridview
 
-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.rv);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        GridMoreAdapter adapter = new GridMoreAdapter();
-        mRecyclerView.setAdapter(adapter);
 
-        getMoreTask task = new getMoreTask(adapter , getApplicationContext());
+        GridView gridView = (GridView) findViewById(R.id.gridView);
+
+        // Set custom adapter (GridAdapter) to gridview
+
+        gridAdapter = new GridAdapter(this);
+//        gridAdapter.addBooks(CurrentUser.getWishlist());
+
+        gridView.setAdapter(gridAdapter);
+
+
+        getMoreTask task = new getMoreTask(gridAdapter , getApplicationContext());
         task.execute(type);
 
 
@@ -66,10 +73,10 @@ public class MoreActivity extends AppCompatActivity {
 
     public class getMoreTask extends AsyncTask <String , Void , Void>{
 
-        private  GridMoreAdapter adapter;
+        private  GridAdapter adapter;
         private Context context;
 
-        getMoreTask(GridMoreAdapter adapter , Context context){
+        getMoreTask(GridAdapter adapter , Context context){
             this.adapter = adapter;
             this.context = context;
         }

@@ -178,6 +178,11 @@ public class GridAdapter extends BaseAdapter {
         this.notifyDataSetChanged();
     }
 
+    public void addBook(Book b){
+        books.add(b);
+        notifyDataSetChanged();
+    }
+
 
 //    int [] mCovers = {R.drawable.book1,R.drawable.book2,R.drawable.book3,R.drawable.book1,R.drawable.book2,R.drawable.book3};
 //    private String[] titles = {"Book Thief","Ten Thousand Skies above you","Still Alice","Book Thief","Ten Thousand Skies above you","Still Alice"};

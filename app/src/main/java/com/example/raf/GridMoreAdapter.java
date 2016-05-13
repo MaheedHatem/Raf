@@ -1,5 +1,6 @@
 package com.example.raf;
 
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -68,12 +69,15 @@ public class GridMoreAdapter extends RecyclerView.Adapter<GridMoreAdapter.ViewHo
 
 
 
-        holder.textView1.setText(books.get(position).getName());
+        holder.textView1.setText(books.get(position ).getName());
         holder.textView2.setText(books.get(position).getAuthor().getName());
         holder.textView3.setText(""+books.get(position).getPrice());
 
-        holder.img.setImageBitmap(BitmapFactory.decodeByteArray(books.get(position).getCover()
-                                        , 0 , books.get(position).getCover().length));
+        Bitmap b = BitmapFactory.decodeByteArray(books.get(position).getCover()
+                , 0 , books.get(position).getCover().length);
+
+        holder.img.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
+
 
 
     }
