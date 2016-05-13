@@ -36,11 +36,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // each data item is just a string in this case
         public TextView txt;
         public GridView gridView;
+        public TextView tmore;
 
         public ViewHolder(View v) {
             super(v);
             txt = (TextView) v.findViewById(R.id.left_text);
             gridView = (GridView) v.findViewById(R.id.grid_home);
+            tmore = (TextView) v.findViewById(R.id.right_more);
 
         }
 
@@ -102,14 +104,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             case FEATURED:
                 holder.gridView.setAdapter(gAdapter0);
                 holder.txt.setText("Featured");
+                holder.tmore.setTag("Featured");
                 break;
             case NEW_RELEASES:
                 holder.txt.setText("New Releases");
                 holder.gridView.setAdapter(gAdapter1);
+                holder.tmore.setTag("New Releases");
                 break;
             case MOST_POPULAR:
                 holder.txt.setText("Most Popular");
                 holder.gridView.setAdapter(gAdapter2);
+                holder.tmore.setTag("Most Popular");
+
                 break;
         }
 
