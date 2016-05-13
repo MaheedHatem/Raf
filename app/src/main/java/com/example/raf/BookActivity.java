@@ -74,6 +74,7 @@ public class BookActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent addBookIntent = new Intent(getApplicationContext(), AddBookActivity.class);
                 addBookIntent.putExtra(getString(R.string.book_intent_name) , bookName);
+                addBookIntent.putExtra(getString(R.string.book_intent_price) , bookPrice);
                 addBookIntent.putExtra(getString(R.string.book_intent_id) , bookID);
                 BookActivity.this.startActivity(addBookIntent);
             }
@@ -81,10 +82,6 @@ public class BookActivity extends AppCompatActivity {
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        if (CurrentUser.isWishListed(bookID)) {
-            //t3ala hena ya jimmy
-        }else {
-        }
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
