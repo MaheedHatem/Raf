@@ -47,11 +47,13 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         // each data item is just a string in this case
         public TextView txt;
         public GridView gridView;
+        public TextView tmore;
 
         public ViewHolder(View v) {
             super(v);
             txt = (TextView) v.findViewById(R.id.left_text);
             gridView = (GridView) v.findViewById(R.id.grid_home);
+            tmore = (TextView) v.findViewById(R.id.right_more);
 
         }
 
@@ -115,22 +117,27 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
             case CLASSIC:
                 holder.gridView.setAdapter(gAdapter0);
                 holder.txt.setText("Classic");
+                holder.tmore.setTag("Classic");
                 break;
             case HISTORY:
                 holder.txt.setText("History");
                 holder.gridView.setAdapter(gAdapter1);
+                holder.tmore.setTag("History");
                 break;
             case BIO:
                 holder.txt.setText("Biography");
                 holder.gridView.setAdapter(gAdapter2);
+                holder.tmore.setTag("Biography");
                 break;
             case SERIES:
                 holder.txt.setText("Series");
                 holder.gridView.setAdapter(gAdapter3);
+                holder.tmore.setTag("Series");
                 break;
             case RELEGION:
                 holder.txt.setText("Relegion");
                 holder.gridView.setAdapter(gAdapter4);
+                holder.tmore.setTag("Relegion");
                 break;
         }
 
