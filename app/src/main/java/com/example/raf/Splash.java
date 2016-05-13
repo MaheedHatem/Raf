@@ -2,9 +2,16 @@ package com.example.raf;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -30,16 +37,17 @@ public class Splash extends AppCompatActivity {
     private getTopCategoryThread bioThread = new getTopCategoryThread(2 , this);
     private getTopCategoryThread seriesThread = new getTopCategoryThread(3 , this);
     private getTopCategoryThread religionThread = new getTopCategoryThread(4 , this);
-
+    private Context current;
     private getDeliveryPointsThread deliveryPointsThread = new getDeliveryPointsThread(this);
 
     private getWishListThread wishListThread = new getWishListThread();
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
+        current =this;
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
@@ -68,6 +76,7 @@ public class Splash extends AppCompatActivity {
         ObjectAnimator a1 = ObjectAnimator.ofFloat(imgshelf, "x",-(metrics.widthPixels)*2 ,0f);
         ObjectAnimator a2 = ObjectAnimator.ofFloat(imgbooks, "y",-(metrics.heightPixels) ,0f);
         ObjectAnimator a3 = ObjectAnimator.ofFloat(imgraf, "y",(metrics.heightPixels) ,0f);
+
         a1.setDuration(1500);
         a2.setDuration(1500);
         a3.setDuration(1000);
@@ -88,6 +97,7 @@ public class Splash extends AppCompatActivity {
             public void run() {
                 /* Create an Intent that will start the Menu-Activity. */
                 try {
+
                     featuredThread.join();
                     newThread.join();
                     popularThread.join();
@@ -100,23 +110,39 @@ public class Splash extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if(ParseUser.getCurrentUser().getUsername() != null)
+                if(! isNetworkAvailable())
                 {
-                    try {
-                        wishListThread.join();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    Intent mainIntent = new Intent(Splash.this,HomeActivity.class);
-                    Splash.this.startActivity(mainIntent);
-                    overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
-                    Splash.this.finish();
+                    AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(current);
+                    dlgAlert.setMessage("Please Check Your Internet Connection");
+                    dlgAlert.setTitle("3al Raf");
+                    dlgAlert.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finishAffinity();
+                                }
+                            });
+                    dlgAlert.setCancelable(true);
+                    dlgAlert.create().show();
                 }
-                else{
-                    Intent mainIntent = new Intent(Splash.this,LoginActivity.class);
-                    Splash.this.startActivity(mainIntent);
-                    overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
-                    Splash.this.finish();
+                else {
+                    if (ParseUser.getCurrentUser().getUsername() != null) {
+                        try {
+                            wishListThread.join();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        Intent mainIntent = new Intent(Splash.this, HomeActivity.class);
+                        Splash.this.startActivity(mainIntent);
+                        overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
+                        Splash.this.finish();
+                    } else {
+                        Intent mainIntent = new Intent(Splash.this, LoginActivity.class);
+                        Splash.this.startActivity(mainIntent);
+                        overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
+                        Splash.this.finish();
+                    }
                 }
 
             }
@@ -125,11 +151,14 @@ public class Splash extends AppCompatActivity {
 
 
 
-
-
     }
 
-
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 
 
 }

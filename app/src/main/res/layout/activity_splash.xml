@@ -47,8 +47,8 @@
             android:maxHeight="10dp"
             android:src="@drawable/raf"/>
 
-    </LinearLayout>
 
+    </LinearLayout>
 
 
 </LinearLayout>
