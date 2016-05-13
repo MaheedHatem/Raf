@@ -50,6 +50,22 @@ public class Splash extends AppCompatActivity {
         current =this;
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        if(! isNetworkAvailable())
+        {
+            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(current);
+            dlgAlert.setMessage("Please Check Your Internet Connection");
+            dlgAlert.setTitle("3al Raf");
+            dlgAlert.setPositiveButton("Ok",
+                    new DialogInterface.OnClickListener() {
+                        @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                        public void onClick(DialogInterface dialog, int which) {
+                            finishAffinity();
+                        }
+                    });
+            dlgAlert.setCancelable(true);
+            dlgAlert.create().show();
+            return;
+        }
 
         featuredThread.start();
         newThread.start();
@@ -110,22 +126,22 @@ public class Splash extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if(! isNetworkAvailable())
-                {
-                    AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(current);
-                    dlgAlert.setMessage("Please Check Your Internet Connection");
-                    dlgAlert.setTitle("3al Raf");
-                    dlgAlert.setPositiveButton("Ok",
-                            new DialogInterface.OnClickListener() {
-                                @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-                                public void onClick(DialogInterface dialog, int which) {
-                                    finishAffinity();
-                                }
-                            });
-                    dlgAlert.setCancelable(true);
-                    dlgAlert.create().show();
-                }
-                else {
+//                if(! isNetworkAvailable())
+//                {
+//                    AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(current);
+//                    dlgAlert.setMessage("Please Check Your Internet Connection");
+//                    dlgAlert.setTitle("3al Raf");
+//                    dlgAlert.setPositiveButton("Ok",
+//                            new DialogInterface.OnClickListener() {
+//                                @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    finishAffinity();
+//                                }
+//                            });
+//                    dlgAlert.setCancelable(true);
+//                    dlgAlert.create().show();
+//                }
+//                else {
                     if (ParseUser.getCurrentUser().getUsername() != null) {
                         try {
                             wishListThread.join();
@@ -143,8 +159,7 @@ public class Splash extends AppCompatActivity {
                         overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
                         Splash.this.finish();
                     }
-                }
-
+//                }
             }
         }, SPLASH_DISPLAY_LENGTH);
 

@@ -100,6 +100,7 @@ public class AccountActivity extends AppCompatActivity {
             try {
                 bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                //TODO chnage compression ratio
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                 byte[] bitmapBytes = stream.toByteArray();
 
