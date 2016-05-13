@@ -234,6 +234,7 @@ public class HomeActivity extends AppCompatActivity
 
     public void onClick(View v) {
         Intent mainIntent = new Intent(HomeActivity.this,MoreActivity.class);
+        mainIntent.putExtra(getString(R.string.more_intent),v.getTag().toString());
         HomeActivity.this.startActivity(mainIntent);
         overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
     }

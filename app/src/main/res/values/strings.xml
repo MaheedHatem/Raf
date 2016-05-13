@@ -153,6 +153,9 @@
     <string name="book_intent_description">bookDescription</string>
     <string name="book_intent_price">bookPrice</string>
 
+    <!--More Activity intent-->
+    <string name="more_intent">moreIntent</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

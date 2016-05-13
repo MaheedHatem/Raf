@@ -1,5 +1,6 @@
 package com.example.raf;
 
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,10 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.raf.data.Book;
+
+import java.util.ArrayList;
+
 public class GridMoreAdapter extends RecyclerView.Adapter<GridMoreAdapter.ViewHolder> {
 
 
-
+    private ArrayList<Book> books = new ArrayList<>();
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -63,11 +68,12 @@ public class GridMoreAdapter extends RecyclerView.Adapter<GridMoreAdapter.ViewHo
 
 
 
-        holder.textView1.setText(titles[position]);
-        holder.textView2.setText(authors[position]);
-        holder.textView3.setText(""+prices[position]);
+        holder.textView1.setText(books.get(position).getName());
+        holder.textView2.setText(books.get(position).getAuthor().getName());
+        holder.textView3.setText(""+books.get(position).getPrice());
 
-        holder.img.setImageResource(mCovers[position]);
+        holder.img.setImageBitmap(BitmapFactory.decodeByteArray(books.get(position).getCover()
+                                        , 0 , books.get(position).getCover().length));
 
 
     }
@@ -75,17 +81,22 @@ public class GridMoreAdapter extends RecyclerView.Adapter<GridMoreAdapter.ViewHo
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return titles.length;
+        return books.size();
+    }
+
+    public void addBook(Book b){
+        books.add(b);
+        notifyDataSetChanged();
     }
 
 
 
 
 
-    int [] mCovers = {R.drawable.book1,R.drawable.book2,R.drawable.book3,R.drawable.book1,R.drawable.book2,R.drawable.book3};
-    private String[] titles = {"Book Thief","Ten Thousand Skies above you","Still Alice","Book Thief","Ten Thousand Skies above you","Still Alice"};
-    private String[] authors = {"Markus Zusak","Claudia Gray","Lisa Genova","Claudia Gray","Lisa Genova","Markus Zusak"};
-    private int[] prices = {100,200,300,400,500,600};
+//    int [] mCovers = {R.drawable.book1,R.drawable.book2,R.drawable.book3,R.drawable.book1,R.drawable.book2,R.drawable.book3};
+//    private String[] titles = {"Book Thief","Ten Thousand Skies above you","Still Alice","Book Thief","Ten Thousand Skies above you","Still Alice"};
+//    private String[] authors = {"Markus Zusak","Claudia Gray","Lisa Genova","Claudia Gray","Lisa Genova","Markus Zusak"};
+//    private int[] prices = {100,200,300,400,500,600};
 }
 
 
