@@ -40,8 +40,11 @@ public class AccountActivity extends AppCompatActivity {
         TextView points = (TextView)findViewById(R.id.tvPoints);
         points.setText(Integer.toString(CurrentUser.getPoints()));
         image = (ImageView)findViewById(R.id.cover);
-        Bitmap b = BitmapFactory.decodeByteArray(CurrentUser.getImage(),0,CurrentUser.getImage().length);
-        image.setImageBitmap(b);
+        if(CurrentUser.getImage()!=null){
+            Bitmap b = BitmapFactory.decodeByteArray(CurrentUser.getImage(),0,CurrentUser.getImage().length);
+            image.setImageBitmap(b);
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             View lo = (View) findViewById(R.id.bellow_actionbar);
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) lo.getLayoutParams();

@@ -14,7 +14,7 @@ public class CurrentUser {
         return ParseUser.getCurrentUser();
     }
     private static ArrayList<Book> wishList = null;
-
+    private static boolean fetched = false;
     public static void addBookToWishlist(final Book book){
         //ArrayList<Book> wishlist = getWishlist();
         new Thread(new Runnable() {
@@ -117,7 +117,11 @@ public class CurrentUser {
 
     public static byte[] getImage() {
         try {
-            return getCurrentUser().getParseFile("photo").getData();
+            ParseFile image = getCurrentUser().getParseFile("photo");
+            if(image!=null){
+                return image.getData();
+            }
+            return null;
         } catch (ParseException e) {
             e.printStackTrace();
             return null;
@@ -127,5 +131,17 @@ public class CurrentUser {
     public static void setImage(ParseFile image) {
         getCurrentUser().put("photo",image);
         getCurrentUser().saveInBackground();
+    }
+
+    public static void fetchInBackGround() {
+        if(getCurrentUser()!=null && !fetched){
+            getCurrentUser().fetchInBackground();
+            fetched = true;
+        }
+
+    }
+
+    public static void setFetched(boolean fetched) {
+        CurrentUser.fetched = fetched;
     }
 }

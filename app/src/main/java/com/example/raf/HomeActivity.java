@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.raf.data.CurrentUser;
 import com.parse.ParseUser;
 
 public class HomeActivity extends AppCompatActivity
@@ -30,7 +31,7 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        CurrentUser.fetchInBackGround();
 
 
 

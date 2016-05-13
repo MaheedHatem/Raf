@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.example.raf.data.Author;
 import com.example.raf.data.Book;
+import com.example.raf.data.CurrentUser;
 import com.example.raf.data.DeliveryPoint;
 import com.example.raf.data.Genre;
 import com.example.raf.data.Request;
@@ -28,7 +29,7 @@ public class ParseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        CurrentUser.setFetched(false);
         ParseObject.registerSubclass(Author.class);
         ParseObject.registerSubclass(Book.class);
         ParseObject.registerSubclass(Genre.class);
