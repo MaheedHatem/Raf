@@ -19,15 +19,19 @@ import java.util.ArrayList;
 public class SearchBooksTest {
     @Test
     public void testSearchBooks() {
+        Book.getTopHomeFirstTime(0,InstrumentationRegistry.getTargetContext());
+        Book.getTopHomeFirstTime(1,InstrumentationRegistry.getTargetContext());
+        Book.getTopHomeFirstTime(2,InstrumentationRegistry.getTargetContext());
         MyAdapter mAdapter = new MyAdapter(InstrumentationRegistry.getTargetContext());
-        Book.getTopHome(mAdapter ,InstrumentationRegistry.getTargetContext() , 0 );
-        Book.getTopHome(mAdapter ,InstrumentationRegistry.getTargetContext() , 1 );
-        Book.getTopHome(mAdapter ,InstrumentationRegistry.getTargetContext() , 2 );
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        Book.getTopHome(mAdapter ,InstrumentationRegistry.getTargetContext() , 0 );
+        Book.getTopHome(mAdapter ,InstrumentationRegistry.getTargetContext() , 1 );
+        Book.getTopHome(mAdapter ,InstrumentationRegistry.getTargetContext() , 2 );
+
         ArrayList<Book> list0 = MyAdapter.gAdapter0.getList();
         Assert.assertTrue(list0.size()>0);
         for(Book b : list0){

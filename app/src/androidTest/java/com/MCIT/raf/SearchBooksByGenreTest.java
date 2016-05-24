@@ -20,6 +20,18 @@ import java.util.ArrayList;
 public class SearchBooksByGenreTest {
     @Test
     public void testSearchBooksByGenre() {
+        Book.getTopCategoryFirstTime(CategoriesAdapter.CLASSIC,InstrumentationRegistry.getTargetContext());
+        Book.getTopCategoryFirstTime(CategoriesAdapter.HISTORY,InstrumentationRegistry.getTargetContext());
+        Book.getTopCategoryFirstTime(CategoriesAdapter.BIO,InstrumentationRegistry.getTargetContext());
+        Book.getTopCategoryFirstTime(CategoriesAdapter.SERIES,InstrumentationRegistry.getTargetContext());
+        Book.getTopCategoryFirstTime(CategoriesAdapter.RELEGION,InstrumentationRegistry.getTargetContext());
+        Book.getTopHomeFirstTime(0,InstrumentationRegistry.getTargetContext());
+        Book.getTopHomeFirstTime(0,InstrumentationRegistry.getTargetContext());
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Context mContext = InstrumentationRegistry.getTargetContext();
         CategoriesAdapter mAdapter = new CategoriesAdapter(mContext);
         Book.getTopCategory(mAdapter , mContext , CategoriesAdapter.CLASSIC);
@@ -27,11 +39,7 @@ public class SearchBooksByGenreTest {
         Book.getTopCategory(mAdapter , mContext , CategoriesAdapter.BIO);
         Book.getTopCategory(mAdapter , mContext , CategoriesAdapter.SERIES);
         Book.getTopCategory(mAdapter , mContext , CategoriesAdapter.RELEGION);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         ArrayList<Book> list0 = CategoriesAdapter.gAdapter0.getList();
         Assert.assertTrue(list0.size()>0);
         for(Book b : list0){
@@ -51,12 +59,12 @@ public class SearchBooksByGenreTest {
         }
         ArrayList<Book> list3 = CategoriesAdapter.gAdapter3.getList();
         Assert.assertTrue(list3.size()>0);
-        for(Book b : list2){
+        for(Book b : list3){
             Assert.assertTrue(b.getGenre().getName().equals("Series"));
         }
         ArrayList<Book> list4 = CategoriesAdapter.gAdapter4.getList();
         Assert.assertTrue(list4.size()>0);
-        for(Book b : list2){
+        for(Book b : list4){
             Assert.assertTrue(b.getGenre().getName().equals("Religion"));
         }
     }

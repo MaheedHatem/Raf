@@ -1,15 +1,19 @@
 package com.MCIT.raf;
 
 
+import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.MCIT.raf.data.Book;
+
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,11 +32,13 @@ import static org.hamcrest.Matchers.*;
 @RunWith(AndroidJUnit4.class)
 public class NavigateToBookGUITest {
     @Rule
-    public ActivityTestRule<HomeActivity> mActivityRule = new ActivityTestRule<>(
-            HomeActivity.class);
+    public ActivityTestRule<Splash> mActivityRule2 = new ActivityTestRule<>(
+            Splash.class);
+
+
 
     @Test
-    public void testLoginValid() {
+    public void testNavigateToBook() {
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
