@@ -44,7 +44,7 @@ public class BookActivity extends AppCompatActivity {
         final String bookName = getIntent().getStringExtra(getString(R.string.book_intent_name));
         String bookAuthor = getIntent().getStringExtra(getString(R.string.book_intent_author));
         String bookDescription = getIntent().getStringExtra(getString(R.string.book_intent_description));
-        byte[] bookCover = getIntent().getByteArrayExtra(getString(R.string.book_intent_cover));
+        final byte[] bookCover = getIntent().getByteArrayExtra(getString(R.string.book_intent_cover));
         final int bookPrice = getIntent().getIntExtra(getString(R.string.book_intent_price),0);
 
         NestedScrollView book_content = (NestedScrollView) findViewById(R.id.content_id);
@@ -64,6 +64,7 @@ public class BookActivity extends AppCompatActivity {
                 getBookIntent.putExtra(getString(R.string.book_intent_name) , bookName);
                 getBookIntent.putExtra(getString(R.string.book_intent_price) , bookPrice);
                 getBookIntent.putExtra(getString(R.string.book_intent_id) , bookID);
+                getBookIntent.putExtra(getString(R.string.book_intent_cover) , bookCover);
                 BookActivity.this.startActivity(getBookIntent);
             }
         });

@@ -1,6 +1,7 @@
 package com.MCIT.raf;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,9 +45,11 @@ public class GetBookActivity extends AppCompatActivity {
 
         final String bookID = getIntent().getStringExtra(getString(R.string.book_intent_id));
         final int bookPrice = getIntent().getIntExtra(getString(R.string.book_intent_price) , 0);
+        final byte[] bookCover = getIntent().getByteArrayExtra(getString(R.string.book_intent_cover));
 
         ScrollView content = (ScrollView) findViewById(R.id.getBook_content);
 
+        ImageView bookImage = (ImageView)content.findViewById(R.id.book_cover);
         final Button startDateButton = (Button)content.findViewById(R.id.start_date_button);
         final TextView pointsTextView= (TextView)content.findViewById(R.id.points_text);
         yourPointsTextView = (TextView)content.findViewById(R.id.your_points_text);
@@ -53,6 +57,7 @@ public class GetBookActivity extends AppCompatActivity {
         Button getPointButton = (Button) content.findViewById(R.id.getPoint_button);
         startDateText = (TextView)content.findViewById(R.id.start_date_text);
 
+        bookImage.setImageBitmap(BitmapFactory.decodeByteArray(bookCover,0,bookCover.length));
         pointsTextView.setText(Integer.toString(bookPrice));
         pointsTextView.setText(Integer.toString(bookPrice));
 
