@@ -11,17 +11,18 @@
     <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
+        android:name=".ParseApplication"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/splash"
-        android:name ="com.MCIT.raf.ParseApplication"
-        android:largeHeap="true">
+        android:theme="@style/splash">
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        <activity android:name="com.MCIT.raf.Splash">
+
+        <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,17 +30,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.MCIT.raf.LoginActivity"
-            android:theme="@style/loginTheme"
-            android:label="@string/title_activity_login" />
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/loginTheme" />
         <activity
-            android:name="com.MCIT.raf.HomeActivity"
+            android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/splash" />
         <activity
-            android:name="com.MCIT.raf.BookActivity"
+            android:name=".BookActivity"
             android:label="@string/title_activity_book"
-            android:parentActivityName="com.MCIT.raf.HomeActivity"
+            android:parentActivityName=".HomeActivity"
             android:theme="@style/splash">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -47,41 +48,41 @@
             >
         </activity>
         <activity
-            android:name="com.MCIT.raf.MoreActivity"
+            android:name=".MoreActivity"
             android:label="@string/title_activity_more"
             android:theme="@style/splash" />
         <activity
-            android:name="com.MCIT.raf.AccountActivity"
+            android:name=".AccountActivity"
             android:label="@string/title_activity_account"
             android:theme="@style/splash" />
-        <activity android:name="com.MCIT.raf.GetPointsActivity" />
+        <activity android:name=".GetPointsActivity" />
         <activity
-            android:name="com.MCIT.raf.GetBookActivity"
+            android:name=".GetBookActivity"
             android:label="@string/title_activity_get_book"
             android:theme="@style/splash" />
         <activity
-            android:name="com.MCIT.raf.AddBookActivity"
+            android:name=".AddBookActivity"
             android:label="@string/title_activity_add_book"
-            android:theme="@style/splash"></activity>
+            android:theme="@style/splash" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
+
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name="com.MCIT.raf.signup"
+            android:name=".signup"
             android:label="Signup"
-            android:parentActivityName="com.MCIT.raf.LoginActivity"
+            android:parentActivityName=".LoginActivity"
             android:theme="@style/loginTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.MCIT.raf.LoginActivity" />
         </activity>
-
     </application>
 
 </manifest>

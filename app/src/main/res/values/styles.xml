@@ -41,8 +41,6 @@
     </style>
 
 
-
-
     <style name="splash.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="splash.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
