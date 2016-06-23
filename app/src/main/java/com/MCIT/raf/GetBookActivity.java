@@ -6,11 +6,8 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,20 +31,21 @@ public class GetBookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_get_book);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Get Copy");
+
+        String bookName = getIntent().getStringExtra(getString(R.string.book_intent_name));
+        getSupportActionBar().setTitle("Get Copy of "+ bookName);
 
         Calendar c = Calendar.getInstance();
         currentYear = c.get(Calendar.YEAR);
         currentMonth = c.get(Calendar.MONTH);
         currentDay = c.get(Calendar.DAY_OF_MONTH);
 
-        String bookName = getIntent().getStringExtra(getString(R.string.book_intent_name));
+
         final String bookID = getIntent().getStringExtra(getString(R.string.book_intent_id));
         final int bookPrice = getIntent().getIntExtra(getString(R.string.book_intent_price) , 0);
 
         ScrollView content = (ScrollView) findViewById(R.id.getBook_content);
 
-        TextView bookNameTextView = (TextView)content.findViewById(R.id.bookName);
         final Button startDateButton = (Button)content.findViewById(R.id.start_date_button);
         final TextView pointsTextView= (TextView)content.findViewById(R.id.points_text);
         yourPointsTextView = (TextView)content.findViewById(R.id.your_points_text);
@@ -55,7 +53,6 @@ public class GetBookActivity extends AppCompatActivity {
         Button getPointButton = (Button) content.findViewById(R.id.getPoint_button);
         startDateText = (TextView)content.findViewById(R.id.start_date_text);
 
-        bookNameTextView.setText(bookName);
         pointsTextView.setText(Integer.toString(bookPrice));
         pointsTextView.setText(Integer.toString(bookPrice));
 

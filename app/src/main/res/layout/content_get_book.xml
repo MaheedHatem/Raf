@@ -1,61 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.raf.GetBookActivity"
-    tools:showIn="@layout/activity_get_book">-->
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.MCIT.raf.GetBookActivity"
+    tools:context="com.MCIT.raf.ScrollingActivity"
     tools:showIn="@layout/activity_get_book">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginTop="24dp"
-        android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Book Name"/>
-
-        <TextView
-            android:layout_marginLeft="36dp"
-            android:layout_marginRight="36dp"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="ay 7afa"
-            android:id="@+id/bookName"/>
+            android:layout_height="wrap_content">
 
-    </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@color/colorPrimary"
+                ></View>
 
 
+
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="2dp"
+                    android:elevation="2dp"
+                    android:layout_centerHorizontal="true">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:layout_height="350dp"
+                        android:src="@drawable/bbb"/>
+
+                </android.support.v7.widget.CardView>
+
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_height="wrap_content">
 
 
 
@@ -151,6 +154,8 @@
 
 
     </RelativeLayout>
+
+</LinearLayout>
     </LinearLayout>
 </ScrollView>
 <!--</LinearLayout>-->
