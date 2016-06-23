@@ -27,8 +27,7 @@
             android:text="Book Name"/>
 
         <EditText
-            android:layout_marginLeft="36dp"
-            android:layout_marginRight="36dp"
+            android:layout_marginTop="16dp"
             android:hint="Enter the Book Name"
             android:id="@+id/bookName_EditText"
             android:layout_width="match_parent"
@@ -37,8 +36,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="36dp"
-            android:layout_marginRight="36dp"
+            android:layout_marginTop="16dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/bookName_TextView"/>
 
 
@@ -46,7 +45,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_height="wrap_content">
 
         <Button
@@ -54,6 +53,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Delivery Date"
+            android:background="@color/colorAccent"
             android:id="@+id/delivery_date_button"/>
 
         <TextView
@@ -68,7 +68,7 @@
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_height="wrap_content">
 
         <TextView

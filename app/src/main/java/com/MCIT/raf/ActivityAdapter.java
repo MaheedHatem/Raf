@@ -19,7 +19,6 @@ import java.util.List;
 public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHolder> {
     List<String> mTitiles= new ArrayList<String>();
     List<Date> mStart= new ArrayList<Date>();
-    List<Date> mend= new ArrayList<Date>();
     List<String> mStatus= new ArrayList<String>();
 
     // Provide a reference to the views for each data item
@@ -30,13 +29,11 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
         public TextView mTextTitle;
         public TextView mTextStatus;
         public TextView mTextStart;
-        public TextView mTextEnd;
         public ViewHolder(View v) {
             super(v);
             mTextTitle =(TextView) v.findViewById(R.id.title);
             mTextStatus =(TextView) v.findViewById(R.id.status);
             mTextStart =(TextView) v.findViewById(R.id.start);
-            mTextEnd =(TextView) v.findViewById(R.id.end);
         }
     }
 
@@ -63,10 +60,6 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
         holder.mTextTitle.setText(mTitiles.get(position));
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy");
         holder.mTextStart.setText(dateFormat.format(mStart.get(position)));
-        if (mStatus.get(position).equals("borrow_request"))
-            holder.mTextEnd.setText(dateFormat.format(mend.get(position)));
-        else
-            holder.mTextEnd.setVisibility(View.GONE);
         holder.mTextStatus.setText(mStatus.get(position));
     }
 
@@ -76,17 +69,15 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
         return mTitiles.size();
     }
 
-    public void addActivity(String title,Date start,Date end, String status){
+    public void addActivity(String title,Date start, String status){
         mTitiles.add(title);
         mStart.add(start);
-        mend.add(end);
         mStatus.add(status);
         notifyDataSetChanged();
     }
 
     public void addRequest(ArrayList<Request> requests){
         for (Request r : requests)
-            addActivity(r.getBook().getName() , (r.getType().equals("borrow_request"))?r.getStartDate(): r.getDeliveryDate()
-                    , r.getEndDate() , r.getType());
+            addActivity(r.getBook().getName() , r.getDeliveryDate(), r.getType());
     }
 }

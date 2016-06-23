@@ -106,7 +106,7 @@ public class GridHomeAdapter extends BaseAdapter {
                     //edited by khaled
                     Bitmap b = BitmapFactory.decodeByteArray(mBook0.get(position).getCover()
                             ,0,mBook0.get(position).getCover().length);
-                    imgcover.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
+                    imgcover.setImageBitmap(b);
 
 
             gridView.setOnClickListener(new View.OnClickListener() {
