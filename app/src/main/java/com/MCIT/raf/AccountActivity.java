@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -39,9 +40,16 @@ public class AccountActivity extends AppCompatActivity {
         TextView points = (TextView)findViewById(R.id.tvPoints);
         points.setText(Integer.toString(CurrentUser.getPoints()));
         image = (ImageView)findViewById(R.id.cover);
-        if(CurrentUser.getImage()!=null){
+        new Runnable(){
 
-        }
+            @Override
+            public void run() {
+                byte[] userImage = CurrentUser.getImage();
+                if(userImage!=null){
+                    image.setImageBitmap(BitmapFactory.decodeByteArray(userImage,0 , userImage.length));
+                }
+            }
+        }.run();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             View lo = (View) findViewById(R.id.bellow_actionbar);
@@ -97,30 +105,33 @@ public class AccountActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK){
 
             Uri targetUri = data.getData();
-            Bitmap bitmap;
+            final Bitmap bitmap;
             try {
                 bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 //TODO chnage compression ratio
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
                 byte[] bitmapBytes = stream.toByteArray();
-
+                Snackbar.make(image, "Updating Photo", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
                 final ParseFile imageFile = new ParseFile(CurrentUser.getUsername()+"image.jpg", bitmapBytes);
                 imageFile.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
                         if(e!=null){
-                            Toast.makeText(getApplicationContext(),
-                                    "Error saving photo ",
-                                    Toast.LENGTH_LONG).show();
+                            Snackbar.make(image, "Error Saving Photo", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
                         }
                         else{
                             CurrentUser.setImage(imageFile);
+                            Snackbar.make(image, "Photo Updated", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+
+                            image.setImageBitmap(bitmap);
                         }
                     }
                 });
 
-                image.setImageBitmap(bitmap);
             } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
