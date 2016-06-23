@@ -63,7 +63,7 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
         holder.mTextTitle.setText(mTitiles.get(position));
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy");
         holder.mTextStart.setText(dateFormat.format(mStart.get(position)));
-        if (mStatus.get(position) != "buy_request")
+        if (mStatus.get(position).equals("borrow_request"))
             holder.mTextEnd.setText(dateFormat.format(mend.get(position)));
         else
             holder.mTextEnd.setVisibility(View.GONE);
@@ -86,7 +86,7 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
 
     public void addRequest(ArrayList<Request> requests){
         for (Request r : requests)
-            addActivity(r.getBook().getName() , (r.getType()=="buy_request")?r.getDeliveryDate(): r.getStartDate()
+            addActivity(r.getBook().getName() , (r.getType().equals("borrow_request"))?r.getStartDate(): r.getDeliveryDate()
                     , r.getEndDate() , r.getType());
     }
 }
