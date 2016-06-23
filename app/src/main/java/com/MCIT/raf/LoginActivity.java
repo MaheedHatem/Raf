@@ -413,6 +413,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             if (ParseUser.getCurrentUser() != null) {
                 //added by khaled
                 CurrentUser.getWishlistFirstTime();
+                CurrentUser.fetchRequests();
                 /////
                 return true;
             } else {

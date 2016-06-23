@@ -62,9 +62,11 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
         // - replace the contents of the view with that element
         holder.mTextTitle.setText(mTitiles.get(position));
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy");
-        //dateFormat.format( new Date() );
         holder.mTextStart.setText(dateFormat.format(mStart.get(position)));
-        holder.mTextEnd.setText(dateFormat.format(mend.get(position)));
+        if (mStatus.get(position) != "buy_request")
+            holder.mTextEnd.setText(dateFormat.format(mend.get(position)));
+        else
+            holder.mTextEnd.setVisibility(View.GONE);
         holder.mTextStatus.setText(mStatus.get(position));
     }
 
@@ -84,6 +86,7 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
 
     public void addRequest(ArrayList<Request> requests){
         for (Request r : requests)
-            addActivity(r.getBook().getName() , r.getStartDate() , r.getEndDate() , r.getType());
+            addActivity(r.getBook().getName() , (r.getType()=="buy_request")?r.getDeliveryDate(): r.getStartDate()
+                    , r.getEndDate() , r.getType());
     }
 }

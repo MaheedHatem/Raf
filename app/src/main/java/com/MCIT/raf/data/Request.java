@@ -58,6 +58,9 @@ public class Request extends ParseObject {
             case ADD_REQUEST:
                 put("type" , "add_request");
                 break;
+            case BUY_REQUEST:
+                put ("type" , "buy_request");
+                break;
         }
     }
     public void setType(String bookName){
