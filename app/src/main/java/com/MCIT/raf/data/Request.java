@@ -5,6 +5,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.MCIT.raf.R;
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseClassName;
 import com.parse.ParseException;
@@ -13,8 +14,10 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Maheed on 5/2/2016.
@@ -182,5 +185,23 @@ public class Request extends ParseObject {
                 }
             });
         }
+    }
+
+    public static ArrayList<Request> getUserRequest (){
+        final ArrayList<Request> requests = new ArrayList<Request>();
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Request");
+        query.include("book");
+        query.include("user");
+        query.whereEqualTo("user", CurrentUser.getCurrentUser());
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null){
+                    for (int i=0;i<objects.size();i++)
+                        requests.add((Request)objects.get(i));
+                }
+            }
+        });
+        return requests;
     }
 }

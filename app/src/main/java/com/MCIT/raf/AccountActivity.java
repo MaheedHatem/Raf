@@ -24,7 +24,6 @@ import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.sql.Timestamp;
 
 public class AccountActivity extends AppCompatActivity {
     private ImageView image;
@@ -67,25 +66,27 @@ public class AccountActivity extends AppCompatActivity {
 
 
 
-//        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycle_account);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycle_account);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-//        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-//        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
         ActivityAdapter mAdapter = new ActivityAdapter();
-//        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(mAdapter);
 
-        mAdapter.addActivity("Hello it's me", new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),"InPreogress");
+        mAdapter.addRequest(CurrentUser.getRequest());
 
-        mAdapter.addActivity("Hello it's you", new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),"Returned");
-
-        mAdapter.addActivity("Hello it's us", new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),"Purchase");
+//        mAdapter.addActivity("Hello it's me", new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),"InPreogress");
+//
+//        mAdapter.addActivity("Hello it's you", new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),"Returned");
+//
+//        mAdapter.addActivity("Hello it's us", new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),"Purchase");
 
     }
     @Override

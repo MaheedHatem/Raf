@@ -6,7 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.sql.Timestamp;
+import com.MCIT.raf.data.Request;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,8 +18,8 @@ import java.util.List;
  */
 public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHolder> {
     List<String> mTitiles= new ArrayList<String>();
-    List<Timestamp> mStart= new ArrayList<Timestamp>();
-    List<Timestamp> mend= new ArrayList<Timestamp>();
+    List<Date> mStart= new ArrayList<Date>();
+    List<Date> mend= new ArrayList<Date>();
     List<String> mStatus= new ArrayList<String>();
 
     // Provide a reference to the views for each data item
@@ -61,12 +62,10 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
         // - replace the contents of the view with that element
         holder.mTextTitle.setText(mTitiles.get(position));
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy");
-        dateFormat.format( new Date() );
-        holder.mTextStart.setText("Wed, Sep 4, 2015");
-        holder.mTextEnd.setText("Sun, Jan 20, 2016");
-
+        //dateFormat.format( new Date() );
+        holder.mTextStart.setText(dateFormat.format(mStart.get(position)));
+        holder.mTextEnd.setText(dateFormat.format(mend.get(position)));
         holder.mTextStatus.setText(mStatus.get(position));
-
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -75,11 +74,16 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
         return mTitiles.size();
     }
 
-    public void addActivity(String title,Timestamp start,Timestamp end, String status){
+    public void addActivity(String title,Date start,Date end, String status){
         mTitiles.add(title);
         mStart.add(start);
         mend.add(end);
         mStatus.add(status);
         notifyDataSetChanged();
+    }
+
+    public void addRequest(ArrayList<Request> requests){
+        for (Request r : requests)
+            addActivity(r.getBook().getName() , r.getStartDate() , r.getEndDate() , r.getType());
     }
 }

@@ -2,6 +2,8 @@ package com.MCIT.raf.data;
 
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ public class CurrentUser {
         return ParseUser.getCurrentUser();
     }
     private static ArrayList<Book> wishList = null;
+    private static ArrayList<Request> requests = new ArrayList<>();
     private static boolean fetched = false;
     public static void addBookToWishlist(final Book book){
         //ArrayList<Book> wishlist = getWishlist();
@@ -50,7 +53,21 @@ public class CurrentUser {
                 }
             }
         }).start();
+    }
 
+    //get user request for the first time
+    public static void fetchRequests(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("Book");
+                requests = Request.getUserRequest();
+            }
+        }).start();
+    }
+
+    public static ArrayList<Request> getRequest(){
+        return requests;
     }
     public static ArrayList<Book> getWishlistFirstTime(){
 //        try {

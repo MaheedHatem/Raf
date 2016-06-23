@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 
+import com.MCIT.raf.data.CurrentUser;
 import com.parse.ParseUser;
 
 
@@ -77,8 +78,10 @@ public class Splash extends AppCompatActivity {
         seriesThread.start();
         religionThread.start();
         deliveryPointsThread.start();
-        if (ParseUser.getCurrentUser().getUsername() != null)
+        if (ParseUser.getCurrentUser().getUsername() != null) {
             wishListThread.start();
+            CurrentUser.fetchRequests();
+        }
 
 
         imgbooks = (ImageView) findViewById(R.id.splash_books);
