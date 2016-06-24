@@ -109,7 +109,7 @@ public class GridHomeAdapter extends BaseAdapter {
                 public void run() {
                     Bitmap b = BitmapFactory.decodeByteArray(mBook0.get(position).getCover()
                             , 0, mBook0.get(position).getCover().length);
-                    imgcover.setImageBitmap(b);
+                    imgcover.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
                 }
             }.run();
 

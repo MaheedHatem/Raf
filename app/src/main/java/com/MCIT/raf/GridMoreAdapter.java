@@ -76,7 +76,7 @@ public class GridMoreAdapter extends RecyclerView.Adapter<GridMoreAdapter.ViewHo
         Bitmap b = BitmapFactory.decodeByteArray(books.get(position).getCover()
                 , 0 , books.get(position).getCover().length);
 
-        holder.img.setImageBitmap(b);
+        holder.img.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
 
 
 
