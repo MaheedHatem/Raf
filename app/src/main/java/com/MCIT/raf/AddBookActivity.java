@@ -1,5 +1,6 @@
 package com.MCIT.raf;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +42,9 @@ public class AddBookActivity extends AppCompatActivity {
         final String[] bookName = {getIntent().getStringExtra(getString(R.string.book_intent_name))};
         final String bookID = getIntent().getStringExtra(getString(R.string.book_intent_id));
         int bookPrice = getIntent().getIntExtra(getString(R.string.book_intent_price) , 0);
+        final byte[] bookCover = getIntent().getByteArrayExtra(getString(R.string.book_intent_cover));
+
+        ImageView bookImage = (ImageView)findViewById(R.id.cover);
         final EditText bookNameEditText = (EditText)findViewById(R.id.bookName_EditText);
         TextView bookNameTextView = (TextView)findViewById(R.id.bookName_TextView);
         TextView priceTextView = (TextView)findViewById(R.id.price_textView);
@@ -51,6 +56,7 @@ public class AddBookActivity extends AppCompatActivity {
             bookNameTextView.setText(bookName[0]);
             bookNameEditText.setVisibility(View.GONE);
             priceTextView.setText(Integer.toString(bookPrice));
+            bookImage.setImageBitmap(BitmapFactory.decodeByteArray(bookCover,0,bookCover.length));
             getSupportActionBar().setTitle("Add "+bookName[0] +" Book");
         } else {
             bookNameEditText.setVisibility(View.VISIBLE);

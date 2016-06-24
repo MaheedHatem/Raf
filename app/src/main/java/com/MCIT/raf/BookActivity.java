@@ -86,6 +86,7 @@ public class BookActivity extends AppCompatActivity {
                 addBookIntent.putExtra(getString(R.string.book_intent_name) , bookName);
                 addBookIntent.putExtra(getString(R.string.book_intent_price) , bookPrice);
                 addBookIntent.putExtra(getString(R.string.book_intent_id) , bookID);
+                addBookIntent.putExtra(getString(R.string.book_intent_cover) , bookCover);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     ActivityOptions options = ActivityOptions
