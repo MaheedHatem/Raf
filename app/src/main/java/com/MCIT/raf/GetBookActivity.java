@@ -49,7 +49,7 @@ public class GetBookActivity extends AppCompatActivity {
 
         ScrollView content = (ScrollView) findViewById(R.id.getBook_content);
 
-        ImageView bookImage = (ImageView)content.findViewById(R.id.book_cover);
+        ImageView bookImage = (ImageView)content.findViewById(R.id.cover);
         final Button startDateButton = (Button)content.findViewById(R.id.start_date_button);
         final TextView pointsTextView= (TextView)content.findViewById(R.id.points_text);
         yourPointsTextView = (TextView)content.findViewById(R.id.your_points_text);

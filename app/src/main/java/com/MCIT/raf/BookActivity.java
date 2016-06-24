@@ -1,5 +1,6 @@
 package com.MCIT.raf;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -65,7 +66,15 @@ public class BookActivity extends AppCompatActivity {
                 getBookIntent.putExtra(getString(R.string.book_intent_price) , bookPrice);
                 getBookIntent.putExtra(getString(R.string.book_intent_id) , bookID);
                 getBookIntent.putExtra(getString(R.string.book_intent_cover) , bookCover);
-                BookActivity.this.startActivity(getBookIntent);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ActivityOptions options = ActivityOptions
+                            .makeSceneTransitionAnimation(BookActivity.this, (ImageView)findViewById(R.id.cover), "cover");
+                    // start the new activity
+                    startActivity(getBookIntent, options.toBundle());
+                }
+                else
+                    BookActivity.this.startActivity(getBookIntent);
             }
         });
 
