@@ -86,7 +86,15 @@ public class BookActivity extends AppCompatActivity {
                 addBookIntent.putExtra(getString(R.string.book_intent_name) , bookName);
                 addBookIntent.putExtra(getString(R.string.book_intent_price) , bookPrice);
                 addBookIntent.putExtra(getString(R.string.book_intent_id) , bookID);
-                BookActivity.this.startActivity(addBookIntent);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ActivityOptions options = ActivityOptions
+                            .makeSceneTransitionAnimation(BookActivity.this, (ImageView)findViewById(R.id.cover), "cover");
+                    // start the new activity
+                    startActivity(addBookIntent, options.toBundle());
+                }
+                else
+                    BookActivity.this.startActivity(addBookIntent);
             }
         });
 

@@ -32,11 +32,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12209a00-e088-47fe-8950-cd5367b4a5d1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/MCIT/raf/AddBookActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/MCIT/raf/AddBookActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_book.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_book.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/MCIT/raf/BookActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/MCIT/raf/BookActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_add_book.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_add_book.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_get_book.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_get_book.xml" />
     </list>
     <ignored path="Raf.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -97,16 +95,26 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="BookActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/MCIT/raf/BookActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="92" column="45" selection-start-line="92" selection-start-column="45" selection-end-line="92" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="content_add_book.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_add_book.xml">
           <provider editor-type-id="android-designer">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5278311">
-              <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.2284069">
+              <caret line="7" column="64" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
               <folding>
-                <element signature="e#359#399#0" expanded="true" />
+                <element signature="e#357#397#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2027,13 +2035,13 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/points_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/MCIT/raf/GetPointsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_get_book.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/MCIT/raf/BookActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/MCIT/raf/CategoriesFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/MCIT/raf/GetBookActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/rounded_button.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_book.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/MCIT/raf/AddBookActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_get_book.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/MCIT/raf/BookActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_add_book.xml" />
       </list>
     </option>
@@ -2494,7 +2502,13 @@
       <option name="project" value="LOCAL" />
       <updated>1466730061792</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="New UI for addBook">
+      <created>1466731797795</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1466731797795</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2547,7 +2561,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="New UI for GetPoints" />
-    <option name="LAST_COMMIT_MESSAGE" value="New UI for GetPoints" />
+    <MESSAGE value="New UI for addBook" />
+    <option name="LAST_COMMIT_MESSAGE" value="New UI for addBook" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2598,6 +2613,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="79" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2667,7 +2683,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="31" column="7" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
           <folding>
-            <element signature="e#359#399#0" expanded="true" />
+            <element signature="e#357#397#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2940,13 +2956,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/MCIT/raf/BookActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.6896553">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/MCIT/raf/CategoriesFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33449477">
@@ -3003,6 +3012,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/MCIT/raf/BookActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="92" column="45" selection-start-line="92" selection-start-column="45" selection-end-line="92" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/MCIT/raf/GetBookActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3016,10 +3033,10 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5278311">
-          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.2284069">
+          <caret line="7" column="64" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
           <folding>
-            <element signature="e#359#399#0" expanded="true" />
+            <element signature="e#357#397#0" expanded="true" />
           </folding>
         </state>
       </provider>
