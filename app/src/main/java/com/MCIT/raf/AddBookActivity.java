@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,8 @@ public class AddBookActivity extends AppCompatActivity {
             currentYear , currentMonth , currentDay;
     static TextView deliveryDateTextView;
     static boolean deliveryDateFlag = false;
+
+    static Button deliveryDateButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,13 +43,15 @@ public class AddBookActivity extends AppCompatActivity {
         final EditText bookNameEditText = (EditText)findViewById(R.id.bookName_EditText);
         TextView bookNameTextView = (TextView)findViewById(R.id.bookName_TextView);
         TextView priceTextView = (TextView)findViewById(R.id.price_textView);
-        final Button deliveryDateButton = (Button)findViewById(R.id.delivery_date_button);
+        deliveryDateButton = (Button)findViewById(R.id.delivery_date_button);
         Button addBookButton = (Button)findViewById(R.id.addBook);
         deliveryDateTextView = (TextView)findViewById(R.id.delivery_date);
         if(bookName[0] !=null){
+
             bookNameTextView.setText(bookName[0]);
             bookNameEditText.setVisibility(View.GONE);
             priceTextView.setText(Integer.toString(bookPrice));
+            getSupportActionBar().setTitle("Add "+bookName[0] +" Book");
         } else {
             bookNameEditText.setVisibility(View.VISIBLE);
             bookNameTextView.setVisibility(View.GONE);
@@ -100,6 +105,10 @@ public class AddBookActivity extends AppCompatActivity {
         deliveryYear = year;
         deliveryDateTextView.setText(new StringBuilder().append(day).append("/").append(month +1)
                 .append("/").append(year));
+        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) deliveryDateButton.getLayoutParams();
+        lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+        deliveryDateButton.setLayoutParams(lp);
+
     }
 
     private static boolean checkDeliveryDate(int year , int month , int day) {
