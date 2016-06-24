@@ -97,17 +97,21 @@ public class GridHomeAdapter extends BaseAdapter {
             // set value into textview
             TextView txttitle = (TextView) gridView.findViewById(R.id.title);
             TextView txtauthor = (TextView) gridView.findViewById(R.id.author);
-            ImageView imgcover = (ImageView) gridView.findViewById(R.id.cover);
+            final ImageView imgcover = (ImageView) gridView.findViewById(R.id.cover);
 
-
+            imgcover.setImageResource(R.drawable.white_cover);
                     txttitle.setText(mBook0.get(position).getName());
                     txtauthor.setText(mBook0.get(position).getAuthor().getName());
                     //imgcover.setImageResource(mCover0.get(position));
                     //edited by khaled
+            new Runnable() {
+                @Override
+                public void run() {
                     Bitmap b = BitmapFactory.decodeByteArray(mBook0.get(position).getCover()
-                            ,0,mBook0.get(position).getCover().length);
+                            , 0, mBook0.get(position).getCover().length);
                     imgcover.setImageBitmap(b);
-
+                }
+            }.run();
 
             gridView.setOnClickListener(new View.OnClickListener() {
                 @Override
