@@ -48,6 +48,7 @@ public class AddBookActivity extends AppCompatActivity {
         final EditText bookNameEditText = (EditText)findViewById(R.id.bookName_EditText);
         TextView bookNameTextView = (TextView)findViewById(R.id.bookName_TextView);
         TextView priceTextView = (TextView)findViewById(R.id.price_textView);
+        TextView booknametxt = (TextView)findViewById(R.id.BookNameTXT);
         deliveryDateButton = (Button)findViewById(R.id.delivery_date_button);
         Button addBookButton = (Button)findViewById(R.id.addBook);
         deliveryDateTextView = (TextView)findViewById(R.id.delivery_date);
@@ -55,6 +56,7 @@ public class AddBookActivity extends AppCompatActivity {
 
             bookNameTextView.setText(bookName[0]);
             bookNameEditText.setVisibility(View.GONE);
+            booknametxt.setVisibility(View.GONE);
             priceTextView.setText(Integer.toString(bookPrice));
             bookImage.setImageBitmap(BitmapFactory.decodeByteArray(bookCover,0,bookCover.length));
             getSupportActionBar().setTitle("Add "+bookName[0] +" Book");
