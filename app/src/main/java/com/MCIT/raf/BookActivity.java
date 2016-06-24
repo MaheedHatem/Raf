@@ -51,11 +51,13 @@ public class BookActivity extends AppCompatActivity {
         NestedScrollView book_content = (NestedScrollView) findViewById(R.id.content_id);
         ImageView imageCover = (ImageView)findViewById(R.id.cover);
         TextView description = (TextView) book_content.findViewById(R.id.book_description);
+        TextView author = (TextView)findViewById(R.id.book_author);
 
         setTitle(bookName);
         Bitmap b = BitmapFactory.decodeByteArray(bookCover,0,bookCover.length);
         imageCover.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
         description.setText(bookDescription);
+        author.setText(bookAuthor);
 
         Button getCopyButton = (Button)findViewById(R.id.getcopy);
         getCopyButton.setOnClickListener(new View.OnClickListener() {
