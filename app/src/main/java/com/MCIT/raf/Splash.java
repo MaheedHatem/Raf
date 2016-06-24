@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,7 +19,9 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 
+import com.MCIT.raf.data.Book;
 import com.MCIT.raf.data.CurrentUser;
+import com.MCIT.raf.data.DeliveryPoint;
 import com.parse.ParseUser;
 
 
@@ -30,19 +33,9 @@ public class Splash extends AppCompatActivity {
     int animCount=0;
     private final int SPLASH_DISPLAY_LENGTH = 3000;
 
-    private getTopHomeThread featuredThread = new getTopHomeThread(0 , this);
-    private getTopHomeThread newThread = new getTopHomeThread(1 , this);
-    private getTopHomeThread popularThread = new getTopHomeThread(2 , this);
 
-    private getTopCategoryThread classicThread = new getTopCategoryThread(0 , this);
-    private getTopCategoryThread historyThread = new getTopCategoryThread(1 , this);
-    private getTopCategoryThread bioThread = new getTopCategoryThread(2 , this);
-    private getTopCategoryThread seriesThread = new getTopCategoryThread(3 , this);
-    private getTopCategoryThread religionThread = new getTopCategoryThread(4 , this);
     private Context current;
-    private getDeliveryPointsThread deliveryPointsThread = new getDeliveryPointsThread(this);
 
-    private getWishListThread wishListThread = new getWishListThread();
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -69,19 +62,6 @@ public class Splash extends AppCompatActivity {
             return;
         }
 
-        featuredThread.start();
-        newThread.start();
-        popularThread.start();
-        classicThread.start();
-        historyThread.start();
-        bioThread.start();
-        seriesThread.start();
-        religionThread.start();
-        deliveryPointsThread.start();
-        if (ParseUser.getCurrentUser().getUsername() != null) {
-            wishListThread.start();
-            CurrentUser.fetchRequests();
-        }
 
 
         imgbooks = (ImageView) findViewById(R.id.splash_books);
@@ -136,65 +116,7 @@ public class Splash extends AppCompatActivity {
 
 
         });
-
-
-        new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run() {
-                /* Create an Intent that will start the Menu-Activity. */
-                try {
-
-                    featuredThread.join();
-                    newThread.join();
-                    popularThread.join();
-                    classicThread.join();
-                    historyThread.join();
-                    bioThread.join();
-                    seriesThread.join();
-                    religionThread.join();
-                    deliveryPointsThread.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-//                if(! isNetworkAvailable())
-//                {
-//                    AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(current);
-//                    dlgAlert.setMessage("Please Check Your Internet Connection");
-//                    dlgAlert.setTitle("3al Raf");
-//                    dlgAlert.setPositiveButton("Ok",
-//                            new DialogInterface.OnClickListener() {
-//                                @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-//                                public void onClick(DialogInterface dialog, int which) {
-//                                    finishAffinity();
-//                                }
-//                            });
-//                    dlgAlert.setCancelable(true);
-//                    dlgAlert.create().show();
-//                }
-//                else {
-                    if (ParseUser.getCurrentUser().getUsername() != null) {
-                        try {
-                            wishListThread.join();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-
-                        Intent mainIntent = new Intent(Splash.this, HomeActivity.class);
-                        Splash.this.startActivity(mainIntent);
-                        overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
-                        Splash.this.finish();
-                    } else {
-                        Intent mainIntent = new Intent(Splash.this, LoginActivity.class);
-                        Splash.this.startActivity(mainIntent);
-                        overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
-                        Splash.this.finish();
-                    }
-//                }
-            }
-        }, SPLASH_DISPLAY_LENGTH);
-
-
-
+        task.execute((Void)null);
 
     }
 
@@ -213,5 +135,37 @@ public class Splash extends AppCompatActivity {
     void stopAnim(){
         findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
     }
-
+    AsyncTask<Void , Void , Void> task = new AsyncTask<Void, Void, Void>() {
+        @Override
+        protected Void doInBackground(Void... params) {
+            Book.getTopHomeFirstTime(0 , getApplicationContext());
+            Book.getTopHomeFirstTime(1 , getApplicationContext());
+            Book.getTopHomeFirstTime(2 , getApplicationContext());
+            Book.getTopCategoryFirstTime(0 , getApplicationContext());
+            Book.getTopCategoryFirstTime(1 , getApplicationContext());
+            Book.getTopCategoryFirstTime(2 , getApplicationContext());
+            Book.getTopCategoryFirstTime(3 , getApplicationContext());
+            Book.getTopCategoryFirstTime(4 , getApplicationContext());
+            DeliveryPoint.getDeliveryPointFirstTime(getApplicationContext());
+            if (ParseUser.getCurrentUser().getUsername() != null) {
+                CurrentUser.fetchRequests();
+                CurrentUser.getWishlistFirstTime();
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(final Void none) {
+            if (ParseUser.getCurrentUser().getUsername() != null) {
+                Intent mainIntent = new Intent(Splash.this, HomeActivity.class);
+                Splash.this.startActivity(mainIntent);
+                overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
+                Splash.this.finish();
+            } else {
+                Intent mainIntent = new Intent(Splash.this, LoginActivity.class);
+                Splash.this.startActivity(mainIntent);
+                overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
+                Splash.this.finish();
+            }
+        }
+    };
 }

@@ -57,13 +57,8 @@ public class CurrentUser {
 
     //get user request for the first time
     public static void fetchRequests(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                ParseQuery<ParseObject> query = ParseQuery.getQuery("Book");
-                requests = Request.getUserRequest();
-            }
-        }).start();
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Book");
+        requests = Request.getUserRequest();
     }
 
     public static ArrayList<Request> getRequest(){
