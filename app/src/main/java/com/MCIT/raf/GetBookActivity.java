@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +27,7 @@ public class GetBookActivity extends AppCompatActivity {
                 currentYear , currentMonth , currentDay;
     static boolean startDateFlag = false;
 
-
+    static Button startDateButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,7 @@ public class GetBookActivity extends AppCompatActivity {
         ScrollView content = (ScrollView) findViewById(R.id.getBook_content);
 
         ImageView bookImage = (ImageView)content.findViewById(R.id.cover);
-        final Button startDateButton = (Button)content.findViewById(R.id.start_date_button);
+        startDateButton = (Button)content.findViewById(R.id.start_date_button);
         final TextView pointsTextView= (TextView)content.findViewById(R.id.points_text);
         yourPointsTextView = (TextView)content.findViewById(R.id.your_points_text);
         Button getBookButton = (Button)content.findViewById(R.id.getBook_button);
@@ -84,6 +85,7 @@ public class GetBookActivity extends AppCompatActivity {
                             Snackbar.make(v, "processing your request", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
                             yourPointsTextView.setText(Integer.toString(CurrentUser.getPoints()));
+
                         }
                         else
                             Toast.makeText(getApplicationContext(), "you don't have enough coins",
@@ -119,6 +121,12 @@ public class GetBookActivity extends AppCompatActivity {
         startDateFlag = checkStartDate();
         startDateText.setText(new StringBuilder().append(day).append("/").append(month +1)
                 .append("/").append(year));
+        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) startDateButton.getLayoutParams();
+        lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+        startDateButton.setLayoutParams(lp);
+        lp = (RelativeLayout.LayoutParams) startDateText.getLayoutParams();
+        lp.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        startDateText.setLayoutParams(lp);
     }
 
 
