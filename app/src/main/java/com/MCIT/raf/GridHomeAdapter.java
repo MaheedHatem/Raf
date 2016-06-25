@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.design.widget.Snackbar;
 import android.util.Pair;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.MCIT.raf.data.Book;
+import com.parse.ParseException;
 
 import java.util.ArrayList;
 
@@ -99,23 +101,51 @@ public class GridHomeAdapter extends BaseAdapter {
             TextView txtauthor = (TextView) gridView.findViewById(R.id.author);
             final ImageView imgcover = (ImageView) gridView.findViewById(R.id.cover);
 
-            imgcover.setImageResource(R.drawable.white_cover);
-                    txttitle.setText(mBook0.get(position).getName());
-                    txtauthor.setText(mBook0.get(position).getAuthor().getName());
+            txttitle.setText(mBook0.get(position).getName());
+            txtauthor.setText(mBook0.get(position).getAuthor().getName());
                     //imgcover.setImageResource(mCover0.get(position));
                     //edited by khaled
-            new Runnable() {
+            AsyncTask<Void,Void,Void> loadimageTask = new AsyncTask<Void, Void, Void>() {
                 @Override
-                public void run() {
+                protected Void doInBackground(Void... params) {
+                    try {
+                        mBook0.get(position).fetch();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(Void aVoid) {
+                    super.onPostExecute(aVoid);
                     Bitmap b = BitmapFactory.decodeByteArray(mBook0.get(position).getCover()
                             , 0, mBook0.get(position).getCover().length);
                     imgcover.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
                 }
-            }.run();
+
+
+
+            };
+            if(mBook0.get(position).containsKey("cover")){
+                Bitmap b = BitmapFactory.decodeByteArray(mBook0.get(position).getCover()
+                        , 0, mBook0.get(position).getCover().length);
+                imgcover.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
+            }
+            else {
+                imgcover.setImageResource(R.drawable.white_cover);
+                loadimageTask.execute((Void) null);
+            }
 
             gridView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(mBook0.get(position).getCover() == null){
+                        Snackbar.make(v, "Loading Book", Snackbar.LENGTH_SHORT)
+                                .setAction("Action", null).show();
+                        return;
+                    }
                     Snackbar.make(v, ((TextView)v.findViewById( R.id.title )).getText(), Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
 

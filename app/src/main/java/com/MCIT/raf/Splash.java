@@ -138,14 +138,14 @@ public class Splash extends AppCompatActivity {
     AsyncTask<Void , Void , Void> task = new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... params) {
-            Book.getTopHomeFirstTime(0 , getApplicationContext());
-            Book.getTopHomeFirstTime(1 , getApplicationContext());
-            Book.getTopHomeFirstTime(2 , getApplicationContext());
-            Book.getTopCategoryFirstTime(0 , getApplicationContext());
-            Book.getTopCategoryFirstTime(1 , getApplicationContext());
-            Book.getTopCategoryFirstTime(2 , getApplicationContext());
-            Book.getTopCategoryFirstTime(3 , getApplicationContext());
-            Book.getTopCategoryFirstTime(4 , getApplicationContext());
+            Book.getTopHomeRefresh(0 , getApplicationContext());
+            Book.getTopHomeRefresh(1 , getApplicationContext());
+            Book.getTopHomeRefresh(2 , getApplicationContext());
+            Book.getTopCategoryRefresh(0 , getApplicationContext());
+            Book.getTopCategoryRefresh(1 , getApplicationContext());
+            Book.getTopCategoryRefresh(2 , getApplicationContext());
+            Book.getTopCategoryRefresh(3 , getApplicationContext());
+            Book.getTopCategoryRefresh(4 , getApplicationContext());
             DeliveryPoint.getDeliveryPointFirstTime(getApplicationContext());
             if (ParseUser.getCurrentUser().getUsername() != null) {
                 CurrentUser.fetchRequests();

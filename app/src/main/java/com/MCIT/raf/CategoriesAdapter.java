@@ -91,26 +91,26 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
-        holder.gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-
-                Snackbar.make(v, ((TextView)v.findViewById( R.id.title )).getText(), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
-                Intent mainIntent = new Intent(mContext.getApplicationContext(),BookActivity.class);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    Pair<View, String> p2 = Pair.create((View)v.findViewById(R.id.cover), "cover");
-                    ActivityOptions options = ActivityOptions.
-                            makeSceneTransitionAnimation((Activity)mContext, p2);
-                    mContext.startActivity(mainIntent, options.toBundle());
-                }
-                else
-                    mContext.startActivity(mainIntent);
-
-            }
-        });
+//        holder.gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            public void onItemClick(AdapterView<?> parent, View v,
+//                                    int position, long id) {
+//
+//                Snackbar.make(v, ((TextView)v.findViewById( R.id.title )).getText(), Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//
+//                Intent mainIntent = new Intent(mContext.getApplicationContext(),BookActivity.class);
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                    Pair<View, String> p2 = Pair.create((View)v.findViewById(R.id.cover), "cover");
+//                    ActivityOptions options = ActivityOptions.
+//                            makeSceneTransitionAnimation((Activity)mContext, p2);
+//                    mContext.startActivity(mainIntent, options.toBundle());
+//                }
+//                else
+//                    mContext.startActivity(mainIntent);
+//
+//            }
+//        });
 
 
         switch (position){

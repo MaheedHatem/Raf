@@ -93,7 +93,7 @@ public class Book extends ParseObject{
     public byte[] getCover(){
         try {
             return getParseFile("cover").getData();
-        } catch (ParseException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
@@ -112,10 +112,13 @@ public class Book extends ParseObject{
         return getBoolean("popular");
     }
 
-    public static void getTopHomeFirstTime(int type , Context context){
+    public static void getTopHomeRefresh(int type , Context context){
         ParseQuery<ParseObject> query1 = ParseQuery.getQuery(context.getString(R.string.parse_book));
         query1.include(context.getString(R.string.parse_book_author));
         query1.include(context.getString(R.string.parse_book_genre));
+        ArrayList<String> keysList = new ArrayList<String>();
+        addKeysWithoutCover(keysList , context);
+        query1.selectKeys(keysList);
         query1.setLimit(3);
         switch (type) {
             case 0:
@@ -149,6 +152,23 @@ public class Book extends ParseObject{
             e.printStackTrace();
         }
     }
+
+    private static void addKeysWithoutCover(ArrayList<String> keysList , Context context) {
+        keysList.add(context.getString(R.string.parse_book_author));
+        keysList.add(context.getString(R.string.parse_book_name));
+        keysList.add(context.getString(R.string.parse_book_available));
+        keysList.add(context.getString(R.string.parse_book_copies));
+        keysList.add(context.getString(R.string.parse_book_description));
+        keysList.add(context.getString(R.string.parse_book_genre));
+        keysList.add(context.getString(R.string.parse_book_objectId));
+        keysList.add(context.getString(R.string.parse_book_isbn));
+        keysList.add(context.getString(R.string.parse_book_rating));
+        keysList.add(context.getString(R.string.parse_book_new));
+        keysList.add(context.getString(R.string.parse_book_featured));
+        keysList.add(context.getString(R.string.parse_book_popular));
+        keysList.add(context.getString(R.string.parse_book_price));
+    }
+
     public static void getTopHome(final MyAdapter mAdapter , Context context , final int type){
         switch (type) {
             case 0:
@@ -169,7 +189,7 @@ public class Book extends ParseObject{
         }
     }
 
-    public static void getTopCategoryFirstTime(int category , Context context){
+    public static void getTopCategoryRefresh(int category , Context context){
         ParseQuery<ParseObject> queryCategoryID = ParseQuery.getQuery(context.getString(R.string.parse_genre));
         switch (category){
             case 0:
@@ -192,6 +212,9 @@ public class Book extends ParseObject{
         try {
             Genre genre = (Genre)queryCategoryID.getFirst();
             ParseQuery<ParseObject> queryBooks = ParseQuery.getQuery(context.getString(R.string.parse_book));
+            ArrayList<String> keysList = new ArrayList<String>();
+            addKeysWithoutCover(keysList , context);
+            queryBooks.selectKeys(keysList);
             queryBooks.setLimit(3);
             queryBooks.include(context.getString(R.string.parse_book_author));
             queryBooks.include(context.getString(R.string.parse_book_genre));
