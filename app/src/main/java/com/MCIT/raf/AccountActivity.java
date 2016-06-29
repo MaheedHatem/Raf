@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -40,16 +41,24 @@ public class AccountActivity extends AppCompatActivity {
         TextView points = (TextView)findViewById(R.id.tvPoints);
         points.setText(Integer.toString(CurrentUser.getPoints()));
         image = (ImageView)findViewById(R.id.cover);
-        new Runnable(){
+        AsyncTask<Void,Void,Void> loadImageTask = new AsyncTask<Void, Void, Void>() {
+            byte[] userImage;
+            @Override
+            protected Void doInBackground(Void... params) {
+
+                userImage = CurrentUser.getImage();
+                return null;
+            }
 
             @Override
-            public void run() {
-                byte[] userImage = CurrentUser.getImage();
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
                 if(userImage!=null){
                     image.setImageBitmap(BitmapFactory.decodeByteArray(userImage,0 , userImage.length));
                 }
             }
-        }.run();
+        };
+        loadImageTask.execute((Void)null);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             View lo = (View) findViewById(R.id.bellow_actionbar);
