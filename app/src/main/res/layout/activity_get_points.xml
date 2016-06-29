@@ -21,9 +21,8 @@
         android:textColor="@android:color/white"
         android:textSize="72sp"
         android:text="539"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="90dp" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
 
     <LinearLayout
