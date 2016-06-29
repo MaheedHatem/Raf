@@ -4,9 +4,10 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.GridView;
 import android.widget.TextView;
 
 import com.MCIT.raf.data.Book;
@@ -19,7 +20,10 @@ import java.util.List;
 
 public class MoreActivity extends AppCompatActivity {
     TextView toolbarTitle = null;
-    GridAdapter gridAdapter;
+    GridMoreAdapter mGridMoreAdapter;
+    RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,17 +61,20 @@ public class MoreActivity extends AppCompatActivity {
         // Set custom adapter (GridAdapter) to gridview
 
 
-        GridView gridView = (GridView) findViewById(R.id.gridView);
+        //GridView gridView = (GridView) findViewById(R.id.gridView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.rv);
+        mLayoutManager = new GridLayoutManager(getApplicationContext(),2);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
         // Set custom adapter (GridAdapter) to gridview
 
-        gridAdapter = new GridAdapter(this);
+        mGridMoreAdapter = new GridMoreAdapter(getApplicationContext());
 //        gridAdapter.addBooks(CurrentUser.getWishlist());
 
-        gridView.setAdapter(gridAdapter);
+        mRecyclerView.setAdapter(mGridMoreAdapter);
 
 
-        getMoreTask task = new getMoreTask(gridAdapter , getApplicationContext());
+        getMoreTask task = new getMoreTask(mGridMoreAdapter , getApplicationContext());
         task.execute(type);
 
 
@@ -75,10 +82,10 @@ public class MoreActivity extends AppCompatActivity {
 
     public class getMoreTask extends AsyncTask <String , Void , Void>{
 
-        private  GridAdapter adapter;
+        private  GridMoreAdapter adapter;
         private Context context;
 
-        getMoreTask(GridAdapter adapter , Context context){
+        getMoreTask(GridMoreAdapter adapter , Context context){
             this.adapter = adapter;
             this.context = context;
         }

@@ -1,12 +1,18 @@
 package com.MCIT.raf;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.MCIT.raf.data.Book;
@@ -14,6 +20,13 @@ import com.MCIT.raf.data.Book;
 import java.util.ArrayList;
 
 public class GridMoreAdapter extends RecyclerView.Adapter<GridMoreAdapter.ViewHolder> {
+
+    private Context mContext;
+
+
+    GridMoreAdapter(Context context){
+        mContext = context;
+    }
 
 
     private ArrayList<Book> books = new ArrayList<>();
@@ -28,6 +41,7 @@ public class GridMoreAdapter extends RecyclerView.Adapter<GridMoreAdapter.ViewHo
         public TextView textView2;
         public TextView textView3;
         public ImageView img;
+        public CardView cardView;
 
 
         public ViewHolder(View v) {
@@ -39,6 +53,8 @@ public class GridMoreAdapter extends RecyclerView.Adapter<GridMoreAdapter.ViewHo
             textView3 = (TextView) v
                     .findViewById(R.id.price);
             img = (ImageView) v.findViewById(R.id.cover);
+            cardView = (CardView) v
+                    .findViewById(R.id.card_view1);
 
         }
 
@@ -77,6 +93,16 @@ public class GridMoreAdapter extends RecyclerView.Adapter<GridMoreAdapter.ViewHo
                 , 0 , books.get(position).getCover().length);
 
         holder.img.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
+
+        WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.cardView.getLayoutParams();
+        params.width = (width/2);
+        holder.cardView.setLayoutParams(params);
 
 
 
