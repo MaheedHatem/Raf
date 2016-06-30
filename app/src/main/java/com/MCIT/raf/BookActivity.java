@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.NestedScrollView;
@@ -15,7 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +33,7 @@ public class BookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(Color.BLACK);
         setSupportActionBar(toolbar);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -53,13 +56,17 @@ public class BookActivity extends AppCompatActivity {
         TextView description = (TextView) book_content.findViewById(R.id.book_description);
         TextView author = (TextView)findViewById(R.id.book_author);
 
-        setTitle(bookName);
+        final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        collapsingToolbarLayout.setTitle(bookName);
+        collapsingToolbarLayout.setExpandedTitleColor(Color.parseColor("#D9000000")); // transperent color = #00000000
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE); //Color of your title
+
         Bitmap b = BitmapFactory.decodeByteArray(bookCover,0,bookCover.length);
         imageCover.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
         description.setText(bookDescription);
         author.setText(bookAuthor);
 
-        Button getCopyButton = (Button)findViewById(R.id.getcopy);
+        ImageButton getCopyButton = (ImageButton)findViewById(R.id.getcopy);
         getCopyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +87,7 @@ public class BookActivity extends AppCompatActivity {
             }
         });
 
-        Button addCopy = (Button)findViewById(R.id.addCopy);
+        ImageButton addCopy = (ImageButton)findViewById(R.id.addCopy);
         addCopy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
