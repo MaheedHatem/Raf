@@ -12,7 +12,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         android:theme="@style/splash.AppBarOverlay">
 
@@ -59,7 +59,7 @@
                                 android:layout_marginTop="28dp"
                                 android:layout_marginLeft="16dp"
                                 android:layout_marginRight="16dp"
-                                android:layout_marginBottom="16dp"
+                                android:layout_marginBottom="100dp"
                                 card_view:cardCornerRadius="1dp"
                                 card_view:cardElevation="7dp"
                                 card_view:cardBackgroundColor="@color/cardview_light_background"
