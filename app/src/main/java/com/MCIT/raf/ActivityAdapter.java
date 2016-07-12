@@ -1,5 +1,6 @@
 package com.MCIT.raf;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
     List<Date> mStart= new ArrayList<Date>();
     List<Date> mend= new ArrayList<Date>();
     List<String> mStatus= new ArrayList<String>();
+    List<String> mType= new ArrayList<String>();
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -69,8 +71,8 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
 //            holder.mTextEnd.setText(dateFormat.format(mend.get(position)));
 //        else
 //            holder.mTextEnd.setVisibility(View.GONE);
-        String ss= mStatus.get(position);
-        switch (ss){
+        String cType= mType.get(position);
+        switch (cType){
             case "borrow_request":
                 holder.mStatusIcon.setImageResource(R.drawable.ic_av_timer_black_48dp);
                 break;
@@ -83,7 +85,23 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
             default:
                 break;
         }
+
+        String cStatus= mStatus.get(position);
+        switch (cStatus){
+            case "Completed":
+                holder.mTextStatus.setTextColor(Color.GREEN);
+                break;
+            case "Pending":
+                holder.mTextStatus.setTextColor(Color.BLUE);
+                break;
+            case "In Progress":
+                holder.mTextStatus.setTextColor(Color.RED);
+                break;
+            default:
+                break;
+        }
         holder.mTextStatus.setText(mStatus.get(position));
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -92,17 +110,18 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
         return mTitiles.size();
     }
 
-    public void addActivity(String title,Date start, Date end, String status){
+    public void addActivity(String title,Date start, Date end, String type, String status){
         mTitiles.add(title);
         mStart.add(start);
         mend.add(end);
         mStatus.add(status);
+        mType.add(type);
         notifyDataSetChanged();
     }
 
     public void addRequest(ArrayList<Request> requests){
         for (Request r : requests)
             addActivity(r.getBook().getName() , (r.getType().equals("borrow_request"))?r.getStartDate(): r.getDeliveryDate() ,
-                    r.getEndDate() , r.getType());
+                    r.getEndDate() , r.getType(), r.getStatus());
     }
 }
