@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.MCIT.raf.RequestBook"
+    tools:showIn="@layout/activity_request_book">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_marginBottom="-5dp"
+            android:orientation="horizontal"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:src="@drawable/notebook"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="What book do you need?"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:layout_height="60dp">
+
+
+            <AutoCompleteTextView
+                android:id="@+id/req_sugg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="24dp"
+                android:layout_marginLeft="24dp"
+                android:text=""
+                android:hint="Book name"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:layout_marginBottom="-5dp"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:src="@drawable/feedback"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:paddingTop="16dp"
+                android:layout_gravity="center"
+                android:paddingBottom="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="How do you see our books' picks?"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
+
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:hint="Feedback (optional)"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/fab_margin"
+            android:layout_marginTop="60dp"
+            android:src="@drawable/ic_done_white_24dp" />
+
+
+
+
+    </LinearLayout>
+
+
+
+</android.support.v4.widget.NestedScrollView>

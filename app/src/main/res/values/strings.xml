@@ -87,4 +87,5 @@
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="parse_book_objectId">objectId</string>
     <string name="parse_book_price">price</string>
+    <string name="title_activity_request_book">RequestBook</string>
 </resources>

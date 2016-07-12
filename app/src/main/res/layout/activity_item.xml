@@ -2,8 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -16,46 +16,71 @@
         card_view:cardUseCompatPadding="true"
         card_view:cardCornerRadius="4dp">
 
-       <RelativeLayout
+       <LinearLayout
            android:layout_width="match_parent"
-           android:layout_marginBottom="10dp"
+           android:orientation="horizontal"
+           android:padding="8dp"
            android:layout_height="match_parent">
 
-           <TextView
+           <!--<TextView-->
+               <!--android:layout_width="wrap_content"-->
+               <!--android:layout_height="wrap_content"-->
+               <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+               <!--android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+               <!--android:layout_marginStart="@dimen/activity_horizontal_margin"-->
+               <!--android:text="Book title"-->
+               <!--android:id="@+id/textView2"-->
+               <!--android:layout_marginTop="12dp"-->
+               <!--android:layout_gravity="left|bottom" />-->
+
+           <LinearLayout
                android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textAppearance="?android:attr/textAppearanceLarge"
-               android:layout_marginLeft="@dimen/activity_horizontal_margin"
-               android:layout_marginStart="@dimen/activity_horizontal_margin"
-               android:text="Book title"
-               android:id="@+id/textView2"
-               android:layout_marginTop="12dp"
-               android:layout_gravity="left|bottom" />
+               android:layout_gravity="center"
+               android:layout_height="wrap_content">
+
+               <ImageView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/action_icon"
+                   android:src="@drawable/ic_add_circle_outline_black_48dp"/>
+
+
+           </LinearLayout>
+
+           <View
+               android:layout_margin="8dp"
+               android:layout_width="1dp"
+               android:layout_height="match_parent"
+               android:background="@android:color/darker_gray"/>
+
+
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:orientation="vertical"
+               android:layout_height="wrap_content">
 
            <TextView
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:textAppearance="?android:attr/textAppearanceMedium"
+               android:textAppearance="?android:attr/textAppearanceLarge"
                android:text="Medium Text"
-               android:id="@+id/title"
-               android:layout_marginLeft="@dimen/activity_horizontal_margin"
-               android:layout_marginStart="@dimen/activity_horizontal_margin"
-               android:layout_alignBottom="@+id/textView2"
-               android:layout_toRightOf="@+id/textView2"
-               android:layout_toEndOf="@+id/textView2" />
+               android:id="@+id/title" />
+               <!--android:layout_alignBottom="@+id/textView2"-->
+               <!--android:layout_toRightOf="@+id/textView2"-->
+               <!--android:layout_toEndOf="@+id/textView2" />-->
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textAppearance="?android:attr/textAppearanceLarge"
-               android:text="Status"
-               android:id="@+id/textView4"
-               android:layout_marginLeft="@dimen/activity_horizontal_margin"
-               android:layout_marginStart="@dimen/activity_horizontal_margin"
-               android:layout_below="@+id/textView2"
-               android:layout_marginTop="12dp"
-               android:layout_alignParentLeft="true"
-               android:layout_alignParentStart="true" />
+           <!--<TextView-->
+               <!--android:layout_width="wrap_content"-->
+               <!--android:layout_height="wrap_content"-->
+               <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+               <!--android:text="Status"-->
+               <!--android:id="@+id/textView4"-->
+               <!--android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+               <!--android:layout_marginStart="@dimen/activity_horizontal_margin"-->
+               <!--android:layout_marginTop="12dp"-->
+               <!--android:layout_alignParentLeft="true"-->
+               <!--android:layout_alignParentStart="true" />-->
 
            <TextView
                android:layout_width="wrap_content"
@@ -67,56 +92,58 @@
                android:layout_alignLeft="@+id/title"
                android:layout_alignStart="@+id/title" />
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textAppearance="?android:attr/textAppearanceLarge"
-               android:text="Start Date"
-               android:id="@+id/textView6"
-               android:layout_below="@+id/textView4"
-               android:layout_marginLeft="@dimen/activity_horizontal_margin"
-               android:layout_marginStart="@dimen/activity_horizontal_margin"
-               android:layout_marginTop="12dp"
-               android:layout_alignParentLeft="true"
-               android:layout_alignParentStart="true" />
+           <!--<TextView-->
+               <!--android:layout_width="wrap_content"-->
+               <!--android:layout_height="wrap_content"-->
+               <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+               <!--android:text="Start Date"-->
+               <!--android:id="@+id/textView6"-->
+               <!--android:layout_below="@+id/textView4"-->
+               <!--android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+               <!--android:layout_marginStart="@dimen/activity_horizontal_margin"-->
+               <!--android:layout_marginTop="12dp"-->
+               <!--android:layout_alignParentLeft="true"-->
+               <!--android:layout_alignParentStart="true" />-->
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textAppearance="?android:attr/textAppearanceMedium"
-               android:text="Medium Text"
-               android:id="@+id/start"
-               android:layout_alignBottom="@+id/textView6"
-               android:layout_alignLeft="@+id/status"
-               android:layout_alignStart="@+id/status" />
+           <!--<TextView-->
+               <!--android:layout_width="wrap_content"-->
+               <!--android:layout_height="wrap_content"-->
+               <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+               <!--android:text="Medium Text"-->
+               <!--android:id="@+id/start"-->
+               <!--android:layout_alignBottom="@+id/textView6"-->
+               <!--android:layout_alignLeft="@+id/status"-->
+               <!--android:layout_alignStart="@+id/status" />-->
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textAppearance="?android:attr/textAppearanceLarge"
-               android:text="End Date"
-               android:id="@+id/textView8"
-               android:layout_below="@+id/textView6"
-               android:layout_marginTop="12dp"
-               android:layout_marginLeft="@dimen/activity_horizontal_margin"
-               android:layout_marginStart="@dimen/activity_horizontal_margin"
-               android:layout_marginBottom="12dp"
-               android:layout_alignParentLeft="true"
-               android:layout_alignParentStart="true" />
+           <!--<TextView-->
+               <!--android:layout_width="wrap_content"-->
+               <!--android:layout_height="wrap_content"-->
+               <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+               <!--android:text="End Date"-->
+               <!--android:id="@+id/textView8"-->
+               <!--android:layout_below="@+id/textView6"-->
+               <!--android:layout_marginTop="12dp"-->
+               <!--android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+               <!--android:layout_marginStart="@dimen/activity_horizontal_margin"-->
+               <!--android:layout_marginBottom="12dp"-->
+               <!--android:layout_alignParentLeft="true"-->
+               <!--android:layout_alignParentStart="true" />-->
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textAppearance="?android:attr/textAppearanceMedium"
-               android:text="Medium Text"
-               android:id="@+id/end"
-               android:layout_alignBottom="@+id/textView8"
-               android:layout_alignLeft="@+id/start"
-               android:layout_alignStart="@+id/start" />
+           <!--<TextView-->
+               <!--android:layout_width="wrap_content"-->
+               <!--android:layout_height="wrap_content"-->
+               <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+               <!--android:text="Medium Text"-->
+               <!--android:id="@+id/end"-->
+               <!--android:layout_alignBottom="@+id/textView8"-->
+               <!--android:layout_alignLeft="@+id/start"-->
+               <!--android:layout_alignStart="@+id/start" />-->
+
+           </LinearLayout>
 
 
 
-       </RelativeLayout>
+       </LinearLayout>
 
     </android.support.v7.widget.CardView>
 

@@ -4,11 +4,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.MCIT.raf.data.Request;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,14 +29,16 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
         // each data item is just a string in this case
         public TextView mTextTitle;
         public TextView mTextStatus;
+        public ImageView mStatusIcon;
         public TextView mTextStart;
         public TextView mTextEnd;
         public ViewHolder(View v) {
             super(v);
             mTextTitle =(TextView) v.findViewById(R.id.title);
             mTextStatus =(TextView) v.findViewById(R.id.status);
-            mTextStart =(TextView) v.findViewById(R.id.start);
-            mTextEnd =(TextView) v.findViewById(R.id.end);
+            mStatusIcon = (ImageView) v.findViewById(R.id.action_icon);
+//            mTextStart =(TextView) v.findViewById(R.id.start);
+//            mTextEnd =(TextView) v.findViewById(R.id.end);
         }
     }
 
@@ -61,12 +63,26 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.mTextTitle.setText(mTitiles.get(position));
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy");
-        holder.mTextStart.setText(dateFormat.format(mStart.get(position)));
-        if (mStatus.get(position).equals("borrow_request"))
-            holder.mTextEnd.setText(dateFormat.format(mend.get(position)));
-        else
-            holder.mTextEnd.setVisibility(View.GONE);
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy");
+//        holder.mTextStart.setText(dateFormat.format(mStart.get(position)));
+//        if (mStatus.get(position).equals("borrow_request"))
+//            holder.mTextEnd.setText(dateFormat.format(mend.get(position)));
+//        else
+//            holder.mTextEnd.setVisibility(View.GONE);
+        String ss= mStatus.get(position);
+        switch (ss){
+            case "borrow_request":
+                holder.mStatusIcon.setImageResource(R.drawable.ic_av_timer_black_48dp);
+                break;
+            case "add_request":
+                holder.mStatusIcon.setImageResource(R.drawable.ic_add_circle_outline_black_48dp);
+                break;
+            case "buy_request":
+                holder.mStatusIcon.setImageResource(R.drawable.ic_shopping_cart_black_48dp);
+                break;
+            default:
+                break;
+        }
         holder.mTextStatus.setText(mStatus.get(position));
     }
 

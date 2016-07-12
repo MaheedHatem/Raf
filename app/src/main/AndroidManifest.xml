@@ -84,6 +84,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.MCIT.raf.LoginActivity" />
         </activity>
+        <activity
+            android:name=".RequestBook"
+            android:label="@string/title_activity_request_book"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/splash">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.MCIT.raf.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -16,8 +16,13 @@
 
                 android:id="@+id/nav_myacc"
                 android:title="My Account" />
-        <item
 
+            <item
+
+                android:id="@+id/nav_suggest"
+                android:title="Request Book" />
+
+        <item
             android:id="@+id/nav_contact"
             android:title="Contact us" />
 
