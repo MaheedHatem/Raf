@@ -27,6 +27,11 @@ public class Request extends ParseObject {
     public static final int BORROW_REQUEST = 0;
     public static final int ADD_REQUEST = 1;
     public static final int BUY_REQUEST = 2;
+
+    public static final String PENDING = "Pending";
+    public static final String IN_PROGRESS = "In Progress";
+    public static final String COMPLETED = "Completed";
+
     public Request(){
     }
     public ParseUser getUser(){
@@ -83,6 +88,12 @@ public class Request extends ParseObject {
     }
     public void setEndDate( Date deliveryDate){
         put("endDate" , deliveryDate);
+    }
+    public String getStatus(){
+        return getString("status");
+    }
+    public void setStatus( String status){
+        put("status" , status);
     }
 
     public static void addBorrowRequest(int startYear , int startMonth , int startDay , int endYear
