@@ -8,6 +8,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
+
+import com.MCIT.raf.data.NewBookRequest;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RequestBook extends AppCompatActivity {
 
@@ -28,18 +36,29 @@ public class RequestBook extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar snackbar = Snackbar
-                        .make(v, "Done", Snackbar.LENGTH_LONG);
+                AutoCompleteTextView bookNameTextView = (AutoCompleteTextView)findViewById(R.id.req_sugg);
+                if(!bookNameTextView.getText().toString().equals("")){
+                    NewBookRequest.addNewBookRequest(bookNameTextView.getText().toString(),getApplicationContext());
+                }
 
-                snackbar.show();
             }
         });
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, suggestions);     ////////// Replace Suggestions with your array of requests ////////////////////////
-        AutoCompleteTextView textView = (AutoCompleteTextView)
-                findViewById(R.id.req_sugg);
-        textView.setAdapter(adapter);
+        NewBookRequest.getAutoCompleteList( new FindCallback<NewBookRequest>(){
+            ArrayList<String> books = new ArrayList<String>();
+            @Override
+            public void done(List<NewBookRequest> objects, ParseException e) {
+                for(NewBookRequest request : objects){
+                    if(!books.contains(request.getBookName())){
+                        books.add(request.getBookName());
+                    }
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
+                        android.R.layout.simple_dropdown_item_1line,books);
+                AutoCompleteTextView textView = (AutoCompleteTextView)findViewById(R.id.req_sugg);
+                textView.setAdapter(adapter);
+            }
+        } , getApplicationContext());
 
 
 

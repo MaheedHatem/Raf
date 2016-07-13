@@ -11,6 +11,7 @@ import com.MCIT.raf.data.Book;
 import com.MCIT.raf.data.CurrentUser;
 import com.MCIT.raf.data.DeliveryPoint;
 import com.MCIT.raf.data.Genre;
+import com.MCIT.raf.data.NewBookRequest;
 import com.MCIT.raf.data.Request;
 import com.parse.Parse;
 import com.parse.ParseACL;
@@ -29,6 +30,7 @@ public class ParseApplication extends Application {
         ParseObject.registerSubclass(Genre.class);
         ParseObject.registerSubclass(DeliveryPoint.class);
         ParseObject.registerSubclass(Request.class);
+        ParseObject.registerSubclass(NewBookRequest.class);
         Parse.initialize(this, getString(R.string.parse_AppID), getString(R.string.parse_ClientKey));
 
         ParseUser.enableAutomaticUser();
