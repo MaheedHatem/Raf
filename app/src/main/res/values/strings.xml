@@ -45,6 +45,11 @@
     <string name="parse_AppID">E4KJFk3dW4oBSuyzfOHnw0oND4x86ilQOf5iczOy</string>
     <string name="parse_ClientKey">yhmGW190PwtEIxtRUNaDz9rB3IDR5Gp4rMF91DYy</string>
 
+    <!-- NewBookRequest object -->
+    <string name = "new_book_request">NewBookRequest</string>
+    <string name="parse_new_book_request_user">user</string>
+    <string name="parse_new_book_request_book_name">bookName</string>
+
     <!-- parse book object -->
     <string name="parse_book">Book</string>
     <string name="parse_book_isbn">ISBN</string>
@@ -64,6 +69,7 @@
     <!-- parse genre object-->
     <string name="parse_genre">Genre</string>
     <string name="parse_genre_name">name</string>
+
 
     <!--parse DeliveryPoint object-->
     <string name="parse_deliveryPoint">DeliveryPoint</string>
