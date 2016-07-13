@@ -49,6 +49,14 @@
 
 
         </RelativeLayout>
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -61,56 +69,50 @@
         <EditText
             android:layout_marginTop="16dp"
             android:hint="Enter the Book Name"
-            android:paddingLeft="16dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="18dp"
             android:id="@+id/bookName_EditText"
             android:layout_width="match_parent"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:id="@+id/divider"
+                android:layout_height="1dp"
+                android:visibility="gone"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+                android:background="@android:color/darker_gray" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="16dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="7amada"
             android:visibility="gone"
             android:id="@+id/bookName_TextView"/>
 
 
-    </LinearLayout>
-    <RelativeLayout
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:padding="16dp"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="8dp"
+        android:gravity="center_vertical"
         android:layout_height="wrap_content">
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/delivery_date"
-            android:layout_centerVertical="true"
-            android:paddingLeft="16dp"
-            android:layout_toRightOf="@+id/delivery_date_button"
-            android:layout_toEndOf="@+id/delivery_date_button" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Delivery Date"
-            android:background="@drawable/rounded_button"
-            android:id="@+id/delivery_date_button"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_marginTop="16dp"
-        android:padding="16dp"
-        android:layout_height="wrap_content">
+            android:paddingRight="8dp"
+            android:src="@drawable/ic_local_atm_black_24dp"/>
 
         <TextView
 
@@ -119,6 +121,20 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_alignParentLeft="true"
             android:text="Estimate Points"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+
+
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -136,30 +152,106 @@
             android:layout_height="20dp"
             android:src="@drawable/coin"
             android:id="@+id/imageView2"
-            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
+        </LinearLayout>
 
-    </RelativeLayout>
 
-    <RelativeLayout
+    </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/linear_delivery_date"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="20dp"
+                android:orientation="horizontal"
+                android:paddingRight="20dp"
+                android:paddingBottom="8dp"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Delivery Date"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_today_black_24dp"
+                    android:id="@+id/delivery_date_button"
+                    android:paddingRight="8dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_alignParentLeft="true"
+                    android:text="Delivery Date"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/delivery_date"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="16dp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+                android:background="@android:color/darker_gray" />
+
+
+
+
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_marginTop="24dp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content">
 
-        <Button
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_button"
-            android:text="add Copy"
+
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/addBook"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_done_white_24dp" />
 
 
 
-    </RelativeLayout>
+
+
+    </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

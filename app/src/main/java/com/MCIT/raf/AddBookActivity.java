@@ -3,16 +3,16 @@ package com.MCIT.raf;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +26,7 @@ public class AddBookActivity extends AppCompatActivity {
     static TextView deliveryDateTextView;
     static boolean deliveryDateFlag = false;
 
-    static Button deliveryDateButton;
+    static LinearLayout deliveryDateButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +49,8 @@ public class AddBookActivity extends AppCompatActivity {
         TextView bookNameTextView = (TextView)findViewById(R.id.bookName_TextView);
         TextView priceTextView = (TextView)findViewById(R.id.price_textView);
         TextView booknametxt = (TextView)findViewById(R.id.BookNameTXT);
-        deliveryDateButton = (Button)findViewById(R.id.delivery_date_button);
-        Button addBookButton = (Button)findViewById(R.id.addBook);
+        deliveryDateButton = (LinearLayout) findViewById(R.id.linear_delivery_date);
+        FloatingActionButton addBookButton = (FloatingActionButton)findViewById(R.id.addBook);
         deliveryDateTextView = (TextView)findViewById(R.id.delivery_date);
         if(bookName[0] !=null){
 
@@ -62,6 +62,7 @@ public class AddBookActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("Add "+bookName[0] +" Book");
         } else {
             bookNameEditText.setVisibility(View.VISIBLE);
+            findViewById(R.id.divider).setVisibility(View.VISIBLE);
             bookNameTextView.setVisibility(View.GONE);
         }
         bookNameEditText.addTextChangedListener(new TextWatcher() {
@@ -113,9 +114,9 @@ public class AddBookActivity extends AppCompatActivity {
         deliveryYear = year;
         deliveryDateTextView.setText(new StringBuilder().append(day).append("/").append(month +1)
                 .append("/").append(year));
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) deliveryDateButton.getLayoutParams();
-        lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-        deliveryDateButton.setLayoutParams(lp);
+//        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) deliveryDateButton.getLayoutParams();
+//        lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+//        deliveryDateButton.setLayoutParams(lp);
 
     }
 
