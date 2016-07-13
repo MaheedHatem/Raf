@@ -59,32 +59,7 @@
 
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="delivery date"
-                android:id="@+id/start_date_button"
-                android:enabled="true"
-                android:padding="8dp"
-                android:background="@drawable/rounded_button"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/start_date_text"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="60dp"
-                android:layout_marginEnd="60dp"
-                android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
-        </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_marginTop="24dp"
@@ -150,6 +125,34 @@
             android:id="@+id/imageView3" />
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="delivery date"
+            android:id="@+id/start_date_button"
+            android:enabled="true"
+            android:padding="8dp"
+            android:background="@drawable/rounded_button"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/start_date_text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_marginTop="16dp"
