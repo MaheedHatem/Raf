@@ -121,7 +121,7 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
 
     public void addRequest(ArrayList<Request> requests){
         for (Request r : requests) {
-            if (r.getBook().getName() != null)
+            if (r.getBook() != null)
                 addActivity(r.getBook().getName(), (r.getType().equals("borrow_request")) ? r.getStartDate() :
                         r.getDeliveryDate(), r.getEndDate(), r.getType(), r.getStatus());
             else

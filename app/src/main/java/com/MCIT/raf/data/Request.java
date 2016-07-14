@@ -111,7 +111,7 @@ public class Request extends ParseObject {
             @Override
             public void done(ParseObject object, ParseException e) {
                 //TODO add request and subtract from points
-                Request request = new Request();
+                final Request request = new Request();
                 request.setBook((Book)object);
                 request.setDeliveryDate(startDate);
                 request.setStartDate(startDate);
@@ -124,6 +124,7 @@ public class Request extends ParseObject {
                     @Override
                     public void done(ParseException e) {
                         Toast.makeText(context, "your request has been placed", Toast.LENGTH_LONG).show();
+                        CurrentUser.getRequest().add(request);
                     }
                 });
             }
@@ -144,7 +145,7 @@ public class Request extends ParseObject {
             @Override
             public void done(ParseObject object, ParseException e) {
                 //TODO add request and subtract from points
-                Request request = new Request();
+                final Request request = new Request();
                 request.setBook((Book)object);
                 request.setDeliveryDate(startDate);
                 request.setUser(CurrentUser.getCurrentUser());
@@ -155,6 +156,7 @@ public class Request extends ParseObject {
                     @Override
                     public void done(ParseException e) {
                         Toast.makeText(context, "your request has been placed", Toast.LENGTH_LONG).show();
+                        CurrentUser.getRequest().add(request);
                     }
                 });
             }
@@ -175,7 +177,7 @@ public class Request extends ParseObject {
                 @Override
                 public void done(ParseObject object, ParseException e) {
                     //TODO add request and subtract from points
-                    Request request = new Request();
+                    final Request request = new Request();
                     request.setBook((Book) object);
                     request.setDeliveryDate(deliveryDate);
                     request.setUser(CurrentUser.getCurrentUser());
@@ -186,20 +188,23 @@ public class Request extends ParseObject {
                         @Override
                         public void done(ParseException e) {
                             Toast.makeText(context, "your request has been placed", Toast.LENGTH_LONG).show();
+                            CurrentUser.getRequest().add(request);
                         }
                     });
                 }
             });
         } else {
-            Request request = new Request();
+            final Request request = new Request();
             request.setDeliveryDate(deliveryDate);
             request.setUser(CurrentUser.getCurrentUser());
             request.setType(bookName);
             request.setDeliveryPoint(DeliveryPoint.getDeliveryPoint());
+            request.setStatus(PENDING);
             request.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
                     Toast.makeText(context, "your request has been placed", Toast.LENGTH_LONG).show();
+                    CurrentUser.getRequest().add(request);
                 }
             });
         }
