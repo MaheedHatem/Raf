@@ -119,6 +119,7 @@ public class Request extends ParseObject {
                 request.setUser(CurrentUser.getCurrentUser());
                 request.setType(Request.BORROW_REQUEST);
                 request.setDeliveryPoint(DeliveryPoint.getDeliveryPoint());
+                request.setStatus(PENDING);
                 request.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
@@ -149,6 +150,7 @@ public class Request extends ParseObject {
                 request.setUser(CurrentUser.getCurrentUser());
                 request.setType(Request.BUY_REQUEST);
                 request.setDeliveryPoint(DeliveryPoint.getDeliveryPoint());
+                request.setStatus(PENDING);
                 request.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
@@ -179,6 +181,7 @@ public class Request extends ParseObject {
                     request.setUser(CurrentUser.getCurrentUser());
                     request.setType(Request.ADD_REQUEST);
                     request.setDeliveryPoint(DeliveryPoint.getDeliveryPoint());
+                    request.setStatus(PENDING);
                     request.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
