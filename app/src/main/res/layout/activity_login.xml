@@ -55,7 +55,7 @@
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:hint="@string/prompt_email"
+                        android:hint="Account Name"
                         android:textColorHint="#FFFFFF"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"

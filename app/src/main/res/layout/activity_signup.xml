@@ -58,15 +58,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <AutoCompleteTextView
-                    android:id="@+id/email"
+
+                <EditText
+                    android:id="@+id/account"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:hint="@string/prompt_email"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
+                    android:hint="Account Name"
                     android:textColor="@color/colorAccent"
+                    android:imeActionId="@+id/login"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
                     android:singleLine="true" />
+
+
 
             </android.support.design.widget.TextInputLayout>
 
@@ -87,23 +93,23 @@
                     android:maxLines="1"
                     android:singleLine="true" />
 
+
+
+
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/account"
+                <AutoCompleteTextView
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:hint="Account Name"
-                    android:textColor="@color/colorAccent"
-                    android:imeActionId="@+id/login"
-                    android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
-                    android:inputType="textPersonName"
+                    android:hint="@string/prompt_email"
+                    android:inputType="textEmailAddress"
                     android:maxLines="1"
+                    android:textColor="@color/colorAccent"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>

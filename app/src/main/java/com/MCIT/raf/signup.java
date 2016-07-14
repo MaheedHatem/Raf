@@ -345,8 +345,8 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
                 overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
                 signup.this.finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                mAccountView.setError("Email address already exists");
+                mAccountView.requestFocus();
             }
         }
 

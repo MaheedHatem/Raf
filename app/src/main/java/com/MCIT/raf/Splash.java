@@ -11,7 +11,6 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -135,7 +134,8 @@ public class Splash extends AppCompatActivity {
     void stopAnim(){
         findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
     }
-    AsyncTask<Void , Void , Void> task = new AsyncTask<Void, Void, Void>() {
+
+     public  AsyncTask<Void , Void , Void> task = new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... params) {
             Book.getTopHomeRefresh(0 , getApplicationContext());

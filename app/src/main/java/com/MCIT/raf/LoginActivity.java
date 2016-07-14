@@ -61,6 +61,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private static final int RC_SIGN_IN = 9001;
     private static final int SIGN_UP = 555;
     private static final String TAG = "SignInActivity";
+    public boolean facebookok = false;
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         // An unresolvable error has occurred and Google APIs (including Sign-In) will not
@@ -103,6 +104,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 //                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
 //                .build();
 //
+//        FacebookSdk.sdkInitialize(getApplicationContext());
+//        callbackManager = CallbackManager.Factory.create();
 
         setContentView(R.layout.activity_login);
         // Set up the login form.
@@ -143,7 +146,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        Button mFbButton = (Button) findViewById(R.id.fblogin_button);
+
+
+
+        com.facebook.login.widget.LoginButton  mFbButton = (com.facebook.login.widget.LoginButton ) findViewById(R.id.fblogin_button);
+
+
+
         mFbButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -218,19 +227,33 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private  void LogFb(){
-        Collection<String> permissions = Arrays.asList("public_profile");
+        Collection<String> permissions = Arrays.asList("public_profile", "email");
         ParseFacebookUtils.logInWithReadPermissionsInBackground(this, permissions, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException err) {
                 if (user == null) {
                     Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
+                    facebookok = false;
                 } else if (user.isNew()) {
                     Log.d("MyApp", "User signed up and logged in through Facebook!");
+                    facebookok = true;
+                    Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
+                    LoginActivity.this.startActivity(mainIntent);
+                    overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
+                    LoginActivity.this.finish();
+
                 } else {
                     Log.d("MyApp", "User logged in through Facebook!");
+                    facebookok = true;
+                    Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
+                    LoginActivity.this.startActivity(mainIntent);
+                    overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
+                    LoginActivity.this.finish();
+
                 }
             }
         });
+
     }
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -487,11 +510,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 //                LoginActivity.this.finish();
 //            }
         } else {
+
             ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
-            Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
-            LoginActivity.this.startActivity(mainIntent);
-            overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
-            LoginActivity.this.finish();
+            if(facebookok){
+                Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
+                LoginActivity.this.startActivity(mainIntent);
+                overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
+                LoginActivity.this.finish();
+            }
+
         }
     }
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)

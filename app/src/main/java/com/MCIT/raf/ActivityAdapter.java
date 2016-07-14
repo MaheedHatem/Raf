@@ -89,13 +89,13 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.ViewHo
         String cStatus= mStatus.get(position);
         switch (cStatus){
             case "Completed":
-                holder.mTextStatus.setTextColor(Color.GREEN);
+                holder.mTextStatus.setTextColor(Color.parseColor("#00994C"));
                 break;
             case "Pending":
-                holder.mTextStatus.setTextColor(Color.BLUE);
+                holder.mTextStatus.setTextColor(Color.parseColor("#004C99"));
                 break;
             case "In Progress":
-                holder.mTextStatus.setTextColor(Color.RED);
+                holder.mTextStatus.setTextColor(Color.parseColor("#CC0000"));
                 break;
             default:
                 break;
