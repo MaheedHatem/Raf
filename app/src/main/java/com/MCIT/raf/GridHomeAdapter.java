@@ -122,6 +122,7 @@ public class GridHomeAdapter extends BaseAdapter {
                     super.onPostExecute(aVoid);
                     Bitmap b = BitmapFactory.decodeByteArray(mBook0.get(position).getCover()
                             , 0, mBook0.get(position).getCover().length);
+                    if(b!=null)
                     imgcover.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
                 }
 
@@ -131,6 +132,7 @@ public class GridHomeAdapter extends BaseAdapter {
             if(mBook0.get(position).containsKey("cover")){
                 Bitmap b = BitmapFactory.decodeByteArray(mBook0.get(position).getCover()
                         , 0, mBook0.get(position).getCover().length);
+                if(b!=null)
                 imgcover.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
             }
             else {

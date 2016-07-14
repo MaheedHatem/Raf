@@ -106,6 +106,7 @@ public class GridAdapter extends BaseAdapter {
 
             Bitmap b = BitmapFactory.decodeByteArray(books.get(position).getCover() , 0 ,
                     books.get(position).getCover().length);
+            if(b!=null)
             img.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
 
             gridView.setOnClickListener(new View.OnClickListener() {
@@ -144,6 +145,7 @@ public class GridAdapter extends BaseAdapter {
             ImageView img = (ImageView) gridView.findViewById(R.id.cover);
             Bitmap b = BitmapFactory.decodeByteArray(books.get(position).getCover() , 0 ,
                     books.get(position).getCover().length);
+            if(b!=null)
             img.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
             TextView textView1 = (TextView) gridView
                     .findViewById(R.id.title);

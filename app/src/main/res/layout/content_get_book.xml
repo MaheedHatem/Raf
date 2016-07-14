@@ -50,137 +50,312 @@
 
 
 
+
+
+
 <LinearLayout
     android:layout_width="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
     android:layout_height="wrap_content">
 
 
 
-
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="24dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
         android:layout_height="wrap_content">
 
+
         <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_alignParentLeft="true"
+            android:text="Borrow"/>
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_centerInParent="true"
+            android:id="@+id/switch_compat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:checked="true" />
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_alignParentLeft="true"
+            android:text="Purchase"/>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="8dp"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="8dp"
+            android:src="@drawable/ic_local_atm_black_24dp"/>
+
+        <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_alignParentLeft="true"
             android:text="Points Required"/>
 
-        <TextView
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="30"
+                android:layout_marginRight="3dp"
+                android:id="@+id/points_text"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/imageView2"
+                android:layout_toStartOf="@+id/imageView2" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/coin"
+                android:id="@+id/imageView2"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/linear_get_point"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="8dp"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="20"
-            android:id="@+id/points_text"
-            android:layout_marginRight="3dp"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/imageView2"
-            android:layout_toStartOf="@+id/imageView2" />
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/coin"
-            android:id="@+id/imageView2"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:paddingRight="8dp"
+            android:src="@drawable/ic_album_black_24dp"/>
 
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp">
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_alignParentLeft="true"
             android:text="Your Points"/>
 
-        <TextView
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="20"
-            android:layout_marginRight="3dp"
-            android:id="@+id/your_points_text"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/imageView3"
-            android:layout_toStartOf="@+id/imageView3" />
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/coin"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:id="@+id/imageView3" />
 
-    </RelativeLayout>
 
-    <RelativeLayout
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="30"
+                android:layout_marginRight="3dp"
+                android:id="@+id/your_points_text"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/imageView2"
+                android:layout_toStartOf="@+id/imageView2" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/coin"
+                android:id="@+id/imageView3"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pick delivery date"
-            android:id="@+id/start_date_button"
-            android:enabled="true"
-            android:padding="8dp"
-            android:background="@drawable/rounded_button"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/start_date_text"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="60dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+        android:layout_height="1dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@android:color/darker_gray" />
 
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
+        android:id="@+id/start_date_button"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="20dp"
+        android:orientation="horizontal"
+        android:paddingRight="20dp"
+        android:paddingBottom="8dp"
+        android:gravity="center_vertical"
         android:layout_height="wrap_content">
 
-        <Button
-            android:layout_width="200dp"
+        <ImageButton
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_button"
-            android:text="Get Book"
-            android:layout_marginTop="12dp"
-            android:id="@+id/getBook_button"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Delivery Date"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_today_black_24dp"
+            android:id="@+id/delivery_date_button"
+            android:paddingRight="8dp"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal" />
+            android:layout_centerHorizontal="true" />
 
-        <Button
-            android:layout_width="200dp"
+        <TextView
+
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_button"
-            android:text="Get Points"
-            android:layout_marginTop="16dp"
-            android:id="@+id/getPoint_button"
-            android:layout_alignParentTop="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_gravity="center_horizontal" />
+            android:id="@+id/delivery_date_title"
+            android:text="Delivery Date"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/start_date_text"
+            android:layout_centerVertical="true"
+            android:paddingLeft="16dp" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/end_date_button"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="20dp"
+        android:orientation="horizontal"
+        android:paddingRight="20dp"
+        android:paddingBottom="8dp"
+        android:visibility="gone"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Delivery Date"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_today_black_24dp"
+            android:paddingRight="8dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_alignParentLeft="true"
+            android:text="End Date"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/end_date_text"
+            android:layout_centerVertical="true"
+            android:paddingLeft="16dp" />
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="12dp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content">
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/getBook_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_done_white_24dp" />
+
 
 
 

@@ -325,9 +325,13 @@ public class IabHelper {
         }
         logDebug("Disposing.");
         mSetupDone = false;
-        if (mServiceConn != null) {
-            logDebug("Unbinding from service.");
-            if (mContext != null) mContext.unbindService(mServiceConn);
+        try {
+            if (mServiceConn != null) {
+                logDebug("Unbinding from service.");
+                if (mContext != null) mContext.unbindService(mServiceConn);
+            }
+        }catch (Exception e){
+
         }
         mDisposed = true;
         mContext = null;

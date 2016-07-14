@@ -32,6 +32,8 @@ public class BookActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(Color.BLACK);
         setSupportActionBar(toolbar);
@@ -56,12 +58,18 @@ public class BookActivity extends AppCompatActivity {
         TextView description = (TextView) book_content.findViewById(R.id.book_description);
         TextView author = (TextView)findViewById(R.id.book_author);
 
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        if(CurrentUser.isWishListed(bookID))
+            fab.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+
+
         final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         collapsingToolbarLayout.setTitle(bookName);
         collapsingToolbarLayout.setExpandedTitleColor(Color.parseColor("#D9000000")); // transperent color = #00000000
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE); //Color of your title
 
         Bitmap b = BitmapFactory.decodeByteArray(bookCover,0,bookCover.length);
+        if(b!=null)
         imageCover.setImageBitmap((Bitmap.createScaledBitmap(b, 271, 400, true)));
         description.setText(bookDescription);
         author.setText(bookAuthor);
@@ -108,17 +116,19 @@ public class BookActivity extends AppCompatActivity {
             }
         });
 
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(CurrentUser.isWishListed(bookID)) {
                     Book.removeFromWishList(bookID , getApplication());
+                    fab.setImageResource(R.drawable.ic_favorite_white_18dp);
                     Snackbar.make(v, "Removed from Whishlist", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }else{
                     Book.addToWishList(bookID, getApplication());
+                    fab.setImageResource(R.drawable.ic_favorite_border_black_24dp);
                     Snackbar.make(v, "Added to Whishlist", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
