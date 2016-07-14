@@ -62,7 +62,7 @@ public class CurrentUser {
     }
 
     public static ArrayList<Request> getRequest(){
-        if(requests == null){
+        if(requests.isEmpty()){
             requests = Request.getUserRequest();
         }
         return requests;
