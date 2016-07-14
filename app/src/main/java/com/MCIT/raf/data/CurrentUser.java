@@ -62,6 +62,9 @@ public class CurrentUser {
     }
 
     public static ArrayList<Request> getRequest(){
+        if(requests == null){
+            requests = Request.getUserRequest();
+        }
         return requests;
     }
     public static ArrayList<Book> getWishlistFirstTime(){
@@ -87,6 +90,9 @@ public class CurrentUser {
     }
 
     public static ArrayList<Book> getWishlist(){
+        if(wishList == null){
+            wishList = (ArrayList<Book>) getCurrentUser().get("wishlist");
+        }
         return wishList;
     }
 
