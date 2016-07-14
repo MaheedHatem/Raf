@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.MCIT.raf.data.CurrentUser;
 import com.parse.ParseException;
@@ -29,6 +28,14 @@ import java.io.FileNotFoundException;
 
 public class AccountActivity extends AppCompatActivity {
     private ImageView image;
+    TextView points;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        points.setText(Integer.toString(CurrentUser.getPoints()));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +45,7 @@ public class AccountActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         TextView email = (TextView)findViewById(R.id.tvEmail);
         email.setText(CurrentUser.getEmail());
-        TextView points = (TextView)findViewById(R.id.tvPoints);
+        points = (TextView)findViewById(R.id.tvPoints);
         points.setText(Integer.toString(CurrentUser.getPoints()));
         image = (ImageView)findViewById(R.id.cover);
         AsyncTask<Void,Void,Void> loadImageTask = new AsyncTask<Void, Void, Void>() {

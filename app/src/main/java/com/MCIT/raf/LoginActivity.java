@@ -240,7 +240,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
                     LoginActivity.this.startActivity(mainIntent);
                     overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
+
+                    CurrentUser.fetchRequests();
+                    CurrentUser.getWishlistFirstTime();
                     LoginActivity.this.finish();
+
 
                 } else {
                     Log.d("MyApp", "User logged in through Facebook!");
@@ -248,7 +252,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
                     LoginActivity.this.startActivity(mainIntent);
                     overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
+                    CurrentUser.fetchRequests();
+                    CurrentUser.getWishlistFirstTime();
                     LoginActivity.this.finish();
+
 
                 }
             }
