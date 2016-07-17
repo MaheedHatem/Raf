@@ -59,9 +59,7 @@
             android:name=".AccountActivity"
             android:label="@string/title_activity_account"
             android:theme="@style/splash" />
-        <activity android:name=".GetPointsActivity" >    <intent-filter>
-            <action android:name="android.intent.action.SEARCH" />
-        </intent-filter></activity>
+        <activity android:name=".GetPointsActivity" />
         <activity
             android:name=".GetBookActivity"
             android:label="@string/title_activity_get_book"

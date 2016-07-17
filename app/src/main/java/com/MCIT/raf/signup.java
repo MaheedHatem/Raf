@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -28,6 +29,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.MCIT.raf.data.CurrentUser;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
@@ -51,10 +53,10 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
-    private EditText mAccountView;
-
+    private EditText mNameView;
     private View mProgressView;
     private View mSignupFormView;
+    Button mSignupButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +79,10 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
             }
         });
 
-        mAccountView = (EditText) findViewById(R.id.account);
+        mNameView = (EditText) findViewById(R.id.account);
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        mSignupButton = (Button) findViewById(R.id.email_sign_in_button);
+        mSignupButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
@@ -89,6 +91,7 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
 
         mSignupFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
     }
 
     private void populateAutoComplete() {
@@ -158,11 +161,12 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
+        mNameView.setError(null);
 
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
-        String account = mAccountView.getText().toString();
+        String account = mNameView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -306,12 +310,12 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
 
         private final String mEmail;
         private final String mPassword;
-        private final String mAccount;
+        private final String mName;
 
-        UserLoginTask(String email, String password, String Account) {
+        UserLoginTask(String email, String password, String Name) {
             mEmail = email;
             mPassword = password;
-            mAccount = Account;
+            mName = Name;
         }
 
         @Override
@@ -319,14 +323,23 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
             // TODO: attempt authentication against a network service.
 
             ParseUser user = new ParseUser();
-            user.setUsername(mAccount);
+            user.setUsername(mEmail);
             user.setPassword(mPassword);
             user.setEmail(mEmail);
+            user.put("Pname", mName);
 
 
             try{
                 user.signUp();
-                return true;
+                if (ParseUser.getCurrentUser() != null) {
+                    //added by khaled
+                    CurrentUser.getWishlistFirstTime();
+                    CurrentUser.fetchRequests();
+                    /////
+                    return true;
+                } else {
+                    return false;
+                }
             }
             catch (ParseException e)
             {
@@ -340,13 +353,15 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
             showProgress(false);
 
             if (success) {
-                Intent mainIntent = new Intent(signup.this,LoginActivity.class);
+
+
+                Intent mainIntent = new Intent(signup.this,HomeActivity.class);
+                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
                 signup.this.startActivity(mainIntent);
                 overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
-                signup.this.finish();
             } else {
-                mAccountView.setError("Email address already exists");
-                mAccountView.requestFocus();
+                mEmailView.setError("Email address already exists");
+                mEmailView.requestFocus();
             }
         }
 

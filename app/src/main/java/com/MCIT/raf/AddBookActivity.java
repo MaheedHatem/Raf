@@ -1,10 +1,13 @@
 package com.MCIT.raf;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -25,12 +28,13 @@ public class AddBookActivity extends AppCompatActivity {
             currentYear , currentMonth , currentDay;
     static TextView deliveryDateTextView;
     static boolean deliveryDateFlag = false;
-
+    static Context mContext;
     static LinearLayout deliveryDateButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_book);
+        mContext = this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Add Book");
@@ -109,6 +113,21 @@ public class AddBookActivity extends AppCompatActivity {
 
     public static void showDeliveryDate(int year, int month, int day) {
         deliveryDateFlag = checkDeliveryDate(year, month , day);
+        if(!deliveryDateFlag){
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            // Add the buttons
+            builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+
+                }
+            });
+
+            builder.setTitle("You picked unavailable date");
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
         deliveryDay = day;
         deliveryMonth = month;
         deliveryYear = year;
