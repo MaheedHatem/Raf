@@ -59,7 +59,10 @@ public class BookActivity extends AppCompatActivity {
         TextView author = (TextView)findViewById(R.id.book_author);
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         if(CurrentUser.isWishListed(bookID))
+            fab.setImageResource(R.drawable.ic_favorite_white_18dp);
+        else
             fab.setImageResource(R.drawable.ic_favorite_border_black_24dp);
 
 
@@ -123,12 +126,12 @@ public class BookActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(CurrentUser.isWishListed(bookID)) {
                     Book.removeFromWishList(bookID , getApplication());
-                    fab.setImageResource(R.drawable.ic_favorite_white_18dp);
+                    fab.setImageResource(R.drawable.ic_favorite_border_black_24dp);
                     Snackbar.make(v, "Removed from Whishlist", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }else{
                     Book.addToWishList(bookID, getApplication());
-                    fab.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+                    fab.setImageResource(R.drawable.ic_favorite_white_18dp);
                     Snackbar.make(v, "Added to Whishlist", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }

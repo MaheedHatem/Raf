@@ -101,8 +101,14 @@ public class CurrentUser {
 
     }
 
-    public static String getUsername() {
-        return getCurrentUser().getUsername();
+    public static String getPname() {return (String)getCurrentUser().get("Pname");}
+
+    public static void setEmail(String email) {
+         getCurrentUser().setEmail(email);
+    }
+
+    public static void setPname(String name) {
+        getCurrentUser().put("Pname", name);
     }
 
     public static String getEmail() {

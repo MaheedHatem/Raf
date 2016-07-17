@@ -147,7 +147,7 @@ public class Splash extends AppCompatActivity {
             Book.getTopCategoryRefresh(3 , getApplicationContext());
             Book.getTopCategoryRefresh(4 , getApplicationContext());
             DeliveryPoint.getDeliveryPointFirstTime(getApplicationContext());
-            if (ParseUser.getCurrentUser().getUsername() != null) {
+            if (ParseUser.getCurrentUser() != null) {
                 CurrentUser.fetchRequests();
                 CurrentUser.getWishlistFirstTime();
             }
@@ -155,7 +155,7 @@ public class Splash extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(final Void none) {
-            if (ParseUser.getCurrentUser().getUsername() != null) {
+            if (ParseUser.getCurrentUser() != null) {
                 Intent mainIntent = new Intent(Splash.this, HomeActivity.class);
                 Splash.this.startActivity(mainIntent);
                 overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);

@@ -17,7 +17,6 @@ import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
-import com.parse.ParseUser;
 
 public class ParseApplication extends Application {
 
@@ -33,7 +32,6 @@ public class ParseApplication extends Application {
         ParseObject.registerSubclass(NewBookRequest.class);
         Parse.initialize(this, getString(R.string.parse_AppID), getString(R.string.parse_ClientKey));
 
-        ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();
 
         // If you would like all objects to be private by default, remove this

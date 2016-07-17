@@ -1,5 +1,6 @@
 package com.MCIT.raf;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -9,6 +10,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -141,20 +143,33 @@ public class HomeActivity extends AppCompatActivity
 
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+
+            /** Called when a drawer has settled in a completely open state. */
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                // Do whatever you want here
+                NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+                navigationView.setNavigationItemSelectedListener(HomeActivity.this);
+                View header=navigationView.getHeaderView(0);
+                ((TextView)header.findViewById(R.id.email_view)).setText(CurrentUser.getEmail());
+                ((TextView)header.findViewById(R.id.name_view)).setText(CurrentUser.getPname());
+            }
+        };
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-
-
+        navigationView.setNavigationItemSelectedListener(HomeActivity.this);
         View header=navigationView.getHeaderView(0);
         ((TextView)header.findViewById(R.id.email_view)).setText(CurrentUser.getEmail());
-        ((TextView)header.findViewById(R.id.name_view)).setText(CurrentUser.getUsername());
+        ((TextView)header.findViewById(R.id.name_view)).setText(CurrentUser.getPname());
+
+
     }
 
     @Override
@@ -228,11 +243,31 @@ public class HomeActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_logout) {
 
-            ParseUser.logOut();
-            Intent mainIntent = new Intent(this,LoginActivity.class);
-            this.startActivity(mainIntent);
-            overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
-            this.finish();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            // Add the buttons
+            builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    ParseUser.getCurrentUser().logOut();
+                    ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
+
+                    Intent mainIntent = new Intent(HomeActivity.this ,LoginActivity.class);
+                    HomeActivity.this.startActivity(mainIntent);
+                    overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
+                    HomeActivity.this.finish();
+                }
+            });
+            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+                }
+            });
+
+            builder.setTitle("Are you sure to logout?");
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+
 
         }
 

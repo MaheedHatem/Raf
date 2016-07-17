@@ -41,7 +41,7 @@ public class AccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(CurrentUser.getUsername());
+        toolbar.setTitle(CurrentUser.getPname());
         setSupportActionBar(toolbar);
         TextView email = (TextView)findViewById(R.id.tvEmail);
         email.setText(CurrentUser.getEmail());
@@ -130,7 +130,7 @@ public class AccountActivity extends AppCompatActivity {
                 byte[] bitmapBytes = stream.toByteArray();
                 Snackbar.make(image, "Updating Photo", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                final ParseFile imageFile = new ParseFile(CurrentUser.getUsername()+"image.jpg", bitmapBytes);
+                final ParseFile imageFile = new ParseFile(CurrentUser.getEmail()+"image.jpg", bitmapBytes);
                 imageFile.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {

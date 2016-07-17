@@ -1,11 +1,14 @@
 package com.MCIT.raf;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
@@ -36,12 +39,15 @@ public class GetBookActivity extends AppCompatActivity {
     private boolean PURCHASE = true;
     private boolean BORROW = false;
 
+    static Context mContext;
+
 
     static LinearLayout startDateButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_book);
+        mContext = this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -228,11 +234,26 @@ public class GetBookActivity extends AppCompatActivity {
         yourPointsTextView.setText(Integer.toString(CurrentUser.getPoints()));
     }
 
-    public static void showStartDate(int year , int month , int day){
+    public static void showStartDate(int year , int month , int day ){
         startYear = year;
         startMonth = month;
         startDay = day;
         startDateFlag = checkStartDate();
+        if(!startDateFlag){
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            // Add the buttons
+            builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+
+                }
+            });
+
+            builder.setTitle("You picked unavailable date");
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
         startDateText.setText(new StringBuilder().append(day).append("/").append(month +1)
                 .append("/").append(year));
 //        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) startDateButton.getLayoutParams();
@@ -248,6 +269,21 @@ public class GetBookActivity extends AppCompatActivity {
         endMonth = month;
         endDay = day;
         endDateFlag = checkEndDate();
+        if(!endDateFlag){
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            // Add the buttons
+            builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+
+                }
+            });
+
+            builder.setTitle("You picked unavailable date");
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
         endDateText.setText(new StringBuilder().append(day).append("/").append(month +1)
                 .append("/").append(year));
     }
