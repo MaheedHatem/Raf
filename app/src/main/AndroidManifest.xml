@@ -37,7 +37,10 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/splash" />
+            android:theme="@style/splash">
+        <meta-data android:name="android.app.searchable"
+            android:resource="@xml/searchable" />
+        </activity>
         <activity
             android:name=".BookActivity"
             android:label="@string/title_activity_book"
@@ -56,7 +59,9 @@
             android:name=".AccountActivity"
             android:label="@string/title_activity_account"
             android:theme="@style/splash" />
-        <activity android:name=".GetPointsActivity" />
+        <activity android:name=".GetPointsActivity" >    <intent-filter>
+            <action android:name="android.intent.action.SEARCH" />
+        </intent-filter></activity>
         <activity
             android:name=".GetBookActivity"
             android:label="@string/title_activity_get_book"
