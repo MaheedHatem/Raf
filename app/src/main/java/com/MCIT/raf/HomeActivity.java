@@ -2,6 +2,7 @@ package com.MCIT.raf;
 
 
 import android.app.SearchManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -196,7 +197,7 @@ public class HomeActivity extends AppCompatActivity
         SearchView searchView =
                 (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
+                searchManager.getSearchableInfo(new ComponentName(this, MoreActivity.class)));
         return true;
     }
 

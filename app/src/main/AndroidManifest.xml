@@ -38,8 +38,9 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/splash">
-        <meta-data android:name="android.app.searchable"
-            android:resource="@xml/searchable" />
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".SearchActivity" />
         </activity>
         <activity
             android:name=".BookActivity"
@@ -54,7 +55,16 @@
         <activity
             android:name=".MoreActivity"
             android:label="@string/title_activity_more"
-            android:theme="@style/splash" />
+            android:theme="@style/splash" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
         <activity
             android:name=".AccountActivity"
             android:label="@string/title_activity_account"

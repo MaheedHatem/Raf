@@ -1,6 +1,8 @@
 package com.MCIT.raf;
 
+import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +25,8 @@ public class MoreActivity extends AppCompatActivity {
     GridMoreAdapter mGridMoreAdapter;
     RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-
+    private final static String SEARCH_TYPE = "search";
+    private final static String SEARCH_RESULT = "Search Result";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +38,13 @@ public class MoreActivity extends AppCompatActivity {
 
         String type = getIntent().getStringExtra(getString(R.string.more_intent));
         getSupportActionBar().setTitle(type);
-
+        String query = "";
         startAnim();
-
+        if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
+            getSupportActionBar().setTitle(SEARCH_RESULT);
+            type = SEARCH_TYPE;
+            query = getIntent().getStringExtra(SearchManager.QUERY);
+        }
 // loop through all toolbar children right after setting support
 // action bar because the text view has no id assigned
 
@@ -75,7 +82,7 @@ public class MoreActivity extends AppCompatActivity {
 
 
         getMoreTask task = new getMoreTask(mGridMoreAdapter , getApplicationContext());
-        task.execute(type);
+        task.execute(type , query);
 
 
     }
@@ -99,6 +106,28 @@ public class MoreActivity extends AppCompatActivity {
             queryHome.include(context.getString(R.string.parse_book_genre));
             queryHome.setLimit(20);
             Genre genre =null;
+            if(type.equals(SEARCH_TYPE)){
+                String query = params[1];
+                ParseQuery<Book> bookQuery = ParseQuery.getQuery(context.getString(R.string.parse_book));
+                bookQuery.whereContains(context.getString(R.string.parse_book_name) , query);
+                bookQuery.include(context.getString(R.string.parse_book_author));
+                bookQuery.include(context.getString(R.string.parse_book_genre));
+                List<Book> result = null;
+                try {
+                    result = bookQuery.find();
+                    for (final Book b: result){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                adapter.addBook(b);
+                            }
+                        });
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
             if (!type.equals("Featured") || !type.equals("Most Popular") || !type.equals("New Release")) {
                 ParseQuery<ParseObject> queryCategoryID = ParseQuery.getQuery(context.getString(R.string.parse_genre));
                 queryCategoryID.whereEqualTo(context.getString(R.string.parse_genre_name), type);
