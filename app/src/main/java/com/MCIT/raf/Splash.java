@@ -6,11 +6,13 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -115,6 +117,19 @@ public class Splash extends AppCompatActivity {
 
 
         });
+
+        SharedPreferences wmbPreference = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isFirstRun = wmbPreference.getBoolean("FIRSTRUN", true);
+        if (isFirstRun)
+        {
+            // Code to run once
+            SharedPreferences.Editor editor = wmbPreference.edit();
+            editor.putBoolean("FIRSTRUN", false);
+            editor.commit();
+            if(ParseUser.getCurrentUser() != null)
+                ParseUser.getCurrentUser().logOut();
+        }
+
         task.execute((Void)null);
 
     }
@@ -138,6 +153,7 @@ public class Splash extends AppCompatActivity {
      public  AsyncTask<Void , Void , Void> task = new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... params) {
+
             Book.getTopHomeRefresh(0 , getApplicationContext());
             Book.getTopHomeRefresh(1 , getApplicationContext());
             Book.getTopHomeRefresh(2 , getApplicationContext());
@@ -156,10 +172,10 @@ public class Splash extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Void none) {
             if (ParseUser.getCurrentUser() != null) {
-                Intent mainIntent = new Intent(Splash.this, HomeActivity.class);
-                Splash.this.startActivity(mainIntent);
-                overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
-                Splash.this.finish();
+                    Intent mainIntent = new Intent(Splash.this, HomeActivity.class);
+                    Splash.this.startActivity(mainIntent);
+                    overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
+                    Splash.this.finish();
             } else {
                 Intent mainIntent = new Intent(Splash.this, LoginActivity.class);
                 Splash.this.startActivity(mainIntent);
