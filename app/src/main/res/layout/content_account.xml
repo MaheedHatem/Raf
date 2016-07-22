@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.MCIT.raf.AccountActivity"
+    android:paddingLeft="8dp"
     tools:showIn="@layout/activity_account">
 
     <LinearLayout
@@ -37,7 +38,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_mail_black_24dp" />
+                android:src="@drawable/ic_mail_outline_black_48dp" />
 
             <TextView
                 android:id="@+id/tvEmail"
@@ -80,7 +81,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:src="@drawable/ic_monetization_on_black_24dp"
+                    android:src="@drawable/ic_monetization_on_black_48dp"
                     android:visibility="visible" />
 
                 <TextView
@@ -116,9 +117,9 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:onClick="onClick"
+                    android:layout_marginRight="16dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:background="@drawable/ic_add_circle_outline_black_36dp" />
+                    android:background="@drawable/ic_add_shopping_cart_black_32dp" />
 
 
 
@@ -141,7 +142,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:text="Your Activities"
+                android:text="Recent Activities"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:textColor="#212121" />
 

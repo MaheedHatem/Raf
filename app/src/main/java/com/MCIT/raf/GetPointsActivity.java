@@ -62,6 +62,8 @@ public class GetPointsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // When clicked, show a toast with the TextView text
 
+                TextView ts = (TextView) findViewById(R.id.points_text);
+
                 switch(position){
                     case 0:
 
@@ -80,16 +82,21 @@ public class GetPointsActivity extends AppCompatActivity {
                         CurrentUser.addPoints(10);
                          Snackbar.make(view, "10 points added", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                        ts.setText(Integer.toString(CurrentUser.getPoints()));
                         break;
                     case 2:
                         CurrentUser.addPoints(20);
                         Snackbar.make(view, "20 points added", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
+                         ts = (TextView) findViewById(R.id.points_text);
+                        ts.setText(Integer.toString(CurrentUser.getPoints()));
                         break;
                     case 3:
                         CurrentUser.addPoints(35);
                         Snackbar.make(view, "35 points added", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
+                         ts = (TextView) findViewById(R.id.points_text);
+                        ts.setText(Integer.toString(CurrentUser.getPoints()));
                         break;
 
                 }
