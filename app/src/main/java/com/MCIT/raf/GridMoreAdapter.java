@@ -1,11 +1,16 @@
 package com.MCIT.raf;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.os.Build;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,7 +84,7 @@ public class GridMoreAdapter extends RecyclerView.Adapter<GridMoreAdapter.ViewHo
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
@@ -103,6 +108,33 @@ public class GridMoreAdapter extends RecyclerView.Adapter<GridMoreAdapter.ViewHo
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.cardView.getLayoutParams();
         params.width = (width/2);
         holder.cardView.setLayoutParams(params);
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                Intent mainIntent = new Intent(mContext.getApplicationContext(),BookActivity.class);
+
+                mainIntent.putExtra(mContext.getString(R.string.book_intent_id) , books.get(position).getObjectId());
+                mainIntent.putExtra(mContext.getString(R.string.book_intent_name) , books.get(position).getName());
+                mainIntent.putExtra(mContext.getString(R.string.book_intent_author) , books.get(position).getAuthor().getName());
+                mainIntent.putExtra(mContext.getString(R.string.book_intent_cover) , books.get(position).getCover());
+                mainIntent.putExtra(mContext.getString(R.string.book_intent_description) , books.get(position).getDescription());
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    Pair<View, String> p1 = Pair.create((View)v.findViewById(R.id.title), "title");
+                    Pair<View, String> p2 = Pair.create((View)v.findViewById(R.id.cover), "cover");
+                    ActivityOptions options = ActivityOptions.
+                            makeSceneTransitionAnimation((Activity) mContext, p2,p1);
+                    mContext.startActivity(mainIntent, options.toBundle());
+                }
+                else {
+                    mContext.startActivity(mainIntent);
+                }
+            }
+        });
 
 
 
