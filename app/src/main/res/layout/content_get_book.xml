@@ -254,6 +254,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Delivery Date"
             android:background="@android:color/transparent"
@@ -270,7 +271,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_alignParentLeft="true"
             android:id="@+id/delivery_date_title"
-            android:text="Delivery Date"/>
+            android:text="Pick Delivery Date"/>
 
         <View
             android:layout_width="0dp"
@@ -310,6 +311,7 @@
             android:background="@android:color/transparent"
             android:src="@drawable/ic_today_black_24dp"
             android:paddingRight="8dp"
+            android:clickable="true"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
@@ -319,7 +321,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_alignParentLeft="true"
-            android:text="End Date"/>
+            android:id="@+id/pick2"
+            android:text="Pick End Date"/>
 
         <View
             android:layout_width="0dp"

@@ -41,6 +41,11 @@ public class GetBookActivity extends AppCompatActivity {
 
     static Context mContext;
 
+   static TextView pickdelivery;
+    static TextView pickend;
+    static SwitchCompat switchCompat;
+
+
 
     static LinearLayout startDateButton;
     @Override
@@ -69,6 +74,9 @@ public class GetBookActivity extends AppCompatActivity {
         TextView bookNameTextView = (TextView)content.findViewById(R.id.BookNameTXT);
         final LinearLayout endDateButton = (LinearLayout) content.findViewById(R.id.end_date_button);
 
+        pickdelivery = (TextView)findViewById(R.id.delivery_date_title);
+        pickend = (TextView)findViewById(R.id.pick2);
+
 
 
 
@@ -86,13 +94,13 @@ public class GetBookActivity extends AppCompatActivity {
         endDateButton.setEnabled(false);
 
 
-        SwitchCompat switchCompat = (SwitchCompat) findViewById(R.id.switch_compat);
+        switchCompat = (SwitchCompat) findViewById(R.id.switch_compat);
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 operation = isChecked;
                 if(isChecked == PURCHASE){
-                    deliverDateTitle.setText("Delivery date");
+                    deliverDateTitle.setText("Pick Delivery date");
                     endDateButton.setVisibility(View.GONE);
                     endDateButton.setEnabled(false);
                     endDateText.setText("");
@@ -101,7 +109,7 @@ public class GetBookActivity extends AppCompatActivity {
                     startDateFlag = false;
                     endDateFlag = false;
                 }else{
-                    deliverDateTitle.setText("Start date");
+                    deliverDateTitle.setText("Pick Start date");
                     endDateButton.setVisibility(View.VISIBLE);
                     endDateButton.setEnabled(true);
                     startDateText.setText("");
@@ -256,6 +264,13 @@ public class GetBookActivity extends AppCompatActivity {
         }
         startDateText.setText(new StringBuilder().append(day).append("/").append(month +1)
                 .append("/").append(year));
+
+        if(switchCompat.isChecked()) {
+            pickdelivery.setText("Delivery Date");
+        }else
+        {
+            pickdelivery.setText("Start Date");
+        }
 //        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) startDateButton.getLayoutParams();
 //        lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 //        startDateButton.setLayoutParams(lp);
@@ -286,6 +301,8 @@ public class GetBookActivity extends AppCompatActivity {
         }
         endDateText.setText(new StringBuilder().append(day).append("/").append(month +1)
                 .append("/").append(year));
+
+        pickend.setText("End Date");
     }
 
 

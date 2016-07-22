@@ -188,6 +188,7 @@
                     android:src="@drawable/ic_today_black_24dp"
                     android:id="@+id/delivery_date_button"
                     android:paddingRight="8dp"
+                    android:clickable="true"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true" />
 
@@ -196,8 +197,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/pick1"
                     android:layout_alignParentLeft="true"
-                    android:text="Delivery Date"/>
+                    android:text="Pick Delivery Date"/>
 
                 <View
                     android:layout_width="0dp"

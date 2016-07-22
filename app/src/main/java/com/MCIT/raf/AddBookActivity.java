@@ -30,6 +30,8 @@ public class AddBookActivity extends AppCompatActivity {
     static boolean deliveryDateFlag = false;
     static Context mContext;
     static LinearLayout deliveryDateButton;
+
+    static TextView pickdelivery;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +58,8 @@ public class AddBookActivity extends AppCompatActivity {
         deliveryDateButton = (LinearLayout) findViewById(R.id.linear_delivery_date);
         FloatingActionButton addBookButton = (FloatingActionButton)findViewById(R.id.addBook);
         deliveryDateTextView = (TextView)findViewById(R.id.delivery_date);
+        pickdelivery = (TextView) findViewById(R.id.pick1);
+
         if(bookName[0] !=null){
 
             bookNameTextView.setText(bookName[0]);
@@ -133,6 +137,9 @@ public class AddBookActivity extends AppCompatActivity {
         deliveryYear = year;
         deliveryDateTextView.setText(new StringBuilder().append(day).append("/").append(month +1)
                 .append("/").append(year));
+        pickdelivery.setText("Delivery Date");
+
+
 //        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) deliveryDateButton.getLayoutParams();
 //        lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 //        deliveryDateButton.setLayoutParams(lp);
