@@ -104,6 +104,7 @@ public class AddBookActivity extends AppCompatActivity {
                                 bookName[0], getApplicationContext());
                         Snackbar.make(v, "processing your request", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
+                    finish();
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "please select valid delivery date",

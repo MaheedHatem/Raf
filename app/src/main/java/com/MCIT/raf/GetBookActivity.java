@@ -187,6 +187,7 @@ public class GetBookActivity extends AppCompatActivity {
                                                              Snackbar.make(v, "processing your request", Snackbar.LENGTH_LONG)
                                                                      .setAction("Action", null).show();
                                                              yourPointsTextView.setText(Integer.toString(CurrentUser.getPoints()));
+                                                             finish();
 
                                                          } else
                                                              Toast.makeText(getApplicationContext(), "you don't have enough coins",
