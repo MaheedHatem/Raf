@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.MCIT.raf.data.Book;
 import com.MCIT.raf.data.CurrentUser;
+import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 public class BookActivity extends AppCompatActivity {
 
@@ -55,7 +56,7 @@ public class BookActivity extends AppCompatActivity {
 
         NestedScrollView book_content = (NestedScrollView) findViewById(R.id.content_id);
         ImageView imageCover = (ImageView)findViewById(R.id.cover);
-        TextView description = (TextView) book_content.findViewById(R.id.book_description);
+        ExpandableTextView description = (ExpandableTextView) book_content.findViewById(R.id.book_description);
         TextView author = (TextView)findViewById(R.id.book_author);
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

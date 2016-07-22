@@ -52,5 +52,6 @@ dependencies {
     compile 'com.android.support:support-v4:23.3.0'
     compile 'com.wang.avi:library:1.0.5'
     compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.ms-square:expandableTextView:0.1.4'
 }
 apply plugin: 'com.google.gms.google-services'

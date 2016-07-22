@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.MCIT.raf.BookActivity"
     tools:showIn="@layout/activity_book">
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Author "
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_marginLeft="@dimen/text_margin"
         android:layout_marginTop="@dimen/text_margin" />
 
@@ -34,23 +34,49 @@
             android:id="@+id/book_author"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="@dimen/text_margin"
+            android:textColor="#7c7c7c"
             android:textAppearance="?android:attr/textAppearanceLarge" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description "
-            android:layout_marginTop="8dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginTop="16dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_marginLeft="@dimen/text_margin" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:paddingBottom="50dp"
-        android:id="@+id/book_description"/>
+        <com.ms.square.android.expandabletextview.ExpandableTextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/book_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            expandableTextView:expandDrawable="@drawable/ic_more_horiz_black_48dp"
+            expandableTextView:maxCollapsedLines="4"
+            expandableTextView:animDuration="200">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="16dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:textColor="#7c7c7c"
+                android:gravity="left"
+                android:text="@string/large_text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:lineSpacingExtra="12dp"
+                android:id="@+id/expandable_text"/>
+
+            <ImageButton
+                android:id="@id/expand_collapse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="16dp"
+                android:paddingBottom="16dp"
+                android:layout_gravity="right|bottom"
+                android:background="@android:color/transparent"/>
+
+        </com.ms.square.android.expandabletextview.ExpandableTextView>
 
     </LinearLayout>
 
