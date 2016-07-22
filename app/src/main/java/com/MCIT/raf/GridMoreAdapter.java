@@ -122,7 +122,7 @@ public class GridMoreAdapter extends RecyclerView.Adapter<GridMoreAdapter.ViewHo
                 mainIntent.putExtra(mContext.getString(R.string.book_intent_author) , books.get(position).getAuthor().getName());
                 mainIntent.putExtra(mContext.getString(R.string.book_intent_cover) , books.get(position).getCover());
                 mainIntent.putExtra(mContext.getString(R.string.book_intent_description) , books.get(position).getDescription());
-
+                mainIntent.putExtra(mContext.getString(R.string.book_intent_price), books.get(position).getPrice());
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     Pair<View, String> p1 = Pair.create((View)v.findViewById(R.id.title), "title");
                     Pair<View, String> p2 = Pair.create((View)v.findViewById(R.id.cover), "cover");

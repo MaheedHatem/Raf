@@ -75,7 +75,7 @@ public class MoreActivity extends AppCompatActivity {
 
         // Set custom adapter (GridAdapter) to gridview
 
-        mGridMoreAdapter = new GridMoreAdapter(getApplicationContext());
+        mGridMoreAdapter = new GridMoreAdapter(MoreActivity.this);
 //        gridAdapter.addBooks(CurrentUser.getWishlist());
 
         mRecyclerView.setAdapter(mGridMoreAdapter);
