@@ -109,7 +109,7 @@ public class MoreActivity extends AppCompatActivity {
             if(type.equals(SEARCH_TYPE)){
                 String query = params[1];
                 ParseQuery<Book> bookQuery = ParseQuery.getQuery(context.getString(R.string.parse_book));
-                bookQuery.whereContains(context.getString(R.string.parse_book_lower_case_name) , query);
+                bookQuery.whereContains(context.getString(R.string.parse_book_lower_case_name) , query.toLowerCase());
                 bookQuery.include(context.getString(R.string.parse_book_author));
                 bookQuery.include(context.getString(R.string.parse_book_genre));
                 List<Book> result = null;
