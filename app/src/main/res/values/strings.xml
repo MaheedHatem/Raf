@@ -65,6 +65,7 @@
     <string name="parse_book_featured">featured</string>
     <string name="parse_book_new">new</string>
     <string name="parse_book_popular">popular</string>
+    <string name="parse_book_lower_case_name">lowerCaseName</string>
 
     <!-- parse genre object-->
     <string name="parse_genre">Genre</string>

@@ -51,6 +51,12 @@ public class Book extends ParseObject{
     public void setName(String value){
         put("name" , value);
     }
+    public String getLowerCaseName(){
+        return getString("lowerCaseName");
+    }
+    public void setLowerCaseName(String value){
+        put("lowerCaseName" , value);
+    }
     public String getISBN(){
         return getString("ISBN");
     }
