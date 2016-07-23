@@ -347,8 +347,22 @@
         android:layout_width="match_parent"
         android:layout_marginTop="12dp"
         android:gravity="center_horizontal"
+        android:orientation="vertical"
         android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content">
+
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/avloadingIndicatorView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:visibility="gone"
+            app:indicator="BallClipRotate"
+            app:indicator_color="@color/colorAccent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center" />
 
 
         <android.support.design.widget.FloatingActionButton
