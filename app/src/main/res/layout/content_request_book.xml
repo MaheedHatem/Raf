@@ -111,7 +111,7 @@
             app:indicator_color="@color/colorAccent"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="17dp"
             android:layout_marginBottom="20dp"
             android:layout_gravity="center" />
 
