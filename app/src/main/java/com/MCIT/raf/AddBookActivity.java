@@ -1,5 +1,6 @@
 package com.MCIT.raf;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.BitmapFactory;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.MCIT.raf.data.Request;
 
 import java.util.Calendar;
+import java.util.concurrent.Callable;
 
 public class AddBookActivity extends AppCompatActivity {
     static int  deliveryYear , deliveryMonth , deliveryDay,
@@ -101,10 +103,15 @@ public class AddBookActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(deliveryDateFlag){
                         Request.addAddCopyRequest(deliveryYear, deliveryMonth, deliveryDay, bookID,
-                                bookName[0], getApplicationContext());
+                                bookName[0], getApplicationContext(), new Callable() {
+                                    @Override
+                                    public Object call() throws Exception {
+                                        finish();
+                                        return null;
+                                    }
+                                });
                         Snackbar.make(v, "processing your request", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
-                    finish();
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "please select valid delivery date",

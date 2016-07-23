@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 /**
  * Created by Maheed on 5/2/2016.
@@ -97,7 +98,7 @@ public class Request extends ParseObject {
     }
 
     public static void addBorrowRequest(int startYear , int startMonth , int startDay , int endYear
-            , int endMonth , int endDay , String bookId ,int bookPrice, final Context context){
+            , int endMonth , int endDay , String bookId ,int bookPrice, final Context context ,final Callable callback){
         Calendar c = Calendar.getInstance();
         c.set(startYear , startMonth , startDay);
         final Date startDate = c.getTime();
@@ -125,6 +126,11 @@ public class Request extends ParseObject {
                     public void done(ParseException e) {
                         Toast.makeText(context, "your request has been placed", Toast.LENGTH_LONG).show();
                         CurrentUser.getRequest().add(request);
+                        try {
+                            callback.call();
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                        }
                     }
                 });
             }
@@ -133,7 +139,7 @@ public class Request extends ParseObject {
     
 
     public static void addGetRequest(int startYear , int startMonth , int startDay ,
-                                     String bookId ,int bookPrice, final Context context){
+                                     String bookId ,int bookPrice, final Context context,final Callable callback){
         Calendar c = Calendar.getInstance();
         c.set(startYear , startMonth , startDay);
         final Date startDate = c.getTime();
@@ -157,6 +163,11 @@ public class Request extends ParseObject {
                     public void done(ParseException e) {
                         Toast.makeText(context, "your request has been placed", Toast.LENGTH_LONG).show();
                         CurrentUser.getRequest().add(request);
+                        try {
+                            callback.call();
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                        }
                     }
                 });
             }
@@ -165,7 +176,7 @@ public class Request extends ParseObject {
     }
 
     public static void addAddCopyRequest(int deliveryYear, int deliveryMonth, int deliveryDay,
-                                         String bookID, String bookName , final Context context) {
+                                         String bookID, String bookName , final Context context,final Callable callback) {
         Calendar c = Calendar.getInstance();
         c.set(deliveryYear , deliveryMonth , deliveryDay);
         final Date deliveryDate = c.getTime();
@@ -189,6 +200,11 @@ public class Request extends ParseObject {
                         public void done(ParseException e) {
                             Toast.makeText(context, "your request has been placed", Toast.LENGTH_LONG).show();
                             CurrentUser.getRequest().add(request);
+                            try {
+                                callback.call();
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                            }
                         }
                     });
                 }
@@ -205,6 +221,11 @@ public class Request extends ParseObject {
                 public void done(ParseException e) {
                     Toast.makeText(context, "your request has been placed", Toast.LENGTH_LONG).show();
                     CurrentUser.getRequest().add(request);
+                    try {
+                        callback.call();
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
                 }
             });
         }
