@@ -102,10 +102,12 @@ public class AddBookActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(deliveryDateFlag){
+                        startAnim();
                         Request.addAddCopyRequest(deliveryYear, deliveryMonth, deliveryDay, bookID,
                                 bookName[0], getApplicationContext(), new Callable() {
                                     @Override
                                     public Object call() throws Exception {
+                                        stopAnim();
                                         finish();
                                         return null;
                                     }
@@ -175,5 +177,11 @@ public class AddBookActivity extends AppCompatActivity {
         deliveryDateTextView.setTextColor(Color.RED);
 
         return false;
+    }
+    void startAnim(){
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
+    }
+    void stopAnim(){
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
     }
 }
