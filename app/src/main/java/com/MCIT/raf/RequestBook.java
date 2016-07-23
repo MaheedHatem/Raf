@@ -2,6 +2,7 @@ package com.MCIT.raf;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -37,6 +38,12 @@ public class RequestBook extends AppCompatActivity {
                 AutoCompleteTextView bookNameTextView = (AutoCompleteTextView)findViewById(R.id.req_sugg);
                 if(!bookNameTextView.getText().toString().equals("")){
                     NewBookRequest.addNewBookRequest(bookNameTextView.getText().toString(),getApplicationContext());
+                    Snackbar.make(v, "Request in progress", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+
+                }else{
+                    Snackbar.make(v, "Bnvalid Book Name", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
                 }
 
             }

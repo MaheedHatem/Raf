@@ -91,7 +91,7 @@ public class AccountActivity extends AppCompatActivity {
 
 
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycle_account);
-
+        mRecyclerView.setNestedScrollingEnabled(false);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);

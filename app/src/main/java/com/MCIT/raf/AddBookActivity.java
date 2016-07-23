@@ -124,6 +124,7 @@ public class AddBookActivity extends AppCompatActivity {
             builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
 
+                    deliveryDateButton.performClick();
 
                 }
             });
@@ -165,6 +166,7 @@ public class AddBookActivity extends AppCompatActivity {
             }
         }
         deliveryDateTextView.setTextColor(Color.RED);
+
         return false;
     }
 }

@@ -38,6 +38,7 @@ public class GetBookActivity extends AppCompatActivity {
     static boolean operation = true;
     private boolean PURCHASE = true;
     private boolean BORROW = false;
+    static LinearLayout endDateButton;
 
     static Context mContext;
 
@@ -72,7 +73,7 @@ public class GetBookActivity extends AppCompatActivity {
         ScrollView content = (ScrollView) findViewById(R.id.getBook_content);
 
         TextView bookNameTextView = (TextView)content.findViewById(R.id.BookNameTXT);
-        final LinearLayout endDateButton = (LinearLayout) content.findViewById(R.id.end_date_button);
+        endDateButton = (LinearLayout) content.findViewById(R.id.end_date_button);
 
         pickdelivery = (TextView)findViewById(R.id.delivery_date_title);
         pickend = (TextView)findViewById(R.id.pick2);
@@ -254,6 +255,7 @@ public class GetBookActivity extends AppCompatActivity {
             builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
 
+                    startDateButton.performClick();
 
                 }
             });
@@ -291,6 +293,7 @@ public class GetBookActivity extends AppCompatActivity {
             builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
 
+                    endDateButton.performClick();
 
                 }
             });

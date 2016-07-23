@@ -218,6 +218,7 @@ public class GetPointsActivity extends AppCompatActivity {
                     CurrentUser.addPoints(10);
                     Snackbar.make(button5, "10 points added", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
+
                 }
             }
             else {

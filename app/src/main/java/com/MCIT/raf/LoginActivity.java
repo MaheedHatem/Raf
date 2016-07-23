@@ -165,6 +165,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             {
                 // App code
                 Log.d("FACEBOOK----->","onCancel");
+                showProgress(false);
+
 
             }
 
@@ -241,18 +243,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private  void LogFb(){
-        showProgress(true);
+        //showProgress(true);
         Collection<String> permissions = Arrays.asList("public_profile", "email");
         ParseFacebookUtils.logInWithReadPermissionsInBackground(this, permissions, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException err) {
                 if (user == null) {
                     Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
-                    facebookok = false;
+                    showProgress(false);
                 } else if (user.isNew()) {
                     Log.d("MyApp", "User signed up and logged in through Facebook!");
                     facebookok = true;
-                    showProgress(true);
                     CurrentUser.fetchRequests();
                     CurrentUser.getWishlistFirstTime();
                     getInfo();
@@ -266,7 +267,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 } else {
                     Log.d("MyApp", "User logged in through Facebook!");
                     facebookok = true;
-                    showProgress(true);
                     CurrentUser.fetchRequests();
                     CurrentUser.getWishlistFirstTime();
                     showProgress(false);
