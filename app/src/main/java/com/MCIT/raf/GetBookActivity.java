@@ -26,6 +26,7 @@ import com.MCIT.raf.data.CurrentUser;
 import com.MCIT.raf.data.Request;
 
 import java.util.Calendar;
+import java.util.concurrent.Callable;
 
 public class GetBookActivity extends AppCompatActivity {
 
@@ -86,7 +87,7 @@ public class GetBookActivity extends AppCompatActivity {
         startDateButton = (LinearLayout) content.findViewById(R.id.start_date_button);
         final TextView pointsTextView= (TextView)content.findViewById(R.id.points_text);
         yourPointsTextView = (TextView)content.findViewById(R.id.your_points_text);
-        FloatingActionButton getBookButton = (FloatingActionButton) content.findViewById(R.id.getBook_button);
+        final FloatingActionButton getBookButton = (FloatingActionButton) content.findViewById(R.id.getBook_button);
         LinearLayout getPointButton = (LinearLayout) content.findViewById(R.id.linear_get_point);
         startDateText = (TextView)content.findViewById(R.id.start_date_text);
         endDateText = (TextView)content.findViewById(R.id.end_date_text);
@@ -170,7 +171,13 @@ public class GetBookActivity extends AppCompatActivity {
                                                      if (startDateFlag && endDateFlag) {
                                                          if (CurrentUser.getPoints() > bookPrice) {
                                                              Request.addBorrowRequest(startYear, startMonth, startDay, endYear,
-                                                                     endMonth, endDay, bookID, bookPrice, getApplicationContext());
+                                                                     endMonth, endDay, bookID, bookPrice, getApplicationContext(), new Callable() {
+                                                                 @Override
+                                                                 public Object call() throws Exception {
+                                                                     finish();
+                                                                     return null;
+                                                                 }
+                                                             });
                                                              Snackbar.make(v, "processing your request", Snackbar.LENGTH_LONG)
                                                                      .setAction("Action", null).show();
                                                              yourPointsTextView.setText(Integer.toString(CurrentUser.getPoints()));
@@ -184,11 +191,16 @@ public class GetBookActivity extends AppCompatActivity {
                                                      if (startDateFlag) {
                                                          if (CurrentUser.getPoints() > bookPrice) {
                                                              Request.addGetRequest(startYear, startMonth, startDay, bookID,
-                                                                     bookPrice, getApplicationContext());
+                                                                     bookPrice, getApplicationContext() ,  new Callable() {
+                                                                         @Override
+                                                                         public Object call() throws Exception {
+                                                                             finish();
+                                                                             return null;
+                                                                         }
+                                                                     });
                                                              Snackbar.make(v, "processing your request", Snackbar.LENGTH_LONG)
                                                                      .setAction("Action", null).show();
                                                              yourPointsTextView.setText(Integer.toString(CurrentUser.getPoints()));
-                                                             finish();
 
                                                          } else
                                                              Toast.makeText(getApplicationContext(), "you don't have enough coins",
