@@ -2,6 +2,7 @@ package com.MCIT.raf.data;
 
 
 import android.content.Context;
+import android.telecom.Call;
 import android.widget.Toast;
 
 import com.MCIT.raf.R;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 /**
  * Created by Maheed on 5/2/2016.
@@ -38,7 +40,7 @@ public class NewBookRequest extends ParseObject {
     }
     public void setBookName(String bookName){ put("bookName" , bookName); }
 
-    public static void addNewBookRequest(final String bookName , final Context context){
+    public static void addNewBookRequest(final String bookName , final Context context , final Callable callable){
 
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(context.getString(R.string.new_book_request));
@@ -51,6 +53,11 @@ public class NewBookRequest extends ParseObject {
             public void done(List<ParseObject> objects, ParseException e) {
                 if(objects.size() >0){
                     Toast.makeText(context, "You have already requested this book", Toast.LENGTH_LONG).show();
+                    try {
+                        callable.call();
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
                 }
                 else{
                     NewBookRequest newBookRequest = new NewBookRequest();
@@ -60,6 +67,11 @@ public class NewBookRequest extends ParseObject {
                         @Override
                         public void done(ParseException e) {
                             Toast.makeText(context, "Your request have been placed", Toast.LENGTH_LONG).show();
+                            try {
+                                callable.call();
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                            }
                         }
                     });
                 }
