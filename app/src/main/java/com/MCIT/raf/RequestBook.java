@@ -15,6 +15,7 @@ import com.parse.ParseException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class RequestBook extends AppCompatActivity {
 
@@ -37,7 +38,15 @@ public class RequestBook extends AppCompatActivity {
             public void onClick(View v) {
                 AutoCompleteTextView bookNameTextView = (AutoCompleteTextView)findViewById(R.id.req_sugg);
                 if(!bookNameTextView.getText().toString().equals("")){
-                    NewBookRequest.addNewBookRequest(bookNameTextView.getText().toString(),getApplicationContext());
+                    startAnim();
+                    NewBookRequest.addNewBookRequest(bookNameTextView.getText().toString(), getApplicationContext(), new Callable() {
+                        @Override
+                        public Object call() throws Exception {
+                            endAnim();
+                            finish();
+                            return null;
+                        }
+                    });
                     Snackbar.make(v, "Request in progress", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
 
@@ -76,5 +85,11 @@ public class RequestBook extends AppCompatActivity {
 
         View current = getCurrentFocus();
         if (current != null) current.clearFocus();
+    }
+    void startAnim(){
+
+    }
+    void endAnim(){
+
     }
 }
