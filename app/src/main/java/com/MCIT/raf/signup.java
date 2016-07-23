@@ -19,6 +19,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -54,6 +55,7 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private EditText mNameView;
+    private EditText mPhoneView;
     private View mProgressView;
     private View mSignupFormView;
     Button mSignupButton;
@@ -80,6 +82,8 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
         });
 
         mNameView = (EditText) findViewById(R.id.account);
+        mPhoneView = (EditText) findViewById(R.id.phone);
+
 
         mSignupButton = (Button) findViewById(R.id.email_sign_in_button);
         mSignupButton.setOnClickListener(new OnClickListener() {
@@ -91,6 +95,8 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
 
         mSignupFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+
 
     }
 
@@ -162,11 +168,13 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
         mEmailView.setError(null);
         mPasswordView.setError(null);
         mNameView.setError(null);
+        mPhoneView.setError(null);
 
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
         String account = mNameView.getText().toString();
+        String phone = mPhoneView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -175,6 +183,28 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
+            cancel = true;
+        }
+
+
+        // Check for a valid Name, if the user entered one.
+        if (TextUtils.isEmpty(account)) {
+            mNameView.setError("Field Required");
+            focusView = mNameView;
+            cancel = true;
+        }
+
+        // Check for a valid phone, if the user entered one.
+        if (TextUtils.isEmpty(account)) {
+            mPhoneView.setError("Field Required");
+            focusView = mNameView;
+            cancel = true;
+        }
+
+
+        if (TextUtils.isEmpty(phone)) {
+            mPhoneView.setError("Field Required");
+            focusView = mPhoneView;
             cancel = true;
         }
 
@@ -197,7 +227,7 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password, account);
+            mAuthTask = new UserLoginTask(email, password, account, phone);
             mAuthTask.execute((Void) null);
         }
     }
@@ -311,11 +341,13 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
         private final String mEmail;
         private final String mPassword;
         private final String mName;
+        private final String mPhone;
 
-        UserLoginTask(String email, String password, String Name) {
+        UserLoginTask(String email, String password, String Name, String phone) {
             mEmail = email;
             mPassword = password;
             mName = Name;
+            mPhone = phone;
         }
 
         @Override
@@ -327,6 +359,7 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
             user.setPassword(mPassword);
             user.setEmail(mEmail);
             user.put("Pname", mName);
+            user.put("phone", mPhone);
 
 
             try{
@@ -343,6 +376,7 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
             }
             catch (ParseException e)
             {
+                Log.d("el error aho" ,e.getMessage());
                 return false;
             }
         }

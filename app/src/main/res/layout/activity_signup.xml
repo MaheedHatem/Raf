@@ -86,6 +86,23 @@
 
             </android.support.design.widget.TextInputLayout>
 
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/phone"
+                    android:textColor="@color/colorAccent"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:hint="Mobile Number"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
