@@ -170,10 +170,12 @@ public class GetBookActivity extends AppCompatActivity {
                                                  if (!operation) {
                                                      if (startDateFlag && endDateFlag) {
                                                          if (CurrentUser.getPoints() > bookPrice) {
+                                                             startAnim();
                                                              Request.addBorrowRequest(startYear, startMonth, startDay, endYear,
                                                                      endMonth, endDay, bookID, bookPrice, getApplicationContext(), new Callable() {
                                                                  @Override
                                                                  public Object call() throws Exception {
+                                                                     stopAnim();
                                                                      finish();
                                                                      return null;
                                                                  }
@@ -190,10 +192,12 @@ public class GetBookActivity extends AppCompatActivity {
                                                  } else {
                                                      if (startDateFlag) {
                                                          if (CurrentUser.getPoints() > bookPrice) {
+                                                             startAnim();
                                                              Request.addGetRequest(startYear, startMonth, startDay, bookID,
                                                                      bookPrice, getApplicationContext() ,  new Callable() {
                                                                          @Override
                                                                          public Object call() throws Exception {
+                                                                             stopAnim();
                                                                              finish();
                                                                              return null;
                                                                          }
@@ -374,6 +378,11 @@ public class GetBookActivity extends AppCompatActivity {
         return -1;
     }
 
-
+    void startAnim(){
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
+    }
+    void stopAnim(){
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
+    }
 
 }
