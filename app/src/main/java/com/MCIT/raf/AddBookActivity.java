@@ -1,10 +1,12 @@
 package com.MCIT.raf;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,6 +24,8 @@ import android.widget.Toast;
 
 import com.MCIT.raf.data.Request;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.util.Calendar;
 import java.util.concurrent.Callable;
 
@@ -32,6 +36,7 @@ public class AddBookActivity extends AppCompatActivity {
     static boolean deliveryDateFlag = false;
     static Context mContext;
     static LinearLayout deliveryDateButton;
+    ImageView bookImage;
 
     static TextView pickdelivery;
     @Override
@@ -52,7 +57,7 @@ public class AddBookActivity extends AppCompatActivity {
         int bookPrice = getIntent().getIntExtra(getString(R.string.book_intent_price) , 0);
         final byte[] bookCover = getIntent().getByteArrayExtra(getString(R.string.book_intent_cover));
 
-        ImageView bookImage = (ImageView)findViewById(R.id.cover);
+        bookImage = (ImageView)findViewById(R.id.cover);
         final EditText bookNameEditText = (EditText)findViewById(R.id.bookName_EditText);
         TextView bookNameTextView = (TextView)findViewById(R.id.bookName_TextView);
         TextView priceTextView = (TextView)findViewById(R.id.price_textView);
@@ -74,6 +79,18 @@ public class AddBookActivity extends AppCompatActivity {
             bookNameEditText.setVisibility(View.VISIBLE);
             findViewById(R.id.divider).setVisibility(View.VISIBLE);
             bookNameTextView.setVisibility(View.GONE);
+            ImageView img = (ImageView) findViewById(R.id.cover);
+            img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(Intent.ACTION_PICK,
+                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(intent, 0);
+
+
+                }
+            });
         }
         bookNameEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -184,4 +201,31 @@ public class AddBookActivity extends AppCompatActivity {
     void stopAnim(){
         findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+
+            Uri targetUri = data.getData();
+            final Bitmap bitmap;
+            try {
+                bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                //TODO chnage compression ratio
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                bookImage.setImageBitmap(bitmap);
+
+
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+
 }
