@@ -46,7 +46,7 @@
     <string name="parse_ClientKey">yhmGW190PwtEIxtRUNaDz9rB3IDR5Gp4rMF91DYy</string>
 
     <!-- NewBookRequest object -->
-    <string name = "new_book_request">NewBookRequest</string>
+    <string name="new_book_request">NewBookRequest</string>
     <string name="parse_new_book_request_user">user</string>
     <string name="parse_new_book_request_book_name">bookName</string>
 

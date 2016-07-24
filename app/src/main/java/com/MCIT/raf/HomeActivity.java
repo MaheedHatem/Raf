@@ -238,6 +238,10 @@ public class HomeActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_contact) {
 
+            Intent mainIntent = new Intent(HomeActivity.this, ContactUs.class);
+            HomeActivity.this.startActivity(mainIntent);
+            overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
+
 
         } else if (id == R.id.nav_suggest) {
             Intent mainIntent = new Intent(HomeActivity.this, RequestBook.class);
