@@ -539,7 +539,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
                 catch (Exception e)
                 {
-                    Log.d("Errrror--->",e.getMessage());
+//                    Log.d("Errrror--->",e.getMessage());
 
 
                 }
