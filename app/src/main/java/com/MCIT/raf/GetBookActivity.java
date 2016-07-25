@@ -115,7 +115,7 @@ public class GetBookActivity extends AppCompatActivity {
                     endDateButton.setVisibility(View.VISIBLE);
                     endDateButton.setEnabled(true);
                     startDateText.setText("");
-                    pointsTextView.setText("");
+                    pointsTextView.setText(Integer.toString(bookPrice/2));
 
                 }
 
