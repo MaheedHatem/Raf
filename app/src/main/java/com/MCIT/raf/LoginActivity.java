@@ -174,6 +174,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             {
                 // App code
                 Log.d("FACEBOOK----->","onError");
+                showProgress(false);
 
             }
         });
@@ -185,6 +186,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mFbButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                showProgress(true);
                 LogFb();
             }
         });
@@ -242,7 +244,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private  void LogFb(){
-        //showProgress(true);
+
         Collection<String> permissions = Arrays.asList("public_profile", "email");
         ParseFacebookUtils.logInWithReadPermissionsInBackground(this, permissions, new LogInCallback() {
             @Override
@@ -256,7 +258,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     CurrentUser.fetchRequests();
                     CurrentUser.getWishlistFirstTime();
                     getInfo();
-                    showProgress(false);
                     Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
                     mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
                     LoginActivity.this.startActivity(mainIntent);
@@ -268,7 +269,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     facebookok = true;
                     CurrentUser.fetchRequests();
                     CurrentUser.getWishlistFirstTime();
-                    showProgress(false);
 
                     Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
                     mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
@@ -472,7 +472,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            showProgress(false);
+
 
             if (success) {
                 Intent mainIntent = new Intent(LoginActivity.this,HomeActivity.class);
@@ -480,6 +480,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 LoginActivity.this.startActivity(mainIntent);
                 overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
             } else {
+                showProgress(false);
                 mEmailView.setError("Wrong Credentials");
                 mEmailView.requestFocus();
             }
