@@ -169,7 +169,7 @@ public class GetBookActivity extends AppCompatActivity {
                                              public void onClick(View v) {
                                                  if (!operation) {
                                                      if (startDateFlag && endDateFlag) {
-                                                         if (CurrentUser.getPoints() > bookPrice) {
+                                                         if (CurrentUser.getPoints() > bookPrice/2) {
                                                              startAnim();
                                                              Request.addBorrowRequest(startYear, startMonth, startDay, endYear,
                                                                      endMonth, endDay, bookID, bookPrice, getApplicationContext(), new Callable() {
