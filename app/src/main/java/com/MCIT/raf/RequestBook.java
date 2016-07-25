@@ -51,7 +51,7 @@ public class RequestBook extends AppCompatActivity {
                             .setAction("Action", null).show();
 
                 }else{
-                    Snackbar.make(v, "Bnvalid Book Name", Snackbar.LENGTH_LONG)
+                    Snackbar.make(v, "Invalid Book Name", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
 
