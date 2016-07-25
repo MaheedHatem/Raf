@@ -156,7 +156,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             {
                 // App code
                 Log.d("FACEBOOK----->","onSuccess");
-                getInfo();
 
             }
 
