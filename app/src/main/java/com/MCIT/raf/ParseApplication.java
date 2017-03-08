@@ -30,7 +30,12 @@ public class ParseApplication extends Application {
         ParseObject.registerSubclass(DeliveryPoint.class);
         ParseObject.registerSubclass(Request.class);
         ParseObject.registerSubclass(NewBookRequest.class);
-        Parse.initialize(this, getString(R.string.parse_AppID), getString(R.string.parse_ClientKey));
+        //Parse.initialize(this, getString(R.string.parse_AppID), getString(R.string.parse_ClientKey));
+        Parse.initialize(new Parse.Configuration.Builder(getApplicationContext())
+                .applicationId("E4KJFk3dW4oBSuyzfOHnw0oND4x86ilQOf5iczOy")
+                .server("https://alraf.herokuapp.com/parse/")
+        .build()
+        );
 
         ParseACL defaultACL = new ParseACL();
 
