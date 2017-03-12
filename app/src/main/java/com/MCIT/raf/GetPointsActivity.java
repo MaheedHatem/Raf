@@ -47,35 +47,35 @@ public class GetPointsActivity extends AppCompatActivity {
                 TextView ts = (TextView) findViewById(R.id.points_text);
 
                 switch(position){
-                    case 0:
-
-                        CurrentUser.addPoints(5);
-                        Snackbar.make(view, "5 points added", Snackbar.LENGTH_LONG)
+//                    case 0:
+//                        CurrentUser.addPoints(5);
+//                        Snackbar.make(view, "5 points added", Snackbar.LENGTH_LONG)
+//                                .setAction("Action", null).show();
+//                        ts.setText(Integer.toString(CurrentUser.getPoints()));
+//                        break;
+//                    case 1:
+//                        CurrentUser.addPoints(10);
+//                         Snackbar.make(view, "10 points added", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//                        ts.setText(Integer.toString(CurrentUser.getPoints()));
+//                        break;
+//                    case 2:
+//                        CurrentUser.addPoints(20);
+//                        Snackbar.make(view, "20 points added", Snackbar.LENGTH_LONG)
+//                                .setAction("Action", null).show();
+//                         ts = (TextView) findViewById(R.id.points_text);
+//                        ts.setText(Integer.toString(CurrentUser.getPoints()));
+//                        break;
+//                    case 3:
+//                        CurrentUser.addPoints(35);
+//                        Snackbar.make(view, "35 points added", Snackbar.LENGTH_LONG)
+//                                .setAction("Action", null).show();
+//                         ts = (TextView) findViewById(R.id.points_text);
+//                        ts.setText(Integer.toString(CurrentUser.getPoints()));
+//                        break;
+                    default:
+                        Snackbar.make(view, "Online Purchasing is Coming Soon", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
-                        ts.setText(Integer.toString(CurrentUser.getPoints()));
-                        break;
-
-
-                    case 1:
-                        CurrentUser.addPoints(10);
-                         Snackbar.make(view, "10 points added", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                        ts.setText(Integer.toString(CurrentUser.getPoints()));
-                        break;
-                    case 2:
-                        CurrentUser.addPoints(20);
-                        Snackbar.make(view, "20 points added", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-                         ts = (TextView) findViewById(R.id.points_text);
-                        ts.setText(Integer.toString(CurrentUser.getPoints()));
-                        break;
-                    case 3:
-                        CurrentUser.addPoints(35);
-                        Snackbar.make(view, "35 points added", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-                         ts = (TextView) findViewById(R.id.points_text);
-                        ts.setText(Integer.toString(CurrentUser.getPoints()));
-                        break;
 
                 }
             }

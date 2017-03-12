@@ -95,4 +95,10 @@
     <string name="parse_book_objectId">objectId</string>
     <string name="parse_book_price">price</string>
     <string name="title_activity_request_book">RequestBook</string>
+
+    <string-array name="android_dropdown_arrays">
+        <item>Select Delivery Point</item>
+        <item>Makan - مكان</item>
+    </string-array>
+
 </resources>

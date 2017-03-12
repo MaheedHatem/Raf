@@ -16,9 +16,11 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +39,9 @@ public class AddBookActivity extends AppCompatActivity {
     static Context mContext;
     static LinearLayout deliveryDateButton;
     ImageView bookImage;
+    private Spinner spinner1;
+    String pickups[] = {"Select Delivery Point","Makan - مكان"};
+
 
     static TextView pickdelivery;
     @Override
@@ -47,6 +52,12 @@ public class AddBookActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Add Book");
+        spinner1 = (Spinner)findViewById(R.id.pickup_spinner);
+        ArrayAdapter<CharSequence> foodadapter = ArrayAdapter.createFromResource(this, R.array.android_dropdown_arrays, R.layout.simple_spinner_dropdown_item);
+        foodadapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(foodadapter);
+
+
         Calendar c = Calendar.getInstance();
         currentYear = c.get(Calendar.YEAR);
         currentMonth = c.get(Calendar.MONTH);

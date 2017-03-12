@@ -15,10 +15,12 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,7 +42,7 @@ public class GetBookActivity extends AppCompatActivity {
     private boolean PURCHASE = true;
     private boolean BORROW = false;
     static LinearLayout endDateButton;
-
+    private Spinner spinner1;
     static Context mContext;
 
    static TextView pickdelivery;
@@ -57,6 +59,11 @@ public class GetBookActivity extends AppCompatActivity {
         mContext = this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        spinner1 = (Spinner)findViewById(R.id.pickup_spinner);
+        ArrayAdapter<CharSequence> foodadapter = ArrayAdapter.createFromResource(this, R.array.android_dropdown_arrays, R.layout.simple_spinner_dropdown_item);
+        foodadapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(foodadapter);
 
         String bookName = getIntent().getStringExtra(getString(R.string.book_intent_name));
         getSupportActionBar().setTitle("Get Copy of "+ bookName);
