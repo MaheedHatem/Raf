@@ -149,8 +149,8 @@ public class GetPointsActivity extends AppCompatActivity {
     public class CustomList extends ArrayAdapter<String> {
 
         private final Activity context;
-        private final String[] nPoints = {"5 Points" ,"10 Points", "20 Points", "35 Points"};
-        private final String[] Price = {"5 L.E", "10 L.E", "20 L.E", "35 L.E"};
+        private final String[] nPoints = {"50 Points" ,"100 Points", "250 Points", "500 Points"};
+        private final String[] Price = {"15 L.E", "25 L.E", "50 L.E", "90 L.E"};
 
         public CustomList(Activity context) {
             super(context, R.layout.points_list);

@@ -255,6 +255,12 @@ public class HomeActivity extends AppCompatActivity
             Intent mainIntent = new Intent(HomeActivity.this, AccountActivity.class);
             HomeActivity.this.startActivity(mainIntent);
             overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
+        } else if (id == R.id.pick_locations) {
+
+
+            Intent mainIntent = new Intent(HomeActivity.this, PickupLocations.class);
+            HomeActivity.this.startActivity(mainIntent);
+            overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
 
         } else if (id == R.id.nav_logout) {
 
