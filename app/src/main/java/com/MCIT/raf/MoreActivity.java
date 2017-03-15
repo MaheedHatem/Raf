@@ -162,7 +162,7 @@ public class MoreActivity extends AppCompatActivity {
                     case "Series":
                         queryHome.whereEqualTo(context.getString(R.string.parse_book_genre),genre);
                         break;
-                    case "Relegion":
+                    case "Religion":
                         queryHome.whereEqualTo(context.getString(R.string.parse_book_genre),genre);
                         break;
                 }

@@ -1,17 +1,10 @@
 package com.MCIT.raf;
 
-import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -24,8 +17,8 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
     public static final int HISTORY = 1;
     public static final int BIO = 2;
     public static final int SERIES = 3;
-    public static final int RELEGION = 4;
-    final int [] types = {CLASSIC,HISTORY,BIO,SERIES,RELEGION};
+    public static final int RELIGION = 4;
+    final int [] types = {CLASSIC,HISTORY,BIO,SERIES, RELIGION};
     static public GridHomeAdapter gAdapter0;
     static public GridHomeAdapter gAdapter1;
     static public GridHomeAdapter gAdapter2;
@@ -134,10 +127,10 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
                 holder.gridView.setAdapter(gAdapter3);
                 holder.tmore.setTag("Series");
                 break;
-            case RELEGION:
-                holder.txt.setText("Relegion");
+            case RELIGION:
+                holder.txt.setText("Religion");
                 holder.gridView.setAdapter(gAdapter4);
-                holder.tmore.setTag("Relegion");
+                holder.tmore.setTag("Religion");
                 break;
         }
 
@@ -166,7 +159,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
             case SERIES:
                 gAdapter3.addItem(title,author,cover,type);
                 break;
-            case RELEGION:
+            case RELIGION:
                 gAdapter4.addItem(title,author,cover,type);
                 break;
         }
@@ -187,7 +180,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
             case SERIES:
                 gAdapter3.addItem(book,type);
                 break;
-            case RELEGION:
+            case RELIGION:
                 gAdapter4.addItem(book,type);
                 break;
         }

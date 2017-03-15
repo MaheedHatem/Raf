@@ -48,15 +48,15 @@ public class CategoriesFragment extends Fragment {
         mAdapter.addBook("Ten Thousand Skies Above You","Claudia Gray",R.drawable.book2,mAdapter.SERIES);
         mAdapter.addBook("Strill Alice","Lisa Genova",R.drawable.book3,mAdapter.SERIES);
         mAdapter.addBook("Book Thief","Markus Zusak",R.drawable.book1,mAdapter.SERIES);
-        mAdapter.addBook("Strill Alice","Lisa Genova",R.drawable.book3,mAdapter.RELEGION);
-        mAdapter.addBook("Book Thief","Markus Zusak",R.drawable.book1,mAdapter.RELEGION);
-        mAdapter.addBook("Ten Thousand Skies Above You","Claudia Gray",R.drawable.book2,mAdapter.RELEGION);*/
+        mAdapter.addBook("Strill Alice","Lisa Genova",R.drawable.book3,mAdapter.RELIGION);
+        mAdapter.addBook("Book Thief","Markus Zusak",R.drawable.book1,mAdapter.RELIGION);
+        mAdapter.addBook("Ten Thousand Skies Above You","Claudia Gray",R.drawable.book2,mAdapter.RELIGION);*/
 
         Book.getTopCategory(mAdapter , getContext() , mAdapter.CLASSIC);
         Book.getTopCategory(mAdapter , getContext() , mAdapter.HISTORY);
         Book.getTopCategory(mAdapter , getContext() , mAdapter.BIO);
         Book.getTopCategory(mAdapter , getContext() , mAdapter.SERIES);
-        Book.getTopCategory(mAdapter , getContext() , mAdapter.RELEGION);
+        Book.getTopCategory(mAdapter , getContext() , mAdapter.RELIGION);
 
         /*ParseQuery<ParseObject> queryClassicID = ParseQuery.getQuery(getString(R.string.parse_genre));
         queryClassicID.whereEqualTo(getString(R.string.parse_genre_name), "Classic");
@@ -179,7 +179,7 @@ public class CategoriesFragment extends Fragment {
                         public void done(List<ParseObject> objects, ParseException e) {
                             if (e== null) {
                                 for (int i = 0; i < objects.size(); i++) {
-                                    mAdapter.addBook((Book) objects.get(i), mAdapter.RELEGION);
+                                    mAdapter.addBook((Book) objects.get(i), mAdapter.RELIGION);
                                 }
                             }
                         }
