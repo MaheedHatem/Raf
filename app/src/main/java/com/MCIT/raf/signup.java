@@ -390,7 +390,7 @@ public class signup extends AppCompatActivity implements LoaderCallbacks<Cursor>
 
 
                 Intent mainIntent = new Intent(signup.this,HomeActivity.class);
-                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 signup.this.startActivity(mainIntent);
                 overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
             } else {

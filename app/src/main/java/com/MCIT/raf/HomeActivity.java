@@ -79,7 +79,7 @@ public class HomeActivity extends AppCompatActivity
                     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                            HomeActivity.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-                    drawer.setDrawerListener(toggle);
+                    drawer.addDrawerListener(toggle);
                     toggle.syncState();
 
                     NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -87,7 +87,7 @@ public class HomeActivity extends AppCompatActivity
                 }
             };
 
-        viewPager.setOnPageChangeListener(myOnPageChangeListener);
+        viewPager.addOnPageChangeListener(myOnPageChangeListener);
 
         final TabLayout.Tab home = tabLayout.newTab();
         final TabLayout.Tab inbox = tabLayout.newTab();
@@ -111,7 +111,7 @@ public class HomeActivity extends AppCompatActivity
 
 
 
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener()
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener()
         {
             @Override
             public void onTabSelected(TabLayout.Tab tab)

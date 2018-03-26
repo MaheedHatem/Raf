@@ -259,7 +259,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     CurrentUser.getWishlistFirstTime();
                     getInfo();
                     Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
-                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     LoginActivity.this.startActivity(mainIntent);
                     overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
 
@@ -271,7 +271,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     CurrentUser.getWishlistFirstTime();
 
                     Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
-                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     LoginActivity.this.startActivity(mainIntent);
                     overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
 
@@ -476,7 +476,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 Intent mainIntent = new Intent(LoginActivity.this,HomeActivity.class);
-                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 LoginActivity.this.startActivity(mainIntent);
                 overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
             } else {
@@ -561,4 +561,3 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 }
-

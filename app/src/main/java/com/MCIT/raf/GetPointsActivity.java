@@ -2,7 +2,10 @@ package com.MCIT.raf;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,14 +21,27 @@ import com.MCIT.raf.data.CurrentUser;
 import com.MCIT.raf.util.IabHelper;
 import com.MCIT.raf.util.IabResult;
 import com.MCIT.raf.util.Purchase;
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.Constants;
+import com.anjlab.android.iab.v3.TransactionDetails;
+import com.parse.ParseException;
+import com.parse.SaveCallback;
 
-public class GetPointsActivity extends AppCompatActivity {
+public class GetPointsActivity extends AppCompatActivity implements BillingProcessor.IBillingHandler{
     private static final int RC_REQUEST = 10001;
     Button button5;
+    BillingProcessor bp;
     static final String TAG = "GetPoinstActivity";
     // SKUs for our products:
     static final String SKU_TEN_POINTS = "ten_points";
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (!bp.handleActivityResult(requestCode, resultCode, data)) {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +51,7 @@ public class GetPointsActivity extends AppCompatActivity {
 
         CustomList cs = new CustomList(this);
         ListView listView = (ListView) findViewById(R.id.points_list);
+        bp = new BillingProcessor(this, "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp/7Q5PKVYq0FNToPCqKzisIHJpxW02R12JuyPGD/yovu0nM4hM8bvDXoJ/w2HJdGkWVNjQGrfajb/73zPP7qsXE/dYSvOfy4lNPUxheNeJxRnT8IsfKYYD62zLPNMEPjytAkgudcYqbEUxf97nnvdk/ukllLEB6I+o3VSdJZYc2lHOt7v68Vtl9OY/s5NE8ZtgtyZRNYXl9E0O/KwLwSiGmUm0hVAaDiTYRslldsUI7SNGRD8RUIJ2D5ioqbFMeaEZG2zhrJ60MPmtY/kh7p1wTEiF6xxv0S0EszFP8yMopus90/Isko7JUx/J6uq0U+seNdGzzDlGhlERXi3T7owwIDAQAB", this);
 
 
         listView.setAdapter(cs);
@@ -45,36 +62,44 @@ public class GetPointsActivity extends AppCompatActivity {
                 // When clicked, show a toast with the TextView text
 
                 TextView ts = (TextView) findViewById(R.id.points_text);
+                boolean isOneTimePurchaseSupported = bp.isOneTimePurchaseSupported();
+                if (!isOneTimePurchaseSupported)
+                    position = 99;
+
 
                 switch(position){
-//                    case 0:
-//                        CurrentUser.addPoints(5);
-//                        Snackbar.make(view, "5 points added", Snackbar.LENGTH_LONG)
-//                                .setAction("Action", null).show();
-//                        ts.setText(Integer.toString(CurrentUser.getPoints()));
-//                        break;
-//                    case 1:
+                    case 0:
+                        bp.purchase(GetPointsActivity.this, "points.50");
+                        break;
+                    case 1:
 //                        CurrentUser.addPoints(10);
 //                         Snackbar.make(view, "10 points added", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
 //                        ts.setText(Integer.toString(CurrentUser.getPoints()));
-//                        break;
-//                    case 2:
+                        bp.purchase(GetPointsActivity.this, "points.100");
+                        break;
+                    case 2:
 //                        CurrentUser.addPoints(20);
 //                        Snackbar.make(view, "20 points added", Snackbar.LENGTH_LONG)
 //                                .setAction("Action", null).show();
 //                         ts = (TextView) findViewById(R.id.points_text);
 //                        ts.setText(Integer.toString(CurrentUser.getPoints()));
-//                        break;
-//                    case 3:
+                        bp.purchase(GetPointsActivity.this, "points.250");
+                        break;
+                    case 3:
 //                        CurrentUser.addPoints(35);
 //                        Snackbar.make(view, "35 points added", Snackbar.LENGTH_LONG)
 //                                .setAction("Action", null).show();
 //                         ts = (TextView) findViewById(R.id.points_text);
 //                        ts.setText(Integer.toString(CurrentUser.getPoints()));
-//                        break;
+                        bp.purchase(GetPointsActivity.this, "points.500");
+                        break;
+                    case 99:
+                        Snackbar.make(view, "Google Play Purchases is not Available on this Device", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                        break;
                     default:
-                        Snackbar.make(view, "Online Purchasing is Coming Soon", Snackbar.LENGTH_LONG)
+                        Snackbar.make(view, "Something went Wrong", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
 
                 }
@@ -142,7 +167,47 @@ public class GetPointsActivity extends AppCompatActivity {
 
     @Override
     public void onDestroy() {
+        if (bp != null) {
+            bp.release();
+        }
         super.onDestroy();
+
+    }
+
+
+
+    @Override
+    public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
+
+        int points = Integer.parseInt(productId.substring(7));
+        CurrentUser.addPoints(points, new SaveCallback() {
+            @Override
+            public void done(ParseException ex) {
+                TextView ts = (TextView) findViewById(R.id.points_text);
+                ts.setText(Integer.toString(CurrentUser.getPoints()));
+            }});
+        bp.consumePurchase(productId);
+        Snackbar.make(GetPointsActivity.this.getCurrentFocus(), points + " Points Added Successfully", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+    }
+
+    @Override
+    public void onPurchaseHistoryRestored() {
+
+    }
+
+    @Override
+    public void onBillingError(int errorCode, @Nullable Throwable error) {
+
+        if (errorCode != Constants.BILLING_RESPONSE_RESULT_USER_CANCELED){
+            Snackbar.make(GetPointsActivity.this.getCurrentFocus(), "Something went Wrong during the Purchase",
+                    Snackbar.LENGTH_LONG).setAction("Action", null).show();
+        }
+
+    }
+
+    @Override
+    public void onBillingInitialized() {
 
     }
 
@@ -150,7 +215,7 @@ public class GetPointsActivity extends AppCompatActivity {
 
         private final Activity context;
         private final String[] nPoints = {"50 Points" ,"100 Points", "250 Points", "500 Points"};
-        private final String[] Price = {"15 L.E", "25 L.E", "50 L.E", "90 L.E"};
+        private final String[] Price = {"20 L.E", "45 L.E", "100 L.E", "200 L.E"};
 
         public CustomList(Activity context) {
             super(context, R.layout.points_list);
@@ -183,6 +248,9 @@ public class GetPointsActivity extends AppCompatActivity {
             return position;
         }
     }
+
+
+
 
 
 }

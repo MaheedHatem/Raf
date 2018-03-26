@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="com.android.vending.BILLING" />
 
+
     <application
         android:name=".ParseApplication"
         android:allowBackup="true"

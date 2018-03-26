@@ -71,6 +71,7 @@ public class BookActivity extends AppCompatActivity {
         collapsingToolbarLayout.setTitle(bookName);
         collapsingToolbarLayout.setExpandedTitleColor(Color.parseColor("#D9000000")); // transperent color = #00000000
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE); //Color of your title
+        collapsingToolbarLayout.setCollapsedTitleGravity(View.TEXT_DIRECTION_LTR);
 
         Bitmap b = BitmapFactory.decodeByteArray(bookCover,0,bookCover.length);
         if(b!=null)

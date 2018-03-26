@@ -1,12 +1,17 @@
 package com.MCIT.raf.data;
 
+import android.os.Handler;
+
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
+
+import javax.security.auth.callback.Callback;
 
 /**
  * Created by Maheed on 5/2/2016.
@@ -123,9 +128,10 @@ public class CurrentUser {
         getCurrentUser().put ("coins" , points);
     }
 
-    public static void addPoints(int points){
-        setPoints(getPoints()+points);
-        getCurrentUser().saveInBackground();
+    public static void addPoints(int points, SaveCallback cb){
+        getCurrentUser().increment("coins", points);
+        getCurrentUser().saveInBackground(cb);
+
     }
 
     public static void removePoints(int points){

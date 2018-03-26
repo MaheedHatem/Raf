@@ -16,6 +16,7 @@ import com.MCIT.raf.data.Request;
 import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseFacebookUtils;
+import com.parse.ParseTwitterUtils;
 import com.parse.ParseObject;
 
 public class ParseApplication extends Application {
@@ -46,6 +47,7 @@ public class ParseApplication extends Application {
         ParseACL.setDefaultACL(defaultACL, true);
 
         ParseFacebookUtils.initialize(this);
+        ParseTwitterUtils.initialize("PfSxcfOWxRArClq2llkSHVIAw", "QCLDUh2pLgv2QlLrQz9gL42gHIsbrSjlVQQA87MxSBXbtOl0Ew");
 
     }
 }
